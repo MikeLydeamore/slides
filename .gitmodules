@@ -1,0 +1,3 @@
+[submodule "anziam2024"]
+	path = anziam2024
+	url = git@github.com:MikeLydeamore/anziam2024.git
