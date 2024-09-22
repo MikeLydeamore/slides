@@ -4,3 +4,6 @@
 [submodule "2024-adsc-lunchbox"]
 	path = 2024-adsc-lunchbox
 	url = git@github.com:MikeLydeamore/2024-adsc-lunchbox.git
+[submodule "conmat-spectrum-2024"]
+	path = conmat-spectrum-2024
+	url = git@github.com:MikeLydeamore/talk-conmat-projections.git
