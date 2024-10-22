@@ -7,3 +7,6 @@
 [submodule "conmat-spectrum-2024"]
 	path = conmat-spectrum-2024
 	url = git@github.com:MikeLydeamore/talk-conmat-projections.git
+[submodule "wombat-airpurifyr-2024"]
+	path = wombat-airpurifyr-2024
+	url = git@github.com:MikeLydeamore/talk-airpurifyr.git
