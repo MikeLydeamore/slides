@@ -10,3 +10,6 @@
 [submodule "wombat-airpurifyr-2024"]
 	path = wombat-airpurifyr-2024
 	url = git@github.com:MikeLydeamore/talk-airpurifyr.git
+[submodule "healthcare-infections"]
+	path = healthcare-infections
+	url = git@github.com:MikeLydeamore/talk-healthcare-infections.git
