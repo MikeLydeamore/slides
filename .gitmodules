@@ -13,3 +13,6 @@
 [submodule "healthcare-infections"]
 	path = healthcare-infections
 	url = git@github.com:MikeLydeamore/talk-healthcare-infections.git
+[submodule "hospital-network"]
+	path = hospital-network
+	url = git@github.com:MikeLydeamore/talk-hospital-network.git
