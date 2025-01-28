@@ -1,0 +1,10 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+
+website:
+  title: "Michael Lydeamore - Slides"
+
+execute:
+  freeze: auto

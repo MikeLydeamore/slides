@@ -1,0 +1,765 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Michael Lydeamore - Slides",
+    "section": "",
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nJan 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nJan 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nJan 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nJan 28, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#hello-from-australia",
+    "href": "healthcare-infections/index.html#hello-from-australia",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Hello from Australia!",
+    "text": "Hello from Australia!\n\n\n\nMUA Department of Econometrics and Business Statistics is the largest general statistics group in Victoria\nBusiness Analytics is broad-ranging, including fisheries, data visualisation, extreme weather events, and more theory-based research."
+  },
+  {
+    "objectID": "healthcare-infections/index.html#my-roadmap",
+    "href": "healthcare-infections/index.html#my-roadmap",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "My roadmap",
+    "text": "My roadmap\n\nBachelor of Mathematical Sciences at the University of Adelaide (completed 2012)\nMasters of Philosophy at the University of Adelaide (completed 2015)\nPhD at the University of Melbourne (completed 2019)\nJoined Monash University in mid-2019\nIncluding honorary position at the SaferCare Victoria, Department of Health & Human Services\nRecruited into the COVID-19 response in late February/early March\nAppointed “Modelling & Forecasting Lead” in late March\nAppointed Manager of Analytics in September\nRejoined Monash in 2021, including the Doherty COVID-19 Modelling Consortium\nJoined EBS in September 2021"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#healthcare-associated-infections",
+    "href": "healthcare-infections/index.html#healthcare-associated-infections",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Healthcare Associated Infections",
+    "text": "Healthcare Associated Infections\n\nHealthcare associated infections (HAIs) associated with increased morbidity and mortality\nFive of the most common HAIs are:\n\nClostridiodes difficile – causes severe damage to the colon, can be fatal\nBloodstream infection (sepsis) – estimated mortality rate of 15-30%\nUrinary track infection – low mortality but associated with multi-drug resistance and significantly longer hospital stays\nHealthcare acquired pneumonia – mortality rate of 40-70%, increasing dramatically with age\nSurgical site infection – significantly increases length of stay\n\n\n\nIn Australia, HAIs are not notifiable =&gt; We have no robust way to track whether their prevalence is increasing or decreasing"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#europe-tracks-these-closely",
+    "href": "healthcare-infections/index.html#europe-tracks-these-closely",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Europe tracks these closely",
+    "text": "Europe tracks these closely\nHAIs are actively monitored across Europe through the ECDC\n\nIn 2016 (based on 2012 data), 2,609,911 new HAIs are estimated to have occurred.\n\nThe data were obtained in a point prevalence survey on an enormous scale\n\n273, 753 patients\n1,149 hospitals"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#point-prevalence-survey",
+    "href": "healthcare-infections/index.html#point-prevalence-survey",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Point prevalence survey",
+    "text": "Point prevalence survey\nA point prevalence survey counts the number of people with a condition on a given day\nFor the Australian PPS:\n\nAdults in 19 large acute care public hospitals were sampled\nAll acute care wards were include, non-acute, paediatric, neonatal ICUs, rehab and emergency departments were excluded.\n\nThe hospitals sampled make up approximately 60% of all overnight separations in Australia"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#point-prevalence-survey-1",
+    "href": "healthcare-infections/index.html#point-prevalence-survey-1",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Point prevalence survey",
+    "text": "Point prevalence survey\n\n2767 patients were sampled between 6 Aug and 29 Nov 2018\nMedian age: 67 (range 18-104)\n52.9% male, 46.6% female, 0.5% unknown/other\n85.7% patients in major city hospitals"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#estimation-methodology",
+    "href": "healthcare-infections/index.html#estimation-methodology",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 1: Hospital prevalence\nHospital prevalence, P, estimated as\nP = r \\times Beta(n_{\\text{obs}}, N-n_{\\text{obs}}+1) + (1-r) \\times Beta(n_{\\text{obs}}+1, N-n_{\\text{obs}})"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#estimation-methodology-1",
+    "href": "healthcare-infections/index.html#estimation-methodology-1",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 2: Estimation of hospital incidence\nHospital incidence, I, calculated as\nI = P \\frac{\\text{LA}}{\\text{LOI}}\nwhere\n\nP is the hospital prevalence from step 1,\n\\text{LA} is the mean length of stay and\n\\text{LOI} is the length of infection.\n\n\n\\text{LA} is taken from the AIHW 2018 statistics on all public hospitals."
+  },
+  {
+    "objectID": "healthcare-infections/index.html#estimation-methodology-2",
+    "href": "healthcare-infections/index.html#estimation-methodology-2",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 2a: Estimation of length of infection\nNo data on length of infection, only LOI_\\text{pps}, the length of stay until the date of survey.\nWe can calculate\nP(LOI_\\text{pps} = 1),\nthe probability a patient is in the first day of their HAI. Then, approximate LOI with\nE[LOI] = 1 / P(LOI_\\text{pps} = 1).\nFor small sample sizes, results has shown this is biased, so we use a mixture of this estimator and the empirical mean."
+  },
+  {
+    "objectID": "healthcare-infections/index.html#estimation-methodology-3",
+    "href": "healthcare-infections/index.html#estimation-methodology-3",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 3: Estimation of population incidence\nCalculate population incidence as\nI_{\\text{pop}} = I \\times N_{\\text{discharges}}.\nFor us, N_{\\text{discharges}} = 3,713.513, which is 60% of the total admissions in the year.\n\nThis is one of the few pieces of data Australia has that the ECDC doesn’t!"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#estimation-methodology-4",
+    "href": "healthcare-infections/index.html#estimation-methodology-4",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 4: Stratification by age and sex\nUse a multinomial likelihood with a Dirichlet prior, with weights taken from the number of cases in each age/sex category.\nA psuedocount is added to each strata (0.001\\sum \\text{weights}) to ensure likelihood can be calculated with empty strata\n\nThis psuedocount almost surely induces bias, and there are better techniques out there."
+  },
+  {
+    "objectID": "healthcare-infections/index.html#estimation-methodology-5",
+    "href": "healthcare-infections/index.html#estimation-methodology-5",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 5: Adjustment for life expectancy\nUse the McCabe score, which gives the life expectancy according to severity of disease. Patients are categorised as:\n\nnon-fatal\nfatal (life expectancy 3 years)\nrapidly fatal (average life expectancy of 0.5 years)\n\nThese scores, combined with disease outcome trees, give DALYs and deaths."
+  },
+  {
+    "objectID": "healthcare-infections/index.html#disease-outcome-trees",
+    "href": "healthcare-infections/index.html#disease-outcome-trees",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Disease outcome trees",
+    "text": "Disease outcome trees"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#key-results",
+    "href": "healthcare-infections/index.html#key-results",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Key results",
+    "text": "Key results\n\n\n\n\n\n\n\n\n\n\n\nNumber of HAIs  (95% CI)\nDeaths  (95% CI)\nDALYs  (95% CI)\n\n\n\n\nSSI\n44,238  (31,176 - 73,797)\n876  (617 - 1,263)\n13,197  (9,298 - 19,001)\n\n\nUTI\n42,408  (25,200 - 68,735)\n729  (259 - 1,772)\n16,087  (5,939 - 37,218)\n\n\nCDI\n5,125  (2,360 - 10,740)\n262  (13 - 836)\n2,757  (241 - 8,655)\n\n\nHAP\n51,499  (31,343 - 82,877)\n1,904  (462 - 4,430)\n39,276  (17,608 - 77,915)\n\n\nBSI\n23,979  (15,658 - 36,245)\n3,512  (1,874 - 6,075)\n46,773  (26,205 - 79,104)\n\n\nAll\n170,574  (135,779 - 213,898)\n7,583  (4,941 - 11,135)\n122,376  (85,136 - 172,784)\n\n\n\n\nThat’s 1 in 20 admissions resulting in an avoidable infection!"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#key-results-1",
+    "href": "healthcare-infections/index.html#key-results-1",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Key results",
+    "text": "Key results"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#key-results-2",
+    "href": "healthcare-infections/index.html#key-results-2",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Key results",
+    "text": "Key results"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#key-results-3",
+    "href": "healthcare-infections/index.html#key-results-3",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Key results",
+    "text": "Key results"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#novelty",
+    "href": "healthcare-infections/index.html#novelty",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Novelty",
+    "text": "Novelty\n\nFirst estimate of HAI burden in Australia using (relatively) robust survey data in an established framework\nBased on first point prevalence survey since 1984\nThere is no routine surveillance of HAIs in Australia\nPoint prevalence surveys remain the only way to understand the burden of these conditions"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#summary",
+    "href": "healthcare-infections/index.html#summary",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Summary",
+    "text": "Summary\n\n498 DALYs per 100,000 is a large amount\n\nMotor vehicles: 180 DALYs\nInfectious diseases: 370 DALYs\nRespiratory diseases: 1380 DALYs\n\n\n\nThis work has informed guidance on HAI surveillance in Australia, including new funding schemes to better understand these conditions.\n\n\nAnd all this based on just 2767 patients from 19 hospitals…"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#carbapenemase-producing-enterobacterales",
+    "href": "healthcare-infections/index.html#carbapenemase-producing-enterobacterales",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Carbapenemase-producing Enterobacterales",
+    "text": "Carbapenemase-producing Enterobacterales\n\nGram-negative bacilli occurring naturally in the GI tract\nResistant to carbapenem antibiotics\nSeveral different carbapenemases genes in CPE:\n\nImipenemase (IMP)\nKlebsiella penumoniae carbapenemase (KPC)\nNew-Delhi metallo-β-lactamase (NDM)\nVerona integron-encoded metallo-β-lactamase (VIM) and\nOxacillinases (OXA)\n\nFor Enterobacterales, IMP(-4) most commonly found in Victoria (28% of all cases)\nAssumed to be colonised indefinitely"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#carbapenemase-producing-enterobacterales-1",
+    "href": "healthcare-infections/index.html#carbapenemase-producing-enterobacterales-1",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Carbapenemase-producing Enterobacterales",
+    "text": "Carbapenemase-producing Enterobacterales\n\nSurveillance officially established in Victoria in 2015, became notifiable in 2018\nSince becoming notifiable, notifications have been steadily increasing"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#modelling-possible-control",
+    "href": "healthcare-infections/index.html#modelling-possible-control",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Modelling possible control",
+    "text": "Modelling possible control\n\n\n\nWe know that healthcare is a network phenomenon\nNeed to understand if CPE+ patients are different to CPE- patients"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#research-questions",
+    "href": "healthcare-infections/index.html#research-questions",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Research questions",
+    "text": "Research questions\n\nHow frequently are CPE+ patients admitted to a health service other than the one they are diagnosed?\nAre patients known to be colonized with CPE admitted more often or to more locations than a random patient?"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#health-services-in-victoria-australia",
+    "href": "healthcare-infections/index.html#health-services-in-victoria-australia",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Health Services in Victoria, Australia",
+    "text": "Health Services in Victoria, Australia\n\nHealth services are individually governed\nCentralised guidelines for reporitng\nHave their own IP results, testing/screening requirements, admission & transfer patterns\nAre often spread across multiple campuses which operate independently but are administered centrally\n\n\nAs these services tend to operate on the same patient data platform, we assume that previously diagnosed patients will have infection prevention protocols in place if they are re-admitted to the same service.\nThis is less likely to be true in a different health service, as there is no centralised notification system to other health services."
+  },
+  {
+    "objectID": "healthcare-infections/index.html#notification-system",
+    "href": "healthcare-infections/index.html#notification-system",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Notification system",
+    "text": "Notification system"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#data-sources",
+    "href": "healthcare-infections/index.html#data-sources",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Data sources",
+    "text": "Data sources\nVictorian Admitted Episodes Dataset (VAED):\n\nLine list of every hospital admission (public and private)\nReports demographics, conditions, treatments, timing, location\n\nPublic Health Event Surveillance System (PHESS):\n\nRecords information on notifiable disease events\nIncludes patient demographics, date of notification, date of test\nOperational system, used for contact tracing and outbreak analytics"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#control-population",
+    "href": "healthcare-infections/index.html#control-population",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Control Population",
+    "text": "Control Population\nTo fairly compare between CPE+ and CPE- patients, construct a series of comparator populations which increasingly closely approximate the CPE+ cohort\n\nRandom subset: patients are randomly sampled from the population\nCampus and time: Patients are matched to CPE-positive patients based on the hospital campus and the quarter-year (i.e. 3-month period) of admission\nCampus, time and age: As per Cohort 2, plus the inclusion of five-year age band\nCampus, time and comorbidities: As per Cohort 2, plus the inclusion of age-adjusted Charlson Comorbidity Index category."
+  },
+  {
+    "objectID": "healthcare-infections/index.html#survival-analysis",
+    "href": "healthcare-infections/index.html#survival-analysis",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Survival Analysis",
+    "text": "Survival Analysis\nUse the Kaplan-Meier estimator:\n\\hat{S}(t) = \\prod_{i:t_i \\leq t} 1 - \\frac{d_i}{n_i}\nwhere\n\nd_i is the number of events that have happened up to time t_i, and\nn_i is the number of individuals known to have survived up to time t_i."
+  },
+  {
+    "objectID": "healthcare-infections/index.html#statistical-methodology",
+    "href": "healthcare-infections/index.html#statistical-methodology",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Statistical methodology",
+    "text": "Statistical methodology\nTo calcualte the time until next admission, we set the time 0 to be the time of discharge from a health service where CPE was diagnosed"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#statistical-methodology-1",
+    "href": "healthcare-infections/index.html#statistical-methodology-1",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Statistical methodology",
+    "text": "Statistical methodology\nTime of event is defined to be the time at which a patient was readmitted to a new health service Time of censoring is either death (if known) or the end of the data (30 November 2019), meaning patients have unequal study lengths."
+  },
+  {
+    "objectID": "healthcare-infections/index.html#admission-frequency",
+    "href": "healthcare-infections/index.html#admission-frequency",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Admission Frequency",
+    "text": "Admission Frequency"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#admission-location",
+    "href": "healthcare-infections/index.html#admission-location",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Admission Location",
+    "text": "Admission Location"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#admission-timing",
+    "href": "healthcare-infections/index.html#admission-timing",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Admission Timing",
+    "text": "Admission Timing"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#conclusion",
+    "href": "healthcare-infections/index.html#conclusion",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nHealthcare is a network problem, patients move very frequently\nThis is true independent of CPE colonisation status\nThose who are CPE+ seem to be re-admitted faster on average\n\nAre they sicker people?\nDo they need more frequent follow up close to home?\n\nDesign of control schemes need to consider the linked nature of health services"
+  },
+  {
+    "objectID": "healthcare-infections/index.html#other-ongoing-work",
+    "href": "healthcare-infections/index.html#other-ongoing-work",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Other ongoing work",
+    "text": "Other ongoing work\n\nMachine learning methods to identify risk factors for hospital infections\nLeong Zhuan Kee, Vis; Ewilly Liew\n\nEstimating rates of contact in the absence of local data, conmat\nNick Tierney; Nick Golding\n\nUnderstanding how non-linear dimension reduction warps your data\nJayani Lakshika; Di Cook\nPredicting extreme weather events using short- and long-term climate drivers\nKate Saunders; Jarryd Chapman\nApproximating patient movement patterns with piecewise constant networks\nDavid Wu; Andrew Stewardson\n\nDeveloping non-network based network layout algorithms\nKrisanat Anukarnsakulchularp; Di Cook\n\n…and more.\n\nIf your work is broadly related to infectious diseases, or biosciences, I would love to talk more."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#etc5513-title",
+    "href": "2024-adsc-lunchbox/index.html#etc5513-title",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Data, Health & Biology",
+    "text": "Data, Health & Biology\nIt’s not the size of your data, it’s how you use it\nMichael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\nhttps://slides.michaellydeamore.com/2024-adsc-lunchbox"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#my-roadmap",
+    "href": "2024-adsc-lunchbox/index.html#my-roadmap",
+    "title": "Michael Lydeamore - Slides",
+    "section": "My Roadmap",
+    "text": "My Roadmap\n\nBachelor of Mathematical Sciences at the University of Adelaide (completed 2012)\nMasters of Philosophy at the University of Adelaide (completed 2015)\nPhD at the University of Melbourne (completed 2019)\nJoined Monash University in mid-2019\n\nIncluding honorary position at the SaferCare Victoria, Department of Health & Human Services\n\nRecruited into the COVID-19 response in late February/early March\nAppointed Manager of Analytics in September\nRejoined Monash in 2021, including the Doherty COVID-19 Modelling Consortium\nJoined EBS in September 2021"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#healthcare-asociated-infections",
+    "href": "2024-adsc-lunchbox/index.html#healthcare-asociated-infections",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Healthcare asociated infections",
+    "text": "Healthcare asociated infections\nHealthcare associated infections (HAIs) are associated with increased morbidity and mortality.\nFive of the most common HAIs are:\n\nClostridiodes difficile — causes severe damage to the colon, can be fatal\nBloodstream infection (sepsis) — estimated mortality rate of 15-30%\nUrinary track infection — low mortality but associated with multi-drug resistance and significantly longer stays\nHealthcare acquired pneumonia — mortality rate of 40-70%, increasing dramatically with age\nSurgical site infection — significantly increases length of stay\n\n\nBut, HAIs are not notifiable =&gt; We have no robust way to track whether their prevalence is increasing or decreasing."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#overseas-monitoring",
+    "href": "2024-adsc-lunchbox/index.html#overseas-monitoring",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Overseas monitoring",
+    "text": "Overseas monitoring\nHAIs are actively monitored across Europe through the ECDC.\nIn 2016 (based on 2012 data), 2,609,911 new HAIs are estimated to have occurred.\n\nThe data for this was a point prevalence survey, on an enormous scale:\n\n273,753 patients\n1,149 hospitals"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#point-prevalence-survey",
+    "href": "2024-adsc-lunchbox/index.html#point-prevalence-survey",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Point prevalence survey",
+    "text": "Point prevalence survey\nA point prevalence survey counts the number of people with a condition on a given day.\nWe ran a PPS in Australia in 2019, consisting of:\n\nAdults in 19 large acute care public hospitals\n\nAll acute cards wards were included. Non-acute, paediatric, NICU, rehab, and ED were excluded.\n\nThe hospitals sampled make up approximately 60% of all overnight separations in Australia."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#point-prevalence-survey-1",
+    "href": "2024-adsc-lunchbox/index.html#point-prevalence-survey-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Point prevalence survey",
+    "text": "Point prevalence survey\n\n2767 patients sampled between 6 Aug and 29 Nov 2018\nMedian age: 67 (range 18-104)\n52.9% male, 46.6% female, 0.5% unknown/other\n85.7% patients in major city hospitals"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#estimation-methodology",
+    "href": "2024-adsc-lunchbox/index.html#estimation-methodology",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 1: Estimation of hospital prevalence\nHospital Prevalence (\\(P\\)) is estimated as:\n\\[P = r \\times \\text{Beta}(n_\\text{obs}, N - n_\\text{obs}+1) + (1-r) \\times \\text{Beta}(n_\\text{obs}+1, N-n_\\text{obs}),\\]\nwhere \\(n_\\text{obs}\\) is the number of patients observed with a HAI and \\(N\\) is the total number of patients in the PPS.\nThis is a standard extrapolation from a binomial sample with a lot of zeros."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#estimation-methodology-1",
+    "href": "2024-adsc-lunchbox/index.html#estimation-methodology-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 2: Estimation of hospital incidence\nHospital incidence (\\(I\\)) calculated as:\n\\[I = P \\frac{LA}{LOI},\\]\nwhere:\n\n\\(P\\) is the hospital prevalence from Step 1\n\\(LA\\) is the mean length of stay and\n\\(LOI\\) is the length of infection\n\n\n🎉🎉 Australia actually captures \\(LA\\) through the AIHW 🎉🎉"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#estimation-methodology-2",
+    "href": "2024-adsc-lunchbox/index.html#estimation-methodology-2",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 2a: Length of infection\n\\(LOI\\) is not available, but instead we have \\(LOI_{pps}\\) — the length of infection until the date of survey. We can calculate\n\\[P(LOI_{pps} = 1),\\]\nwhich is just the probability that a patient is in the first day of their HAI. Then,\n\\[E[LOI] = 1/P(LOI_{pps} = 1).\\]\nFor a small sample size, this is heavily biased, so we take a mixture of this estimator and \\(E[LOI_{pps}]\\)."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#estimation-methodology-3",
+    "href": "2024-adsc-lunchbox/index.html#estimation-methodology-3",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 3: Estimation of population incidence\nCalculate population incidence simply as\n\\[I_\\text{pop} = I \\times N_\\text{discharges}.\\]\n\n🎉🎉 We capture this too! \\(N_\\text{discharges} = 3,713,513,\\) 60% of the total admissions in a given year.\n\n\nIn the ECDC PPS, this quantity is not captured. They estimate using patient-days and the number of patients."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#estimation-methodology-4",
+    "href": "2024-adsc-lunchbox/index.html#estimation-methodology-4",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 4: Stratification by age and sex\nUse a multinomial likelihood function with a Dirichlet prior, with weights taken from the number of cases in each age/sex category.\n\nA psuedocount is added to each strata (\\(0.001 \\sum{\\text{weights}}\\)) to ensure the likelihood can be calculated with empty strata.\n\n\n\nJust because it’s called \\(w\\) doesn’t make it a weight\n\nL. Kennedy\n\n\nBut for today it is a weight. We’ll survive."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#estimation-methodology-5",
+    "href": "2024-adsc-lunchbox/index.html#estimation-methodology-5",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Estimation methodology",
+    "text": "Estimation methodology\nStep 5: Adjustment for life expectancy\nUse the “McCabe score”, which gives the life expectancy according to secerity of a disease.\nPatients are categorised as:\n\nnon-fatal\nfatal (average life expectancy of 3 years)\nrapidly fatal (average life expectancy of 0.5 years)\n\n\nThese scores, combined with disease outcome trees, give DALYs and deaths."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#disease-outcome-trees",
+    "href": "2024-adsc-lunchbox/index.html#disease-outcome-trees",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Disease outcome trees",
+    "text": "Disease outcome trees"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#key-results",
+    "href": "2024-adsc-lunchbox/index.html#key-results",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Key results",
+    "text": "Key results\n\n\n\n\n\n\n\n\n\n\n\nNumber of HAIs  (95% CI)\nDeaths  (95% CI)\nDALYs  (95% CI)\n\n\n\n\nSSI\n44,238  (31,176 - 73,797)\n876  (617 - 1,263)\n13,197  (9,298 - 19,001)\n\n\nUTI\n42,408  (25,200 - 68,735)\n729  (259 - 1,772)\n16,087  (5,939 - 37,218)\n\n\nCDI\n5,125  (2,360 - 10,740)\n262  (13 - 836)\n2,757  (241 - 8,655)\n\n\nHAP\n51,499  (31,343 - 82,877)\n1,904  (462 - 4,430)\n39,276  (17,608 - 77,915)\n\n\nBSI\n23,979  (15,658 - 36,245)\n3,512  (1,874 - 6,075)\n46,773  (26,205 - 79,104)\n\n\nAll\n170,574  (135,779 - 213,898)\n7,583  (4,941 - 11,135)\n122,376  (85,136 - 172,784)\n\n\n\n\nThat’s 1 in 20 admissions resulting in an avoidable infection!"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#key-results-1",
+    "href": "2024-adsc-lunchbox/index.html#key-results-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Key results",
+    "text": "Key results"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#key-results-2",
+    "href": "2024-adsc-lunchbox/index.html#key-results-2",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Key results",
+    "text": "Key results"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#key-results-3",
+    "href": "2024-adsc-lunchbox/index.html#key-results-3",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Key results",
+    "text": "Key results"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#novelty",
+    "href": "2024-adsc-lunchbox/index.html#novelty",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Novelty",
+    "text": "Novelty\n\nFirst estimate of HAI burden in Australia using (relatively) robust survey data in an established framework\nBased on first point prevalence survey since 1984\nThere is no routine surveillance of HAIs in Australia\nPoint prevalence surveys remain the only way to understand the burden of these conditions"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#summary",
+    "href": "2024-adsc-lunchbox/index.html#summary",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Summary",
+    "text": "Summary\n\n498 DALYs per 100,000 is a large amount\n\nMotor vehicles: 180 DALYs\nInfectious diseases: 370 DALYs\nRespiratory diseases: 1380 DALYs\n\n\n\nThis work has informed guidance on HAI surveillance in Australia, including new funding schemes to better understand these conditions.\n\n\nAnd all this based on just 2767 patients from 19 hospitals…"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#high-dimensional-data",
+    "href": "2024-adsc-lunchbox/index.html#high-dimensional-data",
+    "title": "Michael Lydeamore - Slides",
+    "section": "High dimensional data",
+    "text": "High dimensional data\nThe world collects a lot of data. Much of this data is very wide.\nThis “high-dimensional” data is very challenging to visualise, as we can only see in two dimensions.\n\nOne key application area is single-cell RNA data. The main task is to identify groups of cells with similar expression profiles\nData is collected on the amount of a gene expressed by a cell. Similar types of cells should express similar types of certain “marker” genes.\n\n\n\nBut how do we check?"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#tours",
+    "href": "2024-adsc-lunchbox/index.html#tours",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Tours",
+    "text": "Tours\n\n\n\n\n\n\n\n\n\nWhat is a tour?\n\nInteractive and dynamic graphics to visualise high-dimensional data\n\nWhy is the tour technique involved?\n\nTour shows a sequence of linear projections as a movie\nIt involves mentally assembling multiple low-dimensional views to comprehend the structure in higher dimensions"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#dimension-reduction",
+    "href": "2024-adsc-lunchbox/index.html#dimension-reduction",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Dimension reduction",
+    "text": "Dimension reduction\nDimension reduction is a common way to reduce a high dimensional dataset into a lower number of dimensions.\n\nLinear techniques (like PCA) are classical techniques that use a linear mapping to reduce dimension\nRecent years has seen non-linear mappings that can maximise variance in a 2D view\nThese mappings aim to preserve pairwise distances from high dimensions into lower dimensions\n\n\n\nCommon tools include: uMAP, tSNE, PACMAP and more recently, PHATE.\n\n\n\nAs with anything designed to maximise variance, it is important to check these techniques aren’t inventing structures."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#dimension-reduction-1",
+    "href": "2024-adsc-lunchbox/index.html#dimension-reduction-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Dimension reduction",
+    "text": "Dimension reduction\nFormally speaking, the problem can be specified as:\nConsider the High-D data a rectangular matrix \\(X_{n\\times p}\\), with \\(n\\) observations and \\(p\\) dimensions.\nWe aim to discover a projection \\(Y_{n \\times d}\\), i.e. an \\(n \\times d\\) matrix with \\(d \\ll p\\)."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#an-example",
+    "href": "2024-adsc-lunchbox/index.html#an-example",
+    "title": "Michael Lydeamore - Slides",
+    "section": "An example",
+    "text": "An example\nFive different NLDRs give similar but definitely different curves:"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#even-the-same-nldr-looks-different",
+    "href": "2024-adsc-lunchbox/index.html#even-the-same-nldr-looks-different",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Even the same NLDR looks different",
+    "text": "Even the same NLDR looks different"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#a-method-to-analyse-goodness-of-fit",
+    "href": "2024-adsc-lunchbox/index.html#a-method-to-analyse-goodness-of-fit",
+    "title": "Michael Lydeamore - Slides",
+    "section": "A method to analyse goodness-of-fit",
+    "text": "A method to analyse goodness-of-fit\nWe have developed a method to project the 2D dimension reduction back into higher dimensions where we can visualise discrepancies.\nThe algorithm has four steps:\n\n\nParition DR data into hexagonal bins\nTriangulate centroids of these bins to form a 2D manifold\nMap the 2D bins to High-D using the points contained within each bin\nMeasure “model error” and visualise in High-D"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#step-1-partitioning-dr-data-into-hexagonal-bins",
+    "href": "2024-adsc-lunchbox/index.html#step-1-partitioning-dr-data-into-hexagonal-bins",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Step 1: Partitioning DR data into hexagonal bins",
+    "text": "Step 1: Partitioning DR data into hexagonal bins\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nI believe this should be called “hexagonate…”"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#step-2-triangulate-centroids-of-these-bins",
+    "href": "2024-adsc-lunchbox/index.html#step-2-triangulate-centroids-of-these-bins",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Step 2: Triangulate centroids of these bins",
+    "text": "Step 2: Triangulate centroids of these bins\n\n\nUse Delauney triangulation to create a triangular mesh that is representative of the 2D data.\n\nBeause our hexagons are regular the resulting triangles will be mostly equilateral (which is nice)"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#step-2a-removing-long-edges",
+    "href": "2024-adsc-lunchbox/index.html#step-2a-removing-long-edges",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Step 2a: Removing “long” edges",
+    "text": "Step 2a: Removing “long” edges\nSometimes triangulation will give edges between two very distant nodes. This is not an accurate representation of the 2D surface, so we trim them off"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#step-3-map-from-2d-to-high-d",
+    "href": "2024-adsc-lunchbox/index.html#step-3-map-from-2d-to-high-d",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Step 3: Map from 2D to High-D",
+    "text": "Step 3: Map from 2D to High-D\n\nDefine the function \\(f: \\mathbb{R}^p \\rightarrow \\mathbb{R}^2\\) which maps the high-D point to it’s NLDR equivalent.\n\n\nLet the set of all points in a single hexagon \\(i\\) be denoted by \\(\\mathbb{H}_i\\), with centroid \\(\\mathcal{h}_i\\).\n\n\nThen, let \\(g: \\mathbb{R}^2 \\rightarrow \\mathbb{R}^2\\) be a function that maps each point in 2D space to it’s closest centroid.\nIt follows that \\(f(g(x))\\) maps the high-D point to the centroid in 2D."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#step-3-map-from-2d-to-high-d-1",
+    "href": "2024-adsc-lunchbox/index.html#step-3-map-from-2d-to-high-d-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Step 3: Map from 2D to High-D",
+    "text": "Step 3: Map from 2D to High-D\nDefine the high-dimension mean of all the points in \\(\\mathbb{H}_i\\) by \\(\\hat{h}_i\\). That is,\n\\[\\hat{h}^{(p)} = \\frac{1}{|\\mathbb{H}_i|}\\sum_{x \\in \\mathbb{H}_i} \\sum_{d = 1}^p x_{\\cdot,d}\\]\n\nFinally, we choose a function \\(v: \\mathbb{R}^2 \\rightarrow \\mathbb{R}^p\\) such that \\[v(\\mathcal{h}_i) = \\hat{h}^{(p)}.\\]\n\n\nThat is, the function \\(v\\) maps the 2D centroid to the high-D mean of the points in the hexagon."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#step-3-map-from-2d-to-high-d-2",
+    "href": "2024-adsc-lunchbox/index.html#step-3-map-from-2d-to-high-d-2",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Step 3: Map from 2D to High-D",
+    "text": "Step 3: Map from 2D to High-D\nSo, \\((f \\circ g)(x)\\) gives the 2D centroid associated with \\(x\\), and \\(v(h_i)\\) gives the high-D centroid associated with 2D point \\(h_i\\).\nThus, \\(v(f \\circ g)(x)\\) gives the high-D centroid associated with the 2D embedding of the point \\(x\\).\n\nWe use this process to define a model of the 2D embedding in high dimensions, allowing us to visualise and compute error."
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#step-4-visualise-model-fit-in-high-d",
+    "href": "2024-adsc-lunchbox/index.html#step-4-visualise-model-fit-in-high-d",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Step 4: Visualise model fit in High-D",
+    "text": "Step 4: Visualise model fit in High-D"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#real-world-example-pbmc-dataset",
+    "href": "2024-adsc-lunchbox/index.html#real-world-example-pbmc-dataset",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Real-world example: PBMC dataset",
+    "text": "Real-world example: PBMC dataset"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#real-world-example",
+    "href": "2024-adsc-lunchbox/index.html#real-world-example",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Real-world example",
+    "text": "Real-world example"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#real-world-example-1",
+    "href": "2024-adsc-lunchbox/index.html#real-world-example-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Real-world example",
+    "text": "Real-world example"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#real-world-example-2",
+    "href": "2024-adsc-lunchbox/index.html#real-world-example-2",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Real-world example",
+    "text": "Real-world example"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#summary-1",
+    "href": "2024-adsc-lunchbox/index.html#summary-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Summary",
+    "text": "Summary\n\n\n\nDimension reduction is hard\nMaximising variance can create or elongate structures that may not be present in the data\nVisualising in high dimensions using a tour is a way to assess model fit\nThis algorithm helps create an easier visualisation for end users\n\n\n\n\n\n\nJayani Lakshika, PhD Candidate"
+  },
+  {
+    "objectID": "2024-adsc-lunchbox/index.html#data-science-and-impact",
+    "href": "2024-adsc-lunchbox/index.html#data-science-and-impact",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Data science and impact",
+    "text": "Data science and impact\nDon’t let a small amount of data limit your reach\n\n\nData is expensive, we all want more all the time…\nBut a “handful” of observations can lead to real change\nAt the same time, more data does not always mean more good\n\n\n\n\nYou can’t model your way out of bad data\nBut you can model good data badly\n\n\n\n\nImpactful projects rely on good people, good problems and good techniques."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#what-are-contact-matrices",
+    "href": "conmat-spectrum-2024/index.html#what-are-contact-matrices",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "What are contact matrices",
+    "text": "What are contact matrices\n\nEstimates of the numbers of contact between individuals in various categories\nUsed in models to investigate:\n\nEffect of NPIs\nUnderstand effects of demographic changes\n“More accurately” estimate transmission\n\n\n\nBut how do they come about!?"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#contact-diary-studies",
+    "href": "conmat-spectrum-2024/index.html#contact-diary-studies",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Contact diary studies",
+    "text": "Contact diary studies\nContact diary studies follow individuals and ask them:\n\nhow many contacts of a certain type,\nthe duration of contact,\nthe location of the contact,\nthe frequency of the contact\n\n\nThey are undoubtedly the gold standard for data on the number of contacts.\nBut they are prohibitively expensive, and logistically very challenging."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#polymod",
+    "href": "conmat-spectrum-2024/index.html#polymod",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "POLYMOD",
+    "text": "POLYMOD\nPublished in 2008, Mossong et. al undertook a contact diary study of 7290 participants across Europe.\nIt remains the most widely cited contact diary study."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#contact-matrix-projection",
+    "href": "conmat-spectrum-2024/index.html#contact-matrix-projection",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Contact matrix projection",
+    "text": "Contact matrix projection\nPrem et. al formed a model that predicts the number of contacts based on the age structure of the population.\nThis model then allows for prediction to settings that are outside the original POLYMOD countries."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#what-is-provided",
+    "href": "conmat-spectrum-2024/index.html#what-is-provided",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "What is provided:",
+    "text": "What is provided:"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#our-model-of-contact",
+    "href": "conmat-spectrum-2024/index.html#our-model-of-contact",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Our model of contact",
+    "text": "Our model of contact\nNot much information to train model. We model the number of contacts an individual in bin i has with bin j:\n\\begin{aligned}\nc_{ij} = \\beta_{0,i} + \\beta_1(|i-j|) + &\\beta_2(|i-j|^2) + \\beta_3(i\\times j) + \\beta_4(i+j) +\\\\ &\\beta_5\\max(i, j) + \\beta_6\\min(i, j)\n\\end{aligned}\n\n\n\n\n\n\n\n\n🤓 Akshually 🤓\n\n\nWe want to fit this as a generalised additive model, so actually we have splines on these terms to satisfy the smoothness requirements.\nThis is very similar to the approach by Prem et. al who perform post-hoc smoothing of the parameters after MCMC."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#model-terms",
+    "href": "conmat-spectrum-2024/index.html#model-terms",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Model terms",
+    "text": "Model terms"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#projection-onto-target-demography",
+    "href": "conmat-spectrum-2024/index.html#projection-onto-target-demography",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Projection onto target demography",
+    "text": "Projection onto target demography"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#importance-of-contact-diary-study",
+    "href": "conmat-spectrum-2024/index.html#importance-of-contact-diary-study",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Importance of contact diary study",
+    "text": "Importance of contact diary study\nWe’ve used POLYMOD-trained models for over a decade.\nThere are 44 other surveys available in one collection on Zenodo, and probably more out there in the wild.\n\nSome recent work from Harris et. al has shown that differences in the survey design can have a significant impact on these synthetic contact matrices.\n\n\n\n\n\n\n\n\nTip\n\n\nconmat allows for training on survey of choice, and projection onto target demographic of choice"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#example-of-using-a-different-study",
+    "href": "conmat-spectrum-2024/index.html#example-of-using-a-different-study",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Example of using a different study",
+    "text": "Example of using a different study\n\nchina_survey &lt;- socialmixr::get_survey(\"https://doi.org/10.5281/zenodo.3878754\") |&gt;\n    summarise(contacts = sum(cnt_home))\n\nchina_pop &lt;- read_csv(\"./data/china_pop_age_dist.csv\")\nchina_pop_cm &lt;- conmat::as_conmat_population(\n  data = china_pop,\n  age = lower.age.limit,\n  population = population\n)"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#example-of-using-a-different-study-1",
+    "href": "conmat-spectrum-2024/index.html#example-of-using-a-different-study-1",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Example of using a different study",
+    "text": "Example of using a different study\n\nchina_survey &lt;- socialmixr::get_survey(\"https://doi.org/10.5281/zenodo.3878754\") |&gt;\n    summarise(contacts = sum(cnt_home))\n\nchina_pop &lt;- read_csv(\"./data/china_pop_age_dist.csv\")\nchina_pop_cm &lt;- conmat::as_conmat_population(\n  data = china_pop,\n  age = lower.age.limit,\n  population = population\n)\n\nmodel &lt;- conmat::fit_single_contact_model(\n    contact_data = china_survey,\n    population = china_pop_cm\n)\n\npredicted_contacts &lt;- conmat::predict_contacts(\n    model = model,\n    population = china_pop_cm,\n    age_breaks = c(seq(0, 80, by = 5), Inf)\n)"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#why-input-survey-matters",
+    "href": "conmat-spectrum-2024/index.html#why-input-survey-matters",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Why input survey matters",
+    "text": "Why input survey matters\nThese matrices are for a Chinese population, using a Chinese survey (left) and POLYMOD (right), for the home setting."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#why-input-survey-matters-1",
+    "href": "conmat-spectrum-2024/index.html#why-input-survey-matters-1",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Why input survey matters",
+    "text": "Why input survey matters\nThese matrices are for a Chinese population, using a Chinese survey (left) and POLYMOD (right), for the home setting."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#summary",
+    "href": "conmat-spectrum-2024/index.html#summary",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Summary",
+    "text": "Summary\nconmat is a new, open-source, programmable system to generate synthetic contact matrices\n\n\nCan use arbitrary contact survey and arbitrary demography\nConvenience functions for next generation matrices, numbers of contacts\nChoice of input survey is crucial:\n\nThese models have no information on terms like “intergenerational mixing”"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#summary-1",
+    "href": "conmat-spectrum-2024/index.html#summary-1",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Summary",
+    "text": "Summary\nconmat is a new, open-source, programmable system to generate synthetic contact matrices\nAvailable right now:\n\nremotes::install_github(\"idem-lab/conmat\")\n\nor pre-computed matrices on Zenodo: https://zenodo.org/records/12776714"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#acknowledgements",
+    "href": "conmat-spectrum-2024/index.html#acknowledgements",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\n\n\n\n\n\n\nChitra Saraswati\n\n\n\n\n\n\n\nAarathy Babu\n\n\n\n\n\n\n\nNick Tierney\n\n\n\n\n\n\n\nNick Golding\n\n\n\n\n\nSPECTRUM-SPARK Seed Funding\n\nCode and slides are available at https://github.com/MikeLydeamore/talk-conmat-projections"
+  },
+  {
+    "objectID": "hospital-network/index.html#monash-ebs-is-hiring",
+    "href": "hospital-network/index.html#monash-ebs-is-hiring",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Monash EBS is hiring",
+    "text": "Monash EBS is hiring\n\nEducation focussed Lecturer / Senior Lecturer - Business Statistics / Econometrics\nhttps://careers.pageuppeople.com/513/cw/en/job/670005/lecturer-ed-focused-senior-lecturer-ed-focused\nLecturer / Senior Lecturer - Actuarial Science\nhttps://careers.pageuppeople.com/513/cw/en/job/670008/lecturersenior-lecturer-actuarial-science"
+  },
+  {
+    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
+    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Carbapenemase-producing Enterobacterales",
+    "text": "Carbapenemase-producing Enterobacterales\n\n\n\n\nGram-negative bacilli occurring naturally in the GI tract\nResistant to carbapenem antibiotics\nSeveral different carbapenemases genes in CPE:\n\nImipenemase (IMP)\nKlebsiella penumoniae carbapenemase (KPC)\nNew-Delhi metallo-β-lactamase (NDM)\nVerona integron-encoded metallo-β-lactamase (VIM) and\nOxacillinases (OXA)\n\nFor Enterobacterales, IMP(-4) most commonly found in Victoria (28% of all cases)\nAssumed to be colonised indefinitely"
+  },
+  {
+    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
+    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Carbapenemase-producing Enterobacterales",
+    "text": "Carbapenemase-producing Enterobacterales\n\nSurveillance officially established in Victoria in 2015, became notifiable in 2018\nSince becoming notifiable, notifications have been steadily increasing"
+  },
+  {
+    "objectID": "hospital-network/index.html#modelling-possible-control",
+    "href": "hospital-network/index.html#modelling-possible-control",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Modelling possible control",
+    "text": "Modelling possible control\n\n\n\nWe know that healthcare is a network phenomenon\nNeed to understand if CPE+ patients are different to CPE- patients"
+  },
+  {
+    "objectID": "hospital-network/index.html#health-services-in-victoria-australia",
+    "href": "hospital-network/index.html#health-services-in-victoria-australia",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Health Services in Victoria, Australia",
+    "text": "Health Services in Victoria, Australia\n\nHealth services are individually governed\nCentralised guidelines for reporitng\nHave their own IP results, testing/screening requirements, admission & transfer patterns\nAre often spread across multiple campuses which operate independently but are administered centrally\n\n\nAs these services tend to operate on the same patient data platform, we assume that previously diagnosed patients will have infection prevention protocols in place if they are re-admitted to the same service.\nThis is less likely to be true in a different health service, as there is no centralised notification system to other health services."
+  },
+  {
+    "objectID": "hospital-network/index.html#notification-system",
+    "href": "hospital-network/index.html#notification-system",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Notification system",
+    "text": "Notification system"
+  },
+  {
+    "objectID": "hospital-network/index.html#data-sources",
+    "href": "hospital-network/index.html#data-sources",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Data sources",
+    "text": "Data sources\nVictorian Admitted Episodes Dataset (VAED):\n\nLine list of every hospital admission (public and private)\nReports demographics, conditions, treatments, timing, location\n\nPublic Health Event Surveillance System (PHESS):\n\nRecords information on notifiable disease events\nIncludes patient demographics, date of notification, date of test\nOperational system, used for contact tracing and outbreak analytics"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-construction",
+    "href": "hospital-network/index.html#network-construction",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network construction",
+    "text": "Network construction\nWe model how patients move around the network.\n\nNodes: Hospital (physical)\nEdge: Transfer of patient between two hospitals, within 365 days\nWeight: Number of patients transferred\n\n\nThis is a weighted, directed network. The worst kind of non-temporal network."
+  },
+  {
+    "objectID": "hospital-network/index.html#network-construction-1",
+    "href": "hospital-network/index.html#network-construction-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network construction",
+    "text": "Network construction\n\nClustering: Infomap (based on a random walk through the network)\n\n\\max_{M} L(M) = q H(\\mathcal{Q}) + \\sum_{i=1}^m p^{i} H(\\mathcal{P}^i)\n\nEffectively maximising entropy of the “walk” subject to a partition, Q, weighting within and between cluster movements.\np and q informed by edge weights"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-construction-2",
+    "href": "hospital-network/index.html#network-construction-2",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network construction",
+    "text": "Network construction\n\nImportance of certain facilites: Adjusted Rand Index\n\nR = \\frac{a+b}{a+b+c+d} = \\frac{a+b}{n\\choose 2},\nwhere\n\na is the number of pairs of elements that are in the same subset in X and the same subset in Y,\nb be the number of pairs of elements that are in different subsets in X and different subsets of Y,\nc be the number of pairs of elements that are in the same subset in X and different subsets in Y and,\nd be the number of pairs of elements that are in different subsets in X and the same subset in Y."
+  },
+  {
+    "objectID": "hospital-network/index.html#admission-demographics",
+    "href": "hospital-network/index.html#admission-demographics",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Admission demographics",
+    "text": "Admission demographics\n\n\n\n\n\n\n\n\nVariable\nN\n\n\n\n\nGender\n\n\nMale\n12,723,729\n\n\nFemale\n14,071,488\n\n\nOther\n1,190\n\n\nAge Group\n\n\n&lt;20\n2,567,643\n\n\n20-39\n4,744,744\n\n\n50-59\n6,372,288\n\n\n&gt;60\n13,111,732\n\n\nLength of Stay\n\n\nMean\n2.739\n\n\nMedian (IQR)\n2 (1-3)"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-exploration-1",
+    "href": "hospital-network/index.html#network-exploration-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network exploration",
+    "text": "Network exploration\n\nDensity: High (0.44)\nClustering: Reasonably strong (foreshadowing)"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-exploration-2",
+    "href": "hospital-network/index.html#network-exploration-2",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network exploration",
+    "text": "Network exploration"
+  },
+  {
+    "objectID": "hospital-network/index.html#clustering",
+    "href": "hospital-network/index.html#clustering",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Clustering",
+    "text": "Clustering"
+  },
+  {
+    "objectID": "hospital-network/index.html#clustering-1",
+    "href": "hospital-network/index.html#clustering-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Clustering",
+    "text": "Clustering"
+  },
+  {
+    "objectID": "hospital-network/index.html#clustering-2",
+    "href": "hospital-network/index.html#clustering-2",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Clustering",
+    "text": "Clustering"
+  },
+  {
+    "objectID": "hospital-network/index.html#node-importance",
+    "href": "hospital-network/index.html#node-importance",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Node importance",
+    "text": "Node importance\nARI: Interpret at proportion of clustering structure “preserved”\n\n\nRemoving small and same-day facilities gives an ARI of between 0.58 and 0.62\n\nSeems key to making connections between larger hospitals\nRemoving one-by-one or all doesn’t notably change ARI\n\nRemoving public hospitals gives ARI of 0.22\nRemoving private hospitals gives ARI of 0.58"
+  },
+  {
+    "objectID": "hospital-network/index.html#next-steps",
+    "href": "hospital-network/index.html#next-steps",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Next steps",
+    "text": "Next steps\n\n\nHospital system is dense, geographically clustered\nTransfers are incredibly frequent, tend to move towards metropolitan Melbourne\nNeed to include pretty much all facilities in system consideration\nSurveillance should be considered geographically\n\nLocal public health units?\n\nImpact of patients going home\nTesting/sampling for conditions\n\n\n\nThis is a very extensive and detailed dataset, with many more project ideas than time.\nBut presents an exciting opportunity to build a data-driven surveillance and outbreak response system."
+  }
+]
