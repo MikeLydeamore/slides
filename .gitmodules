@@ -16,3 +16,6 @@
 [submodule "hospital-network"]
 	path = hospital-network
 	url = git@github.com:MikeLydeamore/talk-hospital-network.git
+[submodule "chytrid-anziam"]
+	path = chytrid-anziam
+	url = git@github.com:MikeLydeamore/talk-chytrid-anziam.git
