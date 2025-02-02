@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Michael Lydeamore - Slides",
     "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nJan 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nJan 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nJan 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nJan 31, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nFeb 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nFeb 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 2, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "healthcare-infections/index.html#hello-from-australia",
@@ -525,6 +525,132 @@
     "text": "Data science and impact\nDon’t let a small amount of data limit your reach\n\n\nData is expensive, we all want more all the time…\nBut a “handful” of observations can lead to real change\nAt the same time, more data does not always mean more good\n\n\n\n\nYou can’t model your way out of bad data\nBut you can model good data badly\n\n\n\nImpactful projects rely on good people, good problems and good techniques."
   },
   {
+    "objectID": "hospital-network/index.html#monash-ebs-is-hiring",
+    "href": "hospital-network/index.html#monash-ebs-is-hiring",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Monash EBS is hiring",
+    "text": "Monash EBS is hiring\n\nEducation focussed Lecturer / Senior Lecturer - Business Statistics / Econometrics\nhttps://careers.pageuppeople.com/513/cw/en/job/670005/lecturer-ed-focused-senior-lecturer-ed-focused\nLecturer / Senior Lecturer - Actuarial Science\nhttps://careers.pageuppeople.com/513/cw/en/job/670008/lecturersenior-lecturer-actuarial-science"
+  },
+  {
+    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
+    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Carbapenemase-producing Enterobacterales",
+    "text": "Carbapenemase-producing Enterobacterales\n\n\n\n\nGram-negative bacilli occurring naturally in the GI tract\nResistant to carbapenem antibiotics\nSeveral different carbapenemases genes in CPE:\n\nImipenemase (IMP)\nKlebsiella penumoniae carbapenemase (KPC)\nNew-Delhi metallo-β-lactamase (NDM)\nVerona integron-encoded metallo-β-lactamase (VIM) and\nOxacillinases (OXA)\n\nFor Enterobacterales, IMP(-4) most commonly found in Victoria (28% of all cases)\nAssumed to be colonised indefinitely"
+  },
+  {
+    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
+    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Carbapenemase-producing Enterobacterales",
+    "text": "Carbapenemase-producing Enterobacterales\n\nSurveillance officially established in Victoria in 2015, became notifiable in 2018\nSince becoming notifiable, notifications have been steadily increasing"
+  },
+  {
+    "objectID": "hospital-network/index.html#modelling-possible-control",
+    "href": "hospital-network/index.html#modelling-possible-control",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Modelling possible control",
+    "text": "Modelling possible control\n\n\n\nWe know that healthcare is a network phenomenon\nNeed to understand if CPE+ patients are different to CPE- patients"
+  },
+  {
+    "objectID": "hospital-network/index.html#health-services-in-victoria-australia",
+    "href": "hospital-network/index.html#health-services-in-victoria-australia",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Health Services in Victoria, Australia",
+    "text": "Health Services in Victoria, Australia\n\nHealth services are individually governed\nCentralised guidelines for reporitng\nHave their own IP results, testing/screening requirements, admission & transfer patterns\nAre often spread across multiple campuses which operate independently but are administered centrally\n\n\nAs these services tend to operate on the same patient data platform, we assume that previously diagnosed patients will have infection prevention protocols in place if they are re-admitted to the same service.\nThis is less likely to be true in a different health service, as there is no centralised notification system to other health services."
+  },
+  {
+    "objectID": "hospital-network/index.html#notification-system",
+    "href": "hospital-network/index.html#notification-system",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Notification system",
+    "text": "Notification system"
+  },
+  {
+    "objectID": "hospital-network/index.html#data-sources",
+    "href": "hospital-network/index.html#data-sources",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Data sources",
+    "text": "Data sources\nVictorian Admitted Episodes Dataset (VAED):\n\nLine list of every hospital admission (public and private)\nReports demographics, conditions, treatments, timing, location\n\nPublic Health Event Surveillance System (PHESS):\n\nRecords information on notifiable disease events\nIncludes patient demographics, date of notification, date of test\nOperational system, used for contact tracing and outbreak analytics"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-construction",
+    "href": "hospital-network/index.html#network-construction",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network construction",
+    "text": "Network construction\nWe model how patients move around the network.\n\nNodes: Hospital (physical)\nEdge: Transfer of patient between two hospitals, within 365 days\nWeight: Number of patients transferred\n\n\nThis is a weighted, directed network. The worst kind of non-temporal network."
+  },
+  {
+    "objectID": "hospital-network/index.html#network-construction-1",
+    "href": "hospital-network/index.html#network-construction-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network construction",
+    "text": "Network construction\n\nClustering: Infomap (based on a random walk through the network)\n\n\\max_{M} L(M) = q H(\\mathcal{Q}) + \\sum_{i=1}^m p^{i} H(\\mathcal{P}^i)\n\nEffectively maximising entropy of the “walk” subject to a partition, Q, weighting within and between cluster movements.\np and q informed by edge weights"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-construction-2",
+    "href": "hospital-network/index.html#network-construction-2",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network construction",
+    "text": "Network construction\n\nImportance of certain facilites: Adjusted Rand Index\n\nR = \\frac{a+b}{a+b+c+d} = \\frac{a+b}{n\\choose 2},\nwhere\n\na is the number of pairs of elements that are in the same subset in X and the same subset in Y,\nb be the number of pairs of elements that are in different subsets in X and different subsets of Y,\nc be the number of pairs of elements that are in the same subset in X and different subsets in Y and,\nd be the number of pairs of elements that are in different subsets in X and the same subset in Y."
+  },
+  {
+    "objectID": "hospital-network/index.html#admission-demographics",
+    "href": "hospital-network/index.html#admission-demographics",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Admission demographics",
+    "text": "Admission demographics\n\n\n\n\n\n\n\n\nVariable\nN\n\n\n\n\nGender\n\n\nMale\n12,723,729\n\n\nFemale\n14,071,488\n\n\nOther\n1,190\n\n\nAge Group\n\n\n&lt;20\n2,567,643\n\n\n20-39\n4,744,744\n\n\n50-59\n6,372,288\n\n\n&gt;60\n13,111,732\n\n\nLength of Stay\n\n\nMean\n2.739\n\n\nMedian (IQR)\n2 (1-3)"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-exploration-1",
+    "href": "hospital-network/index.html#network-exploration-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network exploration",
+    "text": "Network exploration\n\nDensity: High (0.44)\nClustering: Reasonably strong (foreshadowing)"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-exploration-2",
+    "href": "hospital-network/index.html#network-exploration-2",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network exploration",
+    "text": "Network exploration"
+  },
+  {
+    "objectID": "hospital-network/index.html#clustering",
+    "href": "hospital-network/index.html#clustering",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Clustering",
+    "text": "Clustering"
+  },
+  {
+    "objectID": "hospital-network/index.html#clustering-1",
+    "href": "hospital-network/index.html#clustering-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Clustering",
+    "text": "Clustering"
+  },
+  {
+    "objectID": "hospital-network/index.html#clustering-2",
+    "href": "hospital-network/index.html#clustering-2",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Clustering",
+    "text": "Clustering"
+  },
+  {
+    "objectID": "hospital-network/index.html#node-importance",
+    "href": "hospital-network/index.html#node-importance",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Node importance",
+    "text": "Node importance\nARI: Interpret at proportion of clustering structure “preserved”\n\n\nRemoving small and same-day facilities gives an ARI of between 0.58 and 0.62\n\nSeems key to making connections between larger hospitals\nRemoving one-by-one or all doesn’t notably change ARI\n\nRemoving public hospitals gives ARI of 0.22\nRemoving private hospitals gives ARI of 0.58"
+  },
+  {
+    "objectID": "hospital-network/index.html#next-steps",
+    "href": "hospital-network/index.html#next-steps",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Next steps",
+    "text": "Next steps\n\n\nHospital system is dense, geographically clustered\nTransfers are incredibly frequent, tend to move towards metropolitan Melbourne\nNeed to include pretty much all facilities in system consideration\nSurveillance should be considered geographically\n\nLocal public health units?\n\nImpact of patients going home\nTesting/sampling for conditions\n\n\n\nThis is a very extensive and detailed dataset, with many more project ideas than time.\nBut presents an exciting opportunity to build a data-driven surveillance and outbreak response system."
+  },
+  {
     "objectID": "anziam2024/index.html#etc5513-title",
     "href": "anziam2024/index.html#etc5513-title",
     "title": "Michael Lydeamore - Slides",
@@ -693,130 +819,88 @@
     "text": "Acknowledgements\n\n\nTelethon Kids Institute\n\nNick Tierney\nNick Golding\nAarathy Babu\n\n\n\nSPECTRUM-SPARK Travel Funding\nDepartment of Econometrics and Business Statistics, Monash University"
   },
   {
-    "objectID": "hospital-network/index.html#monash-ebs-is-hiring",
-    "href": "hospital-network/index.html#monash-ebs-is-hiring",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Monash EBS is hiring",
-    "text": "Monash EBS is hiring\n\nEducation focussed Lecturer / Senior Lecturer - Business Statistics / Econometrics\nhttps://careers.pageuppeople.com/513/cw/en/job/670005/lecturer-ed-focused-senior-lecturer-ed-focused\nLecturer / Senior Lecturer - Actuarial Science\nhttps://careers.pageuppeople.com/513/cw/en/job/670008/lecturersenior-lecturer-actuarial-science"
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#natural-history",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#natural-history",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Natural history",
+    "text": "Natural history\n\nBd fungus does not survive in warm climates (&gt; 30 degrees)\nWarm host climate also reduces lethality\n\n\n\n\n\n\n\n\nIdea\n\n\nIf we can heat frogs, maybe we can reduce the impact of this infection"
   },
   {
-    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
-    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Carbapenemase-producing Enterobacterales",
-    "text": "Carbapenemase-producing Enterobacterales\n\n\n\n\nGram-negative bacilli occurring naturally in the GI tract\nResistant to carbapenem antibiotics\nSeveral different carbapenemases genes in CPE:\n\nImipenemase (IMP)\nKlebsiella penumoniae carbapenemase (KPC)\nNew-Delhi metallo-β-lactamase (NDM)\nVerona integron-encoded metallo-β-lactamase (VIM) and\nOxacillinases (OXA)\n\nFor Enterobacterales, IMP(-4) most commonly found in Victoria (28% of all cases)\nAssumed to be colonised indefinitely"
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#experiment-setup",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#experiment-setup",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Experiment setup",
+    "text": "Experiment setup\n\nFrogs separated into two classes: shaded and unshaded (heated)\nArtifical refugia placed into each mesocosm (replicate)\nMeasure infection load and mortality\n\n\n\n\n\n\n\nImage: Waddle et. al, Nature 2024"
   },
   {
-    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
-    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Carbapenemase-producing Enterobacterales",
-    "text": "Carbapenemase-producing Enterobacterales\n\nSurveillance officially established in Victoria in 2015, became notifiable in 2018\nSince becoming notifiable, notifications have been steadily increasing"
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#hypothesis",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#hypothesis",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Hypothesis",
+    "text": "Hypothesis\n\nDo frogs in heated refugia experience a reduction in force of infection compared to non-heated refugia?\nDoes prior infection confer an immune response that reduces future susceptibility?\n\n\nTest using a stochastic compartmental model, with approximate Bayesian computation"
   },
   {
-    "objectID": "hospital-network/index.html#modelling-possible-control",
-    "href": "hospital-network/index.html#modelling-possible-control",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Modelling possible control",
-    "text": "Modelling possible control\n\n\n\nWe know that healthcare is a network phenomenon\nNeed to understand if CPE+ patients are different to CPE- patients"
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-setup",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-setup",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model setup",
+    "text": "Model setup\n\n\n\n\n\n\n\n\n\n\\lambda_h(t) = \\beta_h \\sum_{k=\\{U,V\\}}\\sum_{j=1}^3 m_{k,j}I_{k,j},\n\nm_{k,j} = Relative infectiousness of frog to I_{U,3}\nI_{k,j} = Infection stage of frog"
   },
   {
-    "objectID": "hospital-network/index.html#health-services-in-victoria-australia",
-    "href": "hospital-network/index.html#health-services-in-victoria-australia",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Health Services in Victoria, Australia",
-    "text": "Health Services in Victoria, Australia\n\nHealth services are individually governed\nCentralised guidelines for reporitng\nHave their own IP results, testing/screening requirements, admission & transfer patterns\nAre often spread across multiple campuses which operate independently but are administered centrally\n\n\nAs these services tend to operate on the same patient data platform, we assume that previously diagnosed patients will have infection prevention protocols in place if they are re-admitted to the same service.\nThis is less likely to be true in a different health service, as there is no centralised notification system to other health services."
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#parameters-to-estimate",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#parameters-to-estimate",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Parameters to estimate",
+    "text": "Parameters to estimate\n\n\n\n\n\nParameter\nValue\n\n\n\n\n\\beta_{SH}, \\beta_{UN}, \\alpha, \\omega\nfitted\n\n\n\\mu\n0.021\n\n\n\\gamma_1\n1/2.5 per week\n\n\n\\gamma_2\n1/4.5 per week\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nm_{U,1}\n10\n\n\nm_{U,2}\n100\n\n\nm_{V,1}\n1\n\n\nm_{V,2}\n10\n\n\nm_{V,3}\n0.1"
   },
   {
-    "objectID": "hospital-network/index.html#notification-system",
-    "href": "hospital-network/index.html#notification-system",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Notification system",
-    "text": "Notification system"
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#data",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#data",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Data",
+    "text": "Data\n\n8 mesocosms, 4 shaded 4 unshaded\n5 frogs per mesocosm\nSome frogs experienced prior infection\nFrogs observed at t=1, 2, 4, 6, 8, 10, 15 weeks only\nFrogs that couldn’t be found presumed dead\n\n\n\n\n\n\n\n\nCaution\n\n\nFor more data information, ask Claire Miller and/or read Waddle et. al Hotspot shelters stimulate frog resistance to chytridiomycosis."
   },
   {
-    "objectID": "hospital-network/index.html#data-sources",
-    "href": "hospital-network/index.html#data-sources",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Data sources",
-    "text": "Data sources\nVictorian Admitted Episodes Dataset (VAED):\n\nLine list of every hospital admission (public and private)\nReports demographics, conditions, treatments, timing, location\n\nPublic Health Event Surveillance System (PHESS):\n\nRecords information on notifiable disease events\nIncludes patient demographics, date of notification, date of test\nOperational system, used for contact tracing and outbreak analytics"
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#results",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#results",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Results",
+    "text": "Results\n\n\n\n\n\n\n\n\nParameter\nPrior\nPosterior (Mean, 95% CI)\n\n\n\n\n\\beta_\\text{sh}\n\\sim U(0,2)\n0.675 (0.025, 1.876)\n\n\n\\beta_\\text{un}\n\\sim U(0,2)\n0.401 (0.008, 1.767)\n\n\n\\alpha\n\\sim U(0,0.5)\n0.072 (0.003, 0.373)\n\n\n\\alpha\\beta_\\text{sh}\n\n0.018 (0.001, 0.061)\n\n\n\\alpha\\beta_\\text{un}\n\n0.009 (0.000, 0.031)\n\n\n\\omega\n\\sim U(0,2)\n0.569 (0.122, 1.688)"
   },
   {
-    "objectID": "hospital-network/index.html#network-construction",
-    "href": "hospital-network/index.html#network-construction",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network construction",
-    "text": "Network construction\nWe model how patients move around the network.\n\nNodes: Hospital (physical)\nEdge: Transfer of patient between two hospitals, within 365 days\nWeight: Number of patients transferred\n\n\nThis is a weighted, directed network. The worst kind of non-temporal network."
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#posterior-distributions",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#posterior-distributions",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Posterior distributions",
+    "text": "Posterior distributions"
   },
   {
-    "objectID": "hospital-network/index.html#network-construction-1",
-    "href": "hospital-network/index.html#network-construction-1",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network construction",
-    "text": "Network construction\n\nClustering: Infomap (based on a random walk through the network)\n\n\\max_{M} L(M) = q H(\\mathcal{Q}) + \\sum_{i=1}^m p^{i} H(\\mathcal{P}^i)\n\nEffectively maximising entropy of the “walk” subject to a partition, Q, weighting within and between cluster movements.\np and q informed by edge weights"
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#predicted-trajectories",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#predicted-trajectories",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Predicted trajectories",
+    "text": "Predicted trajectories"
   },
   {
-    "objectID": "hospital-network/index.html#network-construction-2",
-    "href": "hospital-network/index.html#network-construction-2",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network construction",
-    "text": "Network construction\n\nImportance of certain facilites: Adjusted Rand Index\n\nR = \\frac{a+b}{a+b+c+d} = \\frac{a+b}{n\\choose 2},\nwhere\n\na is the number of pairs of elements that are in the same subset in X and the same subset in Y,\nb be the number of pairs of elements that are in different subsets in X and different subsets of Y,\nc be the number of pairs of elements that are in the same subset in X and different subsets in Y and,\nd be the number of pairs of elements that are in different subsets in X and the same subset in Y."
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#summary",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#summary",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Summary",
+    "text": "Summary\n\nHeating of artifical refugia can reduce infection by almost 50%\nPrior infection highly protective (approx 97%)\nSmall numbers of frogs\nLimited observation frequency\nABC-rejection not the most refined algorithm"
   },
   {
-    "objectID": "hospital-network/index.html#admission-demographics",
-    "href": "hospital-network/index.html#admission-demographics",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Admission demographics",
-    "text": "Admission demographics\n\n\n\n\n\n\n\n\nVariable\nN\n\n\n\n\nGender\n\n\nMale\n12,723,729\n\n\nFemale\n14,071,488\n\n\nOther\n1,190\n\n\nAge Group\n\n\n&lt;20\n2,567,643\n\n\n20-39\n4,744,744\n\n\n50-59\n6,372,288\n\n\n&gt;60\n13,111,732\n\n\nLength of Stay\n\n\nMean\n2.739\n\n\nMedian (IQR)\n2 (1-3)"
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#team",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#team",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Team",
+    "text": "Team\n\n\n\n\n\n\n\n\n\nClaire Miller\n\n\n\n\n\n\n\nPatricia Campbell\n\n\n\n\n\n\n\nJennifer Flegg\n\n\n\n\n\n\nExperimental paper\nWaddle et. al, Hotspot shelters stimulate frog resistance to chytridiomycosis Nature 2024\nCode availability\n\nEstimation code: https://github.com/clairemiller/chytrid_model\nSlides: https://slides.michaellydeamore.com/chytrid-anziam"
   },
   {
-    "objectID": "hospital-network/index.html#network-exploration-1",
-    "href": "hospital-network/index.html#network-exploration-1",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network exploration",
-    "text": "Network exploration\n\nDensity: High (0.44)\nClustering: Reasonably strong (foreshadowing)"
-  },
-  {
-    "objectID": "hospital-network/index.html#network-exploration-2",
-    "href": "hospital-network/index.html#network-exploration-2",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network exploration",
-    "text": "Network exploration"
-  },
-  {
-    "objectID": "hospital-network/index.html#clustering",
-    "href": "hospital-network/index.html#clustering",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Clustering",
-    "text": "Clustering"
-  },
-  {
-    "objectID": "hospital-network/index.html#clustering-1",
-    "href": "hospital-network/index.html#clustering-1",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Clustering",
-    "text": "Clustering"
-  },
-  {
-    "objectID": "hospital-network/index.html#clustering-2",
-    "href": "hospital-network/index.html#clustering-2",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Clustering",
-    "text": "Clustering"
-  },
-  {
-    "objectID": "hospital-network/index.html#node-importance",
-    "href": "hospital-network/index.html#node-importance",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Node importance",
-    "text": "Node importance\nARI: Interpret at proportion of clustering structure “preserved”\n\n\nRemoving small and same-day facilities gives an ARI of between 0.58 and 0.62\n\nSeems key to making connections between larger hospitals\nRemoving one-by-one or all doesn’t notably change ARI\n\nRemoving public hospitals gives ARI of 0.22\nRemoving private hospitals gives ARI of 0.58"
-  },
-  {
-    "objectID": "hospital-network/index.html#next-steps",
-    "href": "hospital-network/index.html#next-steps",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Next steps",
-    "text": "Next steps\n\n\nHospital system is dense, geographically clustered\nTransfers are incredibly frequent, tend to move towards metropolitan Melbourne\nNeed to include pretty much all facilities in system consideration\nSurveillance should be considered geographically\n\nLocal public health units?\n\nImpact of patients going home\nTesting/sampling for conditions\n\n\n\nThis is a very extensive and detailed dataset, with many more project ideas than time.\nBut presents an exciting opportunity to build a data-driven surveillance and outbreak response system."
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Simulation-estimation experiment",
+    "text": "Simulation-estimation experiment"
   },
   {
     "objectID": "conmat-spectrum-2024/index.html#what-are-contact-matrices",
