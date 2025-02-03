@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Michael Lydeamore - Slides",
     "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nFeb 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nFeb 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 2, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nFeb 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nFeb 3, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 3, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "healthcare-infections/index.html#hello-from-australia",
@@ -823,7 +823,7 @@
     "href": "chytrid-anziam/talk-chytrid-anziam.html#chytridiomycosis-infection",
     "title": "Modelling chytridiomycosis transmission in frogs",
     "section": "Chytridiomycosis infection",
-    "text": "Chytridiomycosis infection\n\n\n\n\n\n\nFungal disease caused by Batrachochytrium dendrobatidis (Bd)\nBd is a fungus that lives in the gut of animals\nInfects frogs, and has caused decline in over 500 amphibian species\nCauses skin disease in the frogs, which is fatal\n\n\n\n\n Image: New Scientist"
+    "text": "Chytridiomycosis infection\n\n\n\n\n\n\nFungal disease caused by Batrachochytrium dendrobatidis (Bd)\nBd is a fungus that lives in the gut of animals\nInfects frogs, and has caused decline in over 500 amphibian species\nCauses skin disease in the frogs, which is often fatal\n\n\n\n\n Image: New Scientist"
   },
   {
     "objectID": "chytrid-anziam/talk-chytrid-anziam.html#natural-history",
@@ -858,14 +858,14 @@
     "href": "chytrid-anziam/talk-chytrid-anziam.html#parameters-to-estimate",
     "title": "Modelling chytridiomycosis transmission in frogs",
     "section": "Parameters to estimate",
-    "text": "Parameters to estimate\n\n\n\n\n\nParameter\nValue\n\n\n\n\n\\beta_{SH}, \\beta_{UN}, \\alpha, \\omega\nfitted\n\n\n\\mu\n0.021\n\n\n\\gamma_1\n1/2.5 per week\n\n\n\\gamma_2\n1/4.5 per week\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nm_{U,1}\n10\n\n\nm_{U,2}\n100\n\n\nm_{V,1}\n1\n\n\nm_{V,2}\n10\n\n\nm_{V,3}\n0.1"
+    "text": "Parameters to estimate\n\n\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\n\\beta_{\\text{sh}}, \\beta_{\\text{un}}, \\alpha, \\omega\nfitted\n\n\n\\mu\n0.021\n\n\n\\gamma_1\n1/2.5 per week\n\n\n\\gamma_2\n1/4.5 per week\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nm_{U,1}\n10\n\n\nm_{U,2}\n100\n\n\nm_{V,1}\n1\n\n\nm_{V,2}\n10\n\n\nm_{V,3}\n0.1"
   },
   {
     "objectID": "chytrid-anziam/talk-chytrid-anziam.html#data",
     "href": "chytrid-anziam/talk-chytrid-anziam.html#data",
     "title": "Modelling chytridiomycosis transmission in frogs",
     "section": "Data",
-    "text": "Data\n\n8 mesocosms, 4 shaded 4 unshaded\n5 frogs per mesocosm\nSome frogs experienced prior infection\nFrogs observed at t=1, 2, 4, 6, 8, 10, 15 weeks only\nFrogs that couldn’t be found presumed dead\n\n\n\n\n\n\n\n\nCaution\n\n\nFor more data information, ask Claire Miller and/or read Waddle et. al Hotspot shelters stimulate frog resistance to chytridiomycosis."
+    "text": "Data\n\n8 mesocosms, 4 shaded 4 unshaded\n20 frogs per mesocosm, 10 vaccinated, 10 unvaccinated, half infected at t_0\nSome frogs experienced prior infection\nFrogs observed at t=1, 2, 4, 6, 8, 10, 15 weeks only\nFrogs that couldn’t be found presumed dead\n\n\n\n\n\n\n\n\nCaution\n\n\nFor more data information, ask Claire Miller and/or read Waddle et. al Hotspot shelters stimulate frog resistance to chytridiomycosis."
   },
   {
     "objectID": "chytrid-anziam/talk-chytrid-anziam.html#results",
