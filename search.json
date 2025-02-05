@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Michael Lydeamore - Slides",
     "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nFeb 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nFeb 4, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 4, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nFeb 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nFeb 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 5, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "healthcare-infections/index.html#hello-from-australia",
@@ -865,14 +865,49 @@
     "href": "chytrid-anziam/talk-chytrid-anziam.html#data",
     "title": "Modelling chytridiomycosis transmission in frogs",
     "section": "Data",
-    "text": "Data\n\n8 mesocosms, 4 shaded 4 unshaded\n20 frogs per mesocosm, 10 vaccinated, 10 unvaccinated, half infected at t_0\nSome frogs experienced prior infection\nFrogs observed at t=1, 2, 4, 6, 8, 10, 15 weeks only\nFrogs that couldn’t be found presumed dead\n\n\n\n\n\n\n\n\nCaution\n\n\nFor more data information, ask Claire Miller and/or read Waddle et. al Hotspot shelters stimulate frog resistance to chytridiomycosis."
+    "text": "Data\n\n8 mesocosms, 4 shaded 4 unshaded\n20 frogs per mesocosm, 10 vaccinated, 10 unvaccinated, half infected at t_0\nHalf frogs experienced prior infection\nFrogs observed at t=1, 2, 4, 6, 8, 10, 15 weeks only\nFrogs that couldn’t be found presumed dead\nIndividual infection load data for each frog at each time point\n\n\n\n\n\n\n\n\nCaution\n\n\nFor more data information, ask Claire Miller and/or read Waddle et. al Hotspot shelters stimulate frog resistance to chytridiomycosis."
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model identifiability",
+    "text": "Model identifiability\nABC summary statistic:\n  \\Delta(\\theta) =  \\sum_{x \\in \\Omega} \\sum_{j=1}^7\\left(x^\\mathrm{sim}(t_j|\\theta)-x^\\mathrm{obs}(t_j)\\right)^2, \nwhere \\Omega = \\{S_k, \\; I_{k,i} \\; | \\; k=\\{U,V\\}, \\; i = 1, \\dots, 3\\}\n\nGiven infinite data, the model is fully identifiable\nOur data is not infinite, so it is not be possible to recover all model parameters"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Simulation-estimation experiment",
+    "text": "Simulation-estimation experiment\n\nSimulate the model using known parameters\nAttempt to recover known parameters\n\n\nParameters obtained from a least-squares fit to the mean-field approximation\n\n\n\n\n\n\n\n\nTip\n\n\nEstimates are valid up to the data-generating process (i.e. the model, including priors and summary statistics)"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-1",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-1",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model identifiability",
+    "text": "Model identifiability"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-2",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-2",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model identifiability",
+    "text": "Model identifiability"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-3",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-3",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model identifiability",
+    "text": "Model identifiability"
   },
   {
     "objectID": "chytrid-anziam/talk-chytrid-anziam.html#results",
     "href": "chytrid-anziam/talk-chytrid-anziam.html#results",
     "title": "Modelling chytridiomycosis transmission in frogs",
     "section": "Results",
-    "text": "Results\n\n\n\n\n\n\n\n\nParameter\nPrior\nPosterior (Mean, 95% CI)\n\n\n\n\n\\beta_\\text{sh}\n\\sim U(0,2)\n0.675 (0.025, 1.876)\n\n\n\\beta_\\text{un}\n\\sim U(0,2)\n0.401 (0.008, 1.767)\n\n\n\\alpha\n\\sim U(0,0.5)\n0.072 (0.003, 0.373)\n\n\n\\alpha\\beta_\\text{sh}\n\n0.018 (0.001, 0.061)\n\n\n\\alpha\\beta_\\text{un}\n\n0.009 (0.000, 0.031)\n\n\n\\omega\n\\sim U(0,2)\n0.569 (0.122, 1.688)"
+    "text": "Results\n\nSimulation-estimation revealed that \\omega, and the product of \\alpha\\beta were identifiable only\n\n\n\n\n\n\n\n\n\nParameter\nPrior\nPosterior (Mean, 95% CI)\n\n\n\n\n\\beta_\\text{sh}\n\\sim U(0,2)\n0.675 (0.025, 1.876)\n\n\n\\beta_\\text{un}\n\\sim U(0,2)\n0.401 (0.008, 1.767)\n\n\n\\alpha\n\\sim U(0,0.5)\n0.072 (0.003, 0.373)\n\n\n\\alpha\\beta_\\text{sh}\n\n0.018 (0.001, 0.061)\n\n\n\\alpha\\beta_\\text{un}\n\n0.009 (0.000, 0.031)\n\n\n\\omega\n\\sim U(0,2)\n0.569 (0.122, 1.688)"
   },
   {
     "objectID": "chytrid-anziam/talk-chytrid-anziam.html#posterior-distributions",
@@ -893,7 +928,7 @@
     "href": "chytrid-anziam/talk-chytrid-anziam.html#summary",
     "title": "Modelling chytridiomycosis transmission in frogs",
     "section": "Summary",
-    "text": "Summary\n\nHeating of artifical refugia can reduce infection by almost 50%\nPrior infection highly protective (approx 97%)\nSmall numbers of frogs\nLimited observation frequency\nABC-rejection not the most refined algorithm"
+    "text": "Summary\n\n\nHeating of artifical refugia can reduce infection by almost 50%\nPrior infection highly protective (approx 97%)\nSmall numbers of frogs\nLimited observation frequency\nABC-rejection not the most refined algorithm\n\n\n\nThese refugia are cheap, easy to deploy, used by the frogs.\nChytrid has become a global issue, maybe this can help to at least slow the issue."
   },
   {
     "objectID": "chytrid-anziam/talk-chytrid-anziam.html#team",
@@ -901,13 +936,6 @@
     "title": "Modelling chytridiomycosis transmission in frogs",
     "section": "Team",
     "text": "Team\n\n\n\n\n\n\n\n\n\nClaire Miller\n\n\n\n\n\n\n\nPatricia Campbell\n\n\n\n\n\n\n\nJennifer Flegg\n\n\n\n\n\n\nExperimental paper\nWaddle et. al, Hotspot shelters stimulate frog resistance to chytridiomycosis Nature 2024\nCode availability\n\nEstimation code: https://github.com/clairemiller/chytrid_model\nSlides: https://slides.michaellydeamore.com/chytrid-anziam"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Simulation-estimation experiment",
-    "text": "Simulation-estimation experiment"
   },
   {
     "objectID": "conmat-spectrum-2024/index.html#what-are-contact-matrices",
