@@ -19,3 +19,6 @@
 [submodule "chytrid-anziam"]
 	path = chytrid-anziam
 	url = git@github.com:MikeLydeamore/talk-chytrid-anziam.git
+[submodule "acefa-launch"]
+	path = acefa-launch
+	url = git@github.com:MikeLydeamore/talk-acefa-launch.git
