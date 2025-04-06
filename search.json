@@ -539,6 +539,111 @@
     "text": "Next steps\n\n\nHospital system is dense, geographically clustered\nTransfers are incredibly frequent, tend to move towards metropolitan Melbourne\nNeed to include pretty much all facilities in system consideration\nSurveillance should be considered geographically\n\nLocal public health units?\n\nImpact of patients going home\nTesting/sampling for conditions\n\n\n\nThis is a very extensive and detailed dataset, with many more project ideas than time.\nBut presents an exciting opportunity to build a data-driven surveillance and outbreak response system."
   },
   {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#why-write-an-r-package",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#why-write-an-r-package",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Why Write an R Package?",
+    "text": "Why Write an R Package?\n\nIf you copy-paste the same function twice, it belongs in a package."
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#getting-started",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#getting-started",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Getting Started",
+    "text": "Getting Started\nCreate a new package\nusethis::create_package(\"path/to/mypackage\")\nThis creates the scaffolding for your package:\n\nDESCRIPTION\nNAMESPACE\nR/ directory for code"
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#key-package-files",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#key-package-files",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Key Package Files",
+    "text": "Key Package Files\n\n\n📁 DESCRIPTION - Metadata about your package\n📁 NAMESPACE - Controls what functions are visible\n\n📁 R/ - All your function files live here\n📁 man/ - Auto-generated documentation"
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#the-description-file",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#the-description-file",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "The DESCRIPTION File",
+    "text": "The DESCRIPTION File\nEvery R package has a DESCRIPTION file — it’s the package’s metadata.\nPackage: mypackage\nTitle: What the Package Does (One Line, Title Case)\nVersion: 0.0.0.9000\nAuthors@R: person(\"Your\", \"Name\", email = \"you@example.com\", role = c(\"aut\", \"cre\"))\nDescription: A longer description of what your package does.\nLicense: MIT + file LICENSE\nEncoding: UTF-8\nRoxygen: list(markdown = TRUE)\nRoxygenNote: 7.2.3"
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#the-namespace-file",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#the-namespace-file",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "The NAMESPACE File",
+    "text": "The NAMESPACE File\nThe NAMESPACE tells R what to export to users and what to import from other packages.\nExample (auto-generated):\nexport(add_numbers)\nimportFrom(stats, lm)\n\n🧠 If it’s not in NAMESPACE, users can’t use it — even if the function exists."
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#your-first-function",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#your-first-function",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Your First Function",
+    "text": "Your First Function\nCreate a new R script:\nusethis::use_r(\"add_numbers\")"
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#add-documentation-with-roxygen2",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#add-documentation-with-roxygen2",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Add Documentation with Roxygen2",
+    "text": "Add Documentation with Roxygen2\n#' Add two numbers\n#'\n#' @param x A number\n#' @param y Another number\n#' @return The sum of x and y\n#' @export\nadd_numbers &lt;- function(x, y) {\n  x + y\n}\n\n💡 Each line starts with #' and sits directly above the function."
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#including-data",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#including-data",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Including Data",
+    "text": "Including Data\nSetup for raw data\nusethis::use_data_raw(\"my_dataset\")\nThis creates a data-raw/ folder and a script you can use to clean/load data."
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#documenting-data",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#documenting-data",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Documenting Data",
+    "text": "Documenting Data\nLike functions, you can document datasets using roxygen.\nCreate a new .R file (e.g., R/data-documentation.R) and add:\n#' Example dataset: my_dataset\n#'\n#' This dataset contains example data imported from a CSV.\n#'\n#' @format A data frame with 100 rows and 5 variables:\n#' \\describe{\n#'   \\item{col1}{Description of column 1}\n#'   \\item{col2}{Description of column 2}\n#'   \\item{col3}{Description of column 3}\n#' }\n#' @source Imported from a CSV file.\n\"my_dataset\"\n\n💡 The name in quotes at the end (\"my_dataset\") must match the object name."
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#building-your-package",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#building-your-package",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Building Your Package",
+    "text": "Building Your Package\ndevtools::document()  # Ensure docs are updated\ndevtools::check()     # Run package checks\ndevtools::install()   # Install locally\n\ncheck() will catch most common problems before they become bugs."
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#wrap-up",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#wrap-up",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Wrap-up",
+    "text": "Wrap-up\n\nYour first package: ✅\nFunctions with documentation: ✅\nEmbedded data: ✅\nReady to grow your code into a real tool!"
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#next-steps",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#next-steps",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Next Steps",
+    "text": "Next Steps\n\nBuild more functions\nExplore usethis::use_testthat() for testing\nShare it via GitHub: usethis::use_github()"
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#resources",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#resources",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Resources",
+    "text": "Resources\n\n📘 https://r-pkgs.org\n🔧 usethis cheatsheet: https://usethis.r-lib.org\n🧰 devtools docs: https://devtools.r-lib.org"
+  },
+  {
+    "objectID": "talk-workshop-r-pkg/r-pkg-workshop.html#link-to-extended-guide",
+    "href": "talk-workshop-r-pkg/r-pkg-workshop.html#link-to-extended-guide",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Link to Extended Guide",
+    "text": "Link to Extended Guide\n👉 View full examples, exercises, and practice materials\n(book version to be linked here)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Michael Lydeamore - Slides",
+    "section": "",
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "chytrid-anziam/talk-chytrid-anziam.html#chytridiomycosis-infection",
     "href": "chytrid-anziam/talk-chytrid-anziam.html#chytridiomycosis-infection",
     "title": "Modelling chytridiomycosis transmission in frogs",
@@ -656,13 +761,6 @@
     "title": "Modelling chytridiomycosis transmission in frogs",
     "section": "Team",
     "text": "Team\n\n\n\n\n\n\n\n\n\nClaire Miller\n\n\n\n\n\n\n\nPatricia Campbell\n\n\n\n\n\n\n\nJennifer Flegg\n\n\n\n\n\n\nExperimental paper\nWaddle et. al, Hotspot shelters stimulate frog resistance to chytridiomycosis Nature 2024\nCode availability\n\nEstimation code: https://github.com/clairemiller/chytrid_model\nSlides: https://slides.michaellydeamore.com/chytrid-anziam"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Michael Lydeamore - Slides",
-    "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nApr 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nApr 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nApr 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nApr 2, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nApr 2, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "conmat-spectrum-2024/index.html#what-are-contact-matrices",
