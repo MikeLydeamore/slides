@@ -22,3 +22,6 @@
 [submodule "acefa-launch"]
 	path = acefa-launch
 	url = git@github.com:MikeLydeamore/talk-acefa-launch.git
+[submodule "talk-workshop-r-pkg"]
+	path = talk-workshop-r-pkg
+	url = git@github.com:MikeLydeamore/talk-workshop-r-pkg.git
