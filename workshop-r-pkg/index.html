@@ -236,6 +236,45 @@
 <p>💡 <strong>Pro tip:</strong> Version control makes collaboration and rollback easier.</p>
 </blockquote>
 </section>
+<section id="before-you-commit-check-your-data" class="slide level2">
+<h2>⚠️ Before You Commit: Check Your Data</h2>
+<p>Using Git is great — but before you commit anything:</p>
+<ul>
+<li>🔍 <strong>Review your data files</strong></li>
+<li>📜 <strong>Check any license or data-sharing agreement</strong></li>
+<li>❌ Avoid committing raw data unless you’re sure it’s okay</li>
+</ul>
+<blockquote>
+<p>Even private Git repos are <strong>not fully secure</strong>.</p>
+</blockquote>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p>Never commit:</p>
+<ul>
+<li>Personally identifiable information (PII)</li>
+<li>Internal business data</li>
+<li>Anything you wouldn’t email to a stranger</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="pro-tip">Pro tip</h3>
+<p>Use <code>.gitignore</code> to avoid tracking sensitive files:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a># In .gitignore</span>
+<span id="cb3-2"><a></a>data-raw/</span>
+<span id="cb3-3"><a></a>private-data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also add <code>.gitattributes</code> or <code>.Rbuildignore</code> to prevent including files in your built package.</p>
+</section>
 <section id="key-package-files" class="slide level2">
 <h2>Key Package Files</h2>
 <div class="columns">
@@ -250,15 +289,15 @@
 <section id="the-description-file" class="slide level2">
 <h2>The DESCRIPTION File</h2>
 <p>Every R package has a <code>DESCRIPTION</code> file — it’s the package’s <strong>metadata</strong>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>Package: mypackage</span>
-<span id="cb3-2"><a></a>Title: What the Package Does (One Line, Title Case)</span>
-<span id="cb3-3"><a></a>Version: 0.0.0.9000</span>
-<span id="cb3-4"><a></a>Authors@R: person("Your", "Name", email = "you@example.com", role = c("aut", "cre"))</span>
-<span id="cb3-5"><a></a>Description: A longer description of what your package does.</span>
-<span id="cb3-6"><a></a>License: MIT + file LICENSE</span>
-<span id="cb3-7"><a></a>Encoding: UTF-8</span>
-<span id="cb3-8"><a></a>Roxygen: list(markdown = TRUE)</span>
-<span id="cb3-9"><a></a>RoxygenNote: 7.2.3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>Package: mypackage</span>
+<span id="cb4-2"><a></a>Title: What the Package Does (One Line, Title Case)</span>
+<span id="cb4-3"><a></a>Version: 0.0.0.9000</span>
+<span id="cb4-4"><a></a>Authors@R: person("Your", "Name", email = "you@example.com", role = c("aut", "cre"))</span>
+<span id="cb4-5"><a></a>Description: A longer description of what your package does.</span>
+<span id="cb4-6"><a></a>License: MIT + file LICENSE</span>
+<span id="cb4-7"><a></a>Encoding: UTF-8</span>
+<span id="cb4-8"><a></a>Roxygen: list(markdown = TRUE)</span>
+<span id="cb4-9"><a></a>RoxygenNote: 7.2.3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
@@ -310,8 +349,8 @@
 <h2>The NAMESPACE File</h2>
 <p>The <code>NAMESPACE</code> tells R what to export to users and what to import from other packages.</p>
 <p>Example (auto-generated):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>export(add_numbers)</span>
-<span id="cb4-2"><a></a>importFrom(stats, lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a></a>export(add_numbers)</span>
+<span id="cb5-2"><a></a>importFrom(stats, lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote>
 <p>🧠 If it’s not in NAMESPACE, users can’t use it — even if the function exists.</p>
 </blockquote>
@@ -322,7 +361,7 @@
 <p>You <strong>rarely edit this file directly</strong>. Instead, let roxygen handle it.</p>
 <p>Use: - <code>@export</code> to add a function - <code>@importFrom dplyr select</code> to import selectively</p>
 <p>Then run:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This updates <code>NAMESPACE</code> for you.</p>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -341,18 +380,18 @@
 <section id="your-first-function" class="slide level2">
 <h2>Your First Function</h2>
 <p>Create a new R script:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_r</span>(<span class="st">"add_numbers"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_r</span>(<span class="st">"add_numbers"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
 <h3 id="a-function-without-documentation">A function without documentation</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># File: R/add_numbers.R</span></span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb7-4"><a></a>  x <span class="sc">+</span> y</span>
-<span id="cb7-5"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># File: R/add_numbers.R</span></span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb8-4"><a></a>  x <span class="sc">+</span> y</span>
+<span id="cb8-5"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then load your package into your session:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <blockquote>
 <p>This mimics “installing” your package without needing to reinstall each time.</p>
@@ -375,22 +414,22 @@
 <section class="slide level2">
 
 <h3 id="try-using-the-function">Try using the function</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">add_numbers</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">add_numbers</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>✅ Works!</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>?add_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>?add_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>❌ No documentation yet!</p>
 </section>
 <section id="add-documentation-with-roxygen2" class="slide level2">
 <h2>Add Documentation with Roxygen2</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co">#' Add two numbers</span></span>
-<span id="cb11-2"><a></a><span class="co">#'</span></span>
-<span id="cb11-3"><a></a><span class="co">#' @param x A number</span></span>
-<span id="cb11-4"><a></a><span class="co">#' @param y Another number</span></span>
-<span id="cb11-5"><a></a><span class="co">#' @return The sum of x and y</span></span>
-<span id="cb11-6"><a></a><span class="co">#' @export</span></span>
-<span id="cb11-7"><a></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb11-8"><a></a>  x <span class="sc">+</span> y</span>
-<span id="cb11-9"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co">#' Add two numbers</span></span>
+<span id="cb12-2"><a></a><span class="co">#'</span></span>
+<span id="cb12-3"><a></a><span class="co">#' @param x A number</span></span>
+<span id="cb12-4"><a></a><span class="co">#' @param y Another number</span></span>
+<span id="cb12-5"><a></a><span class="co">#' @return The sum of x and y</span></span>
+<span id="cb12-6"><a></a><span class="co">#' @export</span></span>
+<span id="cb12-7"><a></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb12-8"><a></a>  x <span class="sc">+</span> y</span>
+<span id="cb12-9"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote>
 <p>💡 Each line starts with <code>#'</code> and sits directly above the function.</p>
 </blockquote>
@@ -398,7 +437,7 @@
 <section class="slide level2">
 
 <h3 id="generate-documentation">Generate documentation</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Updates <code>NAMESPACE</code></li>
 <li>Creates a <code>.Rd</code> file in <code>man/</code></li>
@@ -408,26 +447,26 @@
 <section class="slide level2">
 
 <h3 id="try-again">Try again</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>?add_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>?add_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>✅ Now you’ll see formatted documentation!</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">add_numbers</span>(<span class="dv">10</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">add_numbers</span>(<span class="dv">10</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>✅ Still works!</p>
 </section>
 <section id="including-data" class="slide level2">
 <h2>Including Data</h2>
 <h3 id="setup-for-raw-data">Setup for raw data</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_data_raw</span>(<span class="st">"my_dataset"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_data_raw</span>(<span class="st">"my_dataset"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This creates a <code>data-raw/</code> folder and a script you can use to clean/load data.</p>
 </section>
 <section class="slide level2">
 
 <h3 id="save-it-into-the-package">Save it into the package</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># In data-raw/my_dataset.R</span></span>
-<span id="cb16-2"><a></a></span>
-<span id="cb16-3"><a></a><span class="co"># Replace with your actual import code</span></span>
-<span id="cb16-4"><a></a>my_dataset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"path/to/your.csv"</span>)</span>
-<span id="cb16-5"><a></a></span>
-<span id="cb16-6"><a></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(my_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># In data-raw/my_dataset.R</span></span>
+<span id="cb17-2"><a></a></span>
+<span id="cb17-3"><a></a><span class="co"># Replace with your actual import code</span></span>
+<span id="cb17-4"><a></a>my_dataset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"path/to/your.csv"</span>)</span>
+<span id="cb17-5"><a></a></span>
+<span id="cb17-6"><a></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(my_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote>
 <p>📦 Your data is now accessible via <code>my_dataset</code> when the package is loaded!</p>
 </blockquote>
@@ -436,18 +475,18 @@
 <h2>Documenting Data</h2>
 <p>Like functions, you can document datasets using <strong>roxygen</strong>.</p>
 <p>Create a new <code>.R</code> file (e.g., <code>R/data-documentation.R</code>) and add:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co">#' Example dataset: my_dataset</span></span>
-<span id="cb17-2"><a></a><span class="co">#'</span></span>
-<span id="cb17-3"><a></a><span class="co">#' This dataset contains example data imported from a CSV.</span></span>
-<span id="cb17-4"><a></a><span class="co">#'</span></span>
-<span id="cb17-5"><a></a><span class="co">#' @format A data frame with 100 rows and 5 variables:</span></span>
-<span id="cb17-6"><a></a><span class="co">#' \describe{</span></span>
-<span id="cb17-7"><a></a><span class="co">#'   \item{col1}{Description of column 1}</span></span>
-<span id="cb17-8"><a></a><span class="co">#'   \item{col2}{Description of column 2}</span></span>
-<span id="cb17-9"><a></a><span class="co">#'   \item{col3}{Description of column 3}</span></span>
-<span id="cb17-10"><a></a><span class="co">#' }</span></span>
-<span id="cb17-11"><a></a><span class="co">#' @source Imported from a CSV file.</span></span>
-<span id="cb17-12"><a></a><span class="st">"my_dataset"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co">#' Example dataset: my_dataset</span></span>
+<span id="cb18-2"><a></a><span class="co">#'</span></span>
+<span id="cb18-3"><a></a><span class="co">#' This dataset contains example data imported from a CSV.</span></span>
+<span id="cb18-4"><a></a><span class="co">#'</span></span>
+<span id="cb18-5"><a></a><span class="co">#' @format A data frame with 100 rows and 5 variables:</span></span>
+<span id="cb18-6"><a></a><span class="co">#' \describe{</span></span>
+<span id="cb18-7"><a></a><span class="co">#'   \item{col1}{Description of column 1}</span></span>
+<span id="cb18-8"><a></a><span class="co">#'   \item{col2}{Description of column 2}</span></span>
+<span id="cb18-9"><a></a><span class="co">#'   \item{col3}{Description of column 3}</span></span>
+<span id="cb18-10"><a></a><span class="co">#' }</span></span>
+<span id="cb18-11"><a></a><span class="co">#' @source Imported from a CSV file.</span></span>
+<span id="cb18-12"><a></a><span class="st">"my_dataset"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote>
 <p>💡 The name in quotes at the end (<code>"my_dataset"</code>) must match the object name.</p>
 </blockquote>
@@ -455,16 +494,16 @@
 <section class="slide level2">
 
 <h3 id="re-document">Re-document</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will create a help file just like for functions.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>?my_dataset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>?my_dataset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You now get documentation in the help panel.</p>
 </section>
 <section id="building-your-package" class="slide level2">
 <h2>Building Your Package</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()  <span class="co"># Ensure docs are updated</span></span>
-<span id="cb20-2"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>()     <span class="co"># Run package checks</span></span>
-<span id="cb20-3"><a></a>devtools<span class="sc">::</span><span class="fu">install</span>()   <span class="co"># Install locally</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()  <span class="co"># Ensure docs are updated</span></span>
+<span id="cb21-2"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>()     <span class="co"># Run package checks</span></span>
+<span id="cb21-3"><a></a>devtools<span class="sc">::</span><span class="fu">install</span>()   <span class="co"># Install locally</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote>
 <p><code>check()</code> will catch most common problems before they become bugs.</p>
 </blockquote>

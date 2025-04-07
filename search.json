@@ -553,6 +553,13 @@
     "text": "Getting Started\nCreate a new package\nusethis::create_package(\"path/to/mypackage\")\nThis creates the scaffolding for your package:\n\nDESCRIPTION\nNAMESPACE\nR/ directory for code"
   },
   {
+    "objectID": "workshop-r-pkg/index.html#before-you-commit-check-your-data",
+    "href": "workshop-r-pkg/index.html#before-you-commit-check-your-data",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "⚠️ Before You Commit: Check Your Data",
+    "text": "⚠️ Before You Commit: Check Your Data\nUsing Git is great — but before you commit anything:\n\n🔍 Review your data files\n📜 Check any license or data-sharing agreement\n❌ Avoid committing raw data unless you’re sure it’s okay\n\n\nEven private Git repos are not fully secure.\n\n\n\n\n\n\n\nWarning\n\n\nNever commit:\n\nPersonally identifiable information (PII)\nInternal business data\nAnything you wouldn’t email to a stranger"
+  },
+  {
     "objectID": "workshop-r-pkg/index.html#key-package-files",
     "href": "workshop-r-pkg/index.html#key-package-files",
     "title": "Intro to R Packages with {usethis}",
@@ -641,7 +648,7 @@
     "href": "index.html",
     "title": "Michael Lydeamore - Slides",
     "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nApr 6, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nApr 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nApr 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nApr 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nApr 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nApr 7, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "chytrid-anziam/talk-chytrid-anziam.html#chytridiomycosis-infection",
