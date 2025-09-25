@@ -1,5 +1,222 @@
 [
   {
+    "objectID": "conmat-spectrum-2024/index.html#what-are-contact-matrices",
+    "href": "conmat-spectrum-2024/index.html#what-are-contact-matrices",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "What are contact matrices",
+    "text": "What are contact matrices\n\nEstimates of the numbers of contact between individuals in various categories\nUsed in models to investigate:\n\nEffect of NPIs\nUnderstand effects of demographic changes\n“More accurately” estimate transmission\n\n\n\nBut how do they come about!?"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#contact-diary-studies",
+    "href": "conmat-spectrum-2024/index.html#contact-diary-studies",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Contact diary studies",
+    "text": "Contact diary studies\nContact diary studies follow individuals and ask them:\n\nhow many contacts of a certain type,\nthe duration of contact,\nthe location of the contact,\nthe frequency of the contact\n\n\nThey are undoubtedly the gold standard for data on the number of contacts.\nBut they are prohibitively expensive, and logistically very challenging."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#polymod",
+    "href": "conmat-spectrum-2024/index.html#polymod",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "POLYMOD",
+    "text": "POLYMOD\nPublished in 2008, Mossong et. al undertook a contact diary study of 7290 participants across Europe.\nIt remains the most widely cited contact diary study."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#contact-matrix-projection",
+    "href": "conmat-spectrum-2024/index.html#contact-matrix-projection",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Contact matrix projection",
+    "text": "Contact matrix projection\nPrem et. al formed a model that predicts the number of contacts based on the age structure of the population.\nThis model then allows for prediction to settings that are outside the original POLYMOD countries."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#what-is-provided",
+    "href": "conmat-spectrum-2024/index.html#what-is-provided",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "What is provided:",
+    "text": "What is provided:"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#our-model-of-contact",
+    "href": "conmat-spectrum-2024/index.html#our-model-of-contact",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Our model of contact",
+    "text": "Our model of contact\nNot much information to train model. We model the number of contacts an individual in bin i has with bin j:\n\\begin{aligned}\nc_{ij} = \\beta_{0,i} + \\beta_1(|i-j|) + &\\beta_2(|i-j|^2) + \\beta_3(i\\times j) + \\beta_4(i+j) +\\\\ &\\beta_5\\max(i, j) + \\beta_6\\min(i, j)\n\\end{aligned}\n\n\n\n\n\n\n\n\n🤓 Akshually 🤓\n\n\nWe want to fit this as a generalised additive model, so actually we have splines on these terms to satisfy the smoothness requirements.\nThis is very similar to the approach by Prem et. al who perform post-hoc smoothing of the parameters after MCMC."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#model-terms",
+    "href": "conmat-spectrum-2024/index.html#model-terms",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Model terms",
+    "text": "Model terms"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#projection-onto-target-demography",
+    "href": "conmat-spectrum-2024/index.html#projection-onto-target-demography",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Projection onto target demography",
+    "text": "Projection onto target demography"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#importance-of-contact-diary-study",
+    "href": "conmat-spectrum-2024/index.html#importance-of-contact-diary-study",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Importance of contact diary study",
+    "text": "Importance of contact diary study\nWe’ve used POLYMOD-trained models for over a decade.\nThere are 44 other surveys available in one collection on Zenodo, and probably more out there in the wild.\n\nSome recent work from Harris et. al has shown that differences in the survey design can have a significant impact on these synthetic contact matrices.\n\n\n\n\n\n\n\n\nTip\n\n\nconmat allows for training on survey of choice, and projection onto target demographic of choice"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#example-of-using-a-different-study",
+    "href": "conmat-spectrum-2024/index.html#example-of-using-a-different-study",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Example of using a different study",
+    "text": "Example of using a different study\n\nchina_survey &lt;- socialmixr::get_survey(\"https://doi.org/10.5281/zenodo.3878754\") |&gt;\n    summarise(contacts = sum(cnt_home))\n\nchina_pop &lt;- read_csv(\"./data/china_pop_age_dist.csv\")\nchina_pop_cm &lt;- conmat::as_conmat_population(\n  data = china_pop,\n  age = lower.age.limit,\n  population = population\n)"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#example-of-using-a-different-study-1",
+    "href": "conmat-spectrum-2024/index.html#example-of-using-a-different-study-1",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Example of using a different study",
+    "text": "Example of using a different study\n\nchina_survey &lt;- socialmixr::get_survey(\"https://doi.org/10.5281/zenodo.3878754\") |&gt;\n    summarise(contacts = sum(cnt_home))\n\nchina_pop &lt;- read_csv(\"./data/china_pop_age_dist.csv\")\nchina_pop_cm &lt;- conmat::as_conmat_population(\n  data = china_pop,\n  age = lower.age.limit,\n  population = population\n)\n\nmodel &lt;- conmat::fit_single_contact_model(\n    contact_data = china_survey,\n    population = china_pop_cm\n)\n\npredicted_contacts &lt;- conmat::predict_contacts(\n    model = model,\n    population = china_pop_cm,\n    age_breaks = c(seq(0, 80, by = 5), Inf)\n)"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#why-input-survey-matters",
+    "href": "conmat-spectrum-2024/index.html#why-input-survey-matters",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Why input survey matters",
+    "text": "Why input survey matters\nThese matrices are for a Chinese population, using a Chinese survey (left) and POLYMOD (right), for the home setting."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#why-input-survey-matters-1",
+    "href": "conmat-spectrum-2024/index.html#why-input-survey-matters-1",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Why input survey matters",
+    "text": "Why input survey matters\nThese matrices are for a Chinese population, using a Chinese survey (left) and POLYMOD (right), for the home setting."
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#summary",
+    "href": "conmat-spectrum-2024/index.html#summary",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Summary",
+    "text": "Summary\nconmat is a new, open-source, programmable system to generate synthetic contact matrices\n\nCan use arbitrary contact survey and arbitrary demography\nConvenience functions for next generation matrices, numbers of contacts\nChoice of input survey is crucial:\n\nThese models have no information on terms like “intergenerational mixing”"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#summary-1",
+    "href": "conmat-spectrum-2024/index.html#summary-1",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Summary",
+    "text": "Summary\nconmat is a new, open-source, programmable system to generate synthetic contact matrices\nAvailable right now:\n\nremotes::install_github(\"idem-lab/conmat\")\n\nor pre-computed matrices on Zenodo: https://zenodo.org/records/12776714"
+  },
+  {
+    "objectID": "conmat-spectrum-2024/index.html#acknowledgements",
+    "href": "conmat-spectrum-2024/index.html#acknowledgements",
+    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\n\n\n\n\n\n\nChitra Saraswati\n\n\n\n\n\n\n\nAarathy Babu\n\n\n\n\n\n\n\nNick Tierney\n\n\n\n\n\n\n\nNick Golding\n\n\n\n\n\nSPECTRUM-SPARK Seed Funding\n\nCode and slides are available at https://github.com/MikeLydeamore/talk-conmat-projections"
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#why-write-an-r-package",
+    "href": "workshop-r-pkg/index.html#why-write-an-r-package",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Why Write an R Package?",
+    "text": "Why Write an R Package?\n\nIf you copy-paste the same function twice, it belongs in a package."
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#getting-started",
+    "href": "workshop-r-pkg/index.html#getting-started",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Getting Started",
+    "text": "Getting Started\nCreate a new package\nusethis::create_package(\"path/to/mypackage\")\nThis creates the scaffolding for your package:\n\nDESCRIPTION\nNAMESPACE\nR/ directory for code"
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#before-you-commit-check-your-data",
+    "href": "workshop-r-pkg/index.html#before-you-commit-check-your-data",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "⚠️ Before You Commit: Check Your Data",
+    "text": "⚠️ Before You Commit: Check Your Data\nUsing Git is great — but before you commit anything:\n\n🔍 Review your data files\n📜 Check any license or data-sharing agreement\n❌ Avoid committing raw data unless you’re sure it’s okay\n\n\nEven private Git repos are not fully secure.\n\n\n\n\n\n\n\nWarning\n\n\nNever commit:\n\nPersonally identifiable information (PII)\nInternal business data\nAnything you wouldn’t email to a stranger"
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#key-package-files",
+    "href": "workshop-r-pkg/index.html#key-package-files",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Key Package Files",
+    "text": "Key Package Files\n\n\n📁 DESCRIPTION - Metadata about your package\n📁 NAMESPACE - Controls what functions are visible\n\n📁 R/ - All your function files live here\n📁 man/ - Auto-generated documentation"
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#the-description-file",
+    "href": "workshop-r-pkg/index.html#the-description-file",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "The DESCRIPTION File",
+    "text": "The DESCRIPTION File\nEvery R package has a DESCRIPTION file — it’s the package’s metadata.\nPackage: mypackage\nTitle: What the Package Does (One Line, Title Case)\nVersion: 0.0.0.9000\nAuthors@R: person(\"Your\", \"Name\", email = \"you@example.com\", role = c(\"aut\", \"cre\"))\nDescription: A longer description of what your package does.\nLicense: MIT + file LICENSE\nEncoding: UTF-8\nRoxygen: list(markdown = TRUE)\nRoxygenNote: 7.2.3"
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#the-namespace-file",
+    "href": "workshop-r-pkg/index.html#the-namespace-file",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "The NAMESPACE File",
+    "text": "The NAMESPACE File\nThe NAMESPACE tells R what to export to users and what to import from other packages.\nExample (auto-generated):\nexport(add_numbers)\nimportFrom(stats, lm)\n\n🧠 If it’s not in NAMESPACE, users can’t use it — even if the function exists."
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#your-first-function",
+    "href": "workshop-r-pkg/index.html#your-first-function",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Your First Function",
+    "text": "Your First Function\nCreate a new R script:\nusethis::use_r(\"add_numbers\")"
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#add-documentation-with-roxygen2",
+    "href": "workshop-r-pkg/index.html#add-documentation-with-roxygen2",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Add Documentation with Roxygen2",
+    "text": "Add Documentation with Roxygen2\n#' Add two numbers\n#'\n#' @param x A number\n#' @param y Another number\n#' @return The sum of x and y\n#' @export\nadd_numbers &lt;- function(x, y) {\n  x + y\n}\n\n💡 Each line starts with #' and sits directly above the function."
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#including-data",
+    "href": "workshop-r-pkg/index.html#including-data",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Including Data",
+    "text": "Including Data\nSetup for raw data\nusethis::use_data_raw(\"my_dataset\")\nThis creates a data-raw/ folder and a script you can use to clean/load data."
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#documenting-data",
+    "href": "workshop-r-pkg/index.html#documenting-data",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Documenting Data",
+    "text": "Documenting Data\nLike functions, you can document datasets using roxygen.\nCreate a new .R file (e.g., R/data-documentation.R) and add:\n#' Example dataset: my_dataset\n#'\n#' This dataset contains example data imported from a CSV.\n#'\n#' @format A data frame with 100 rows and 5 variables:\n#' \\describe{\n#'   \\item{col1}{Description of column 1}\n#'   \\item{col2}{Description of column 2}\n#'   \\item{col3}{Description of column 3}\n#' }\n#' @source Imported from a CSV file.\n\"my_dataset\"\n\n💡 The name in quotes at the end (\"my_dataset\") must match the object name."
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#building-your-package",
+    "href": "workshop-r-pkg/index.html#building-your-package",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Building Your Package",
+    "text": "Building Your Package\ndevtools::document()  # Ensure docs are updated\ndevtools::check()     # Run package checks\ndevtools::install()   # Install locally\n\ncheck() will catch most common problems before they become bugs."
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#wrap-up",
+    "href": "workshop-r-pkg/index.html#wrap-up",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Wrap-up",
+    "text": "Wrap-up\n\nYour first package: ✅\nFunctions with documentation: ✅\nEmbedded data: ✅\nReady to grow your code into a real tool!"
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#next-steps",
+    "href": "workshop-r-pkg/index.html#next-steps",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Next Steps",
+    "text": "Next Steps\n\nBuild more functions\nExplore usethis::use_testthat() for testing\nShare it via GitHub: usethis::use_github()"
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#resources",
+    "href": "workshop-r-pkg/index.html#resources",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Resources",
+    "text": "Resources\n\n📘 https://r-pkgs.org\n🔧 usethis cheatsheet: https://usethis.r-lib.org\n🧰 devtools docs: https://devtools.r-lib.org"
+  },
+  {
+    "objectID": "workshop-r-pkg/index.html#link-to-extended-guide",
+    "href": "workshop-r-pkg/index.html#link-to-extended-guide",
+    "title": "Intro to R Packages with {usethis}",
+    "section": "Link to Extended Guide",
+    "text": "Link to Extended Guide\n👉 View full examples, exercises, and practice materials"
+  },
+  {
     "objectID": "talk-midsea-hospital-infections/index.html#hello-from-australia",
     "href": "talk-midsea-hospital-infections/index.html#hello-from-australia",
     "title": "Data-driven insights into healthcare acquired infections: two case studies",
@@ -329,6 +546,132 @@
     "text": "Result\n\n\nDoes free up beds (roughly 16 in 2019), but within 12 months this gain has been eroded."
   },
   {
+    "objectID": "talk-procrastination/index.html#tooling",
+    "href": "talk-procrastination/index.html#tooling",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Tooling",
+    "text": "Tooling"
+  },
+  {
+    "objectID": "talk-procrastination/index.html#teleport-github-action",
+    "href": "talk-procrastination/index.html#teleport-github-action",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "teleport GitHub Action",
+    "text": "teleport GitHub Action\nGitHub actions are a way to run code automatically in response to events on GitHub. Triggers include:\n\nPushing\nPull request\nOn a schedule!!!\nManually\n\n\nIn EBS many of us are managing all our teaching materials in GitHub repos.\n\n\nThe slides and tutorials obviously need to be public, but assignment solutions should not"
+  },
+  {
+    "objectID": "talk-procrastination/index.html#possible-solutions",
+    "href": "talk-procrastination/index.html#possible-solutions",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Possible solutions",
+    "text": "Possible solutions\n\nDon’t put assignment solutions in GitHub repos\nPay for GitHub Enterprise\nManage two repositories: one public, one private\n\n\nWhen I started at EBS, we had a version of option 3 using the copycat action. Sadly this action is no longer maintained."
+  },
+  {
+    "objectID": "talk-procrastination/index.html#teleport",
+    "href": "talk-procrastination/index.html#teleport",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "teleport",
+    "text": "teleport\nMy first draft of this was a manual implementation which effectively:\n\nSchematicCode\n\n\n\nChecks out both repos\nUses rsync to copy files from one repo to a specific directory in another\nCommits and pushes changes if there are any using a bot account\n\n\n\nsteps:\n      - name: Checkout source repo\n        uses: actions/checkout@v4\n        with:\n          repository: ${{ github.repository }}\n          path: source\n\n      - name: Checkout target repo\n        uses: actions/checkout@v4\n        with:\n          repository: spectrum-spark/courses \n          path: target-repo\n          token: ${{ secrets.PERSONAL_TOKEN }}       # Personal Access Token with repo write perms\n\n      - name: Copy files\n        run: |\n          mkdir -p target-repo/courses/intro-mathematical-modelling\n          rsync -av --delete source/student_materials/ target-repo/courses/intro-mathematical-modelling\n\n      - name: Commit & push changes\n        working-directory: target-repo\n        run: |\n          git config user.name \"github-actions[bot]\"\n          git config user.email \"41898282+github-actions[bot]@users.noreply.github.com\"\n          git add .\n          git commit -m \"Sync directory from source repo\" || echo \"No changes to commit\"\n          git push"
+  },
+  {
+    "objectID": "talk-procrastination/index.html#teleport-1",
+    "href": "talk-procrastination/index.html#teleport-1",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "teleport",
+    "text": "teleport\nBundled into an action, you can now just add this to your workflow:\nsteps:\n      - uses: MikeLydeamore/teleport-action@v1\n        with:\n          target_repo: \"OWNER/TARGET_REPO\"\n          target_path: \"path/in/target\"\n          source_path: \"path/in/source\"\n          token: ${{ secrets.CROSS_REPO_PAT }}\n\nThe token needs the following scopes:\n\nTarget Repo: Contents (read/write)\nSource repo: Contents (read) if the repo is private\n\n\n\nThere are also some semantics about trailing / in paths, see the README for details."
+  },
+  {
+    "objectID": "talk-procrastination/index.html#usage",
+    "href": "talk-procrastination/index.html#usage",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Usage",
+    "text": "Usage\nSee the action online: MikeLydeamore/teleport\nNow deployed in:\n\nAt least one EBS course material repo\nID Modelling course materials\n\nAnd one dayTM it’s how I will deploy my slides."
+  },
+  {
+    "objectID": "talk-procrastination/index.html#unilur-quarto-filter",
+    "href": "talk-procrastination/index.html#unilur-quarto-filter",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "unilur quarto filter",
+    "text": "unilur quarto filter\nOne of the principles of reproducibility is to reduce duplication\n\n\nIf you use a variable more than once, define it once and refer to it\n\n\n\nMy repo looked something like this:\ntutorials\n├── 01-questions.qmd\n├── 01-solutions.qmd\n\n\nAnd the content in questions and solutions was almost identical, except for the answers."
+  },
+  {
+    "objectID": "talk-procrastination/index.html#unilur",
+    "href": "talk-procrastination/index.html#unilur",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "unilur",
+    "text": "unilur\nIn the world of RMarkdown, an output format called unilur exists koncina/unilur"
+  },
+  {
+    "objectID": "talk-procrastination/index.html#unilur-quarto-filter-1",
+    "href": "talk-procrastination/index.html#unilur-quarto-filter-1",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "unilur quarto filter",
+    "text": "unilur quarto filter\nAurélien Ginolhac has ported this to Quarto as a filter: ginolhac/unilur, and I have added support for various output formats:\nformat:\n  unilur-html: default\n  unilur-html+solution:\n    output-file: example-solution.html\n  unilur-pdf: default\n  unilur-pdf+solution: default"
+  },
+  {
+    "objectID": "talk-procrastination/index.html#unilur-quarto-filter-2",
+    "href": "talk-procrastination/index.html#unilur-quarto-filter-2",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "unilur quarto filter",
+    "text": "unilur quarto filter\n\nSpecify solution blocks with ::: {.solution}\nOr as a chunk option #| solution: true\n\n\nYou can also use unilur-comment to add comments that only appear in solutions such as marking guides"
+  },
+  {
+    "objectID": "talk-procrastination/index.html#collaborative-writing-and-quarto",
+    "href": "talk-procrastination/index.html#collaborative-writing-and-quarto",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Collaborative writing and Quarto",
+    "text": "Collaborative writing and Quarto\n\nQuarto works well with git\nViewing diffs of .qmd files is not very user friendly\nLeaving feedback (i.e. without changing the text) is not practical\n\n\nOne approach: Use HTML comments (which never render in any format) to give feedback."
+  },
+  {
+    "objectID": "talk-procrastination/index.html#collaborative-writing-and-quarto-1",
+    "href": "talk-procrastination/index.html#collaborative-writing-and-quarto-1",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Collaborative writing and Quarto",
+    "text": "Collaborative writing and Quarto\nProblem: Finding these comments again!\n\nGrep?\nCustom script?\nPositron extension?"
+  },
+  {
+    "objectID": "talk-procrastination/index.html#comment-viewer-positron-extension-1",
+    "href": "talk-procrastination/index.html#comment-viewer-positron-extension-1",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Comment Viewer Positron Extension",
+    "text": "Comment Viewer Positron Extension\nMikeLydeamore/code-comment-viewer-extension\n\n\nYou can hover and click on comments to jump your document to them."
+  },
+  {
+    "objectID": "talk-procrastination/index.html#code-golf",
+    "href": "talk-procrastination/index.html#code-golf",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Code Golf",
+    "text": "Code Golf\nCode golf is a game where the aim is to solve a problem as quickly, and often in as few characters of code as possible.\n\nIn my opinion few characters is a poor metric, but speed, and accuracy are interesting.\n\n\nSee for example CSSBattle"
+  },
+  {
+    "objectID": "talk-procrastination/index.html#gamifying-data-visualisation",
+    "href": "talk-procrastination/index.html#gamifying-data-visualisation",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Gamifying data visualisation",
+    "text": "Gamifying data visualisation\nI built ggplot battles to gamify learning ggplot2.\n\nAvailable at: https://www.ggplotbattles.dev\n\n\nThis involved:\n\nGetting webr working in pure javascript\nGetting canvases to display ggplots, which is way harder than it sounds\nPixel-by-pixel image comparison using resemble.js\nWriting a custom Quarto-like argument parser for challenges"
+  },
+  {
+    "objectID": "talk-procrastination/index.html#contributing",
+    "href": "talk-procrastination/index.html#contributing",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Contributing",
+    "text": "Contributing\nMore challenges = more good\nInstructions are on GitHub, but if you can write a qmd you can write these.\n\nThe build system is entirely custom, and will likely break, but for now I remain the gatekeeper of all things ggplot battles."
+  },
+  {
+    "objectID": "talk-procrastination/index.html#testing",
+    "href": "talk-procrastination/index.html#testing",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Testing",
+    "text": "Testing\nI’m rolling this out in my communication unit. You are welcome to do the same, or try on your own.\nCurrently, there is no leaderboard or unified scoring system, but maybe it will come."
+  },
+  {
+    "objectID": "talk-procrastination/index.html#innovation-through-procastination",
+    "href": "talk-procrastination/index.html#innovation-through-procastination",
+    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "section": "Innovation through Procastination",
+    "text": "Innovation through Procastination\n\n\n\nWhy spend time doing this?\n\nIt generates a disgusting amount of LinkedIn likes\n\n\nMaking small tools keeps my skills sharp\nHelps me learn new coding styles to take to bigger projects\nIt gives me great joy to see someone else use something I built\nIt’s often a good break from deep thinking work"
+  },
+  {
     "objectID": "anziam2024/index.html#etc5513-title",
     "href": "anziam2024/index.html#etc5513-title",
     "title": "Michael Lydeamore - Slides",
@@ -497,242 +840,123 @@
     "text": "Acknowledgements\n\n\nTelethon Kids Institute\n\nNick Tierney\nNick Golding\nAarathy Babu\n\n\n\nSPECTRUM-SPARK Travel Funding\nDepartment of Econometrics and Business Statistics, Monash University"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#why-write-an-r-package",
-    "href": "workshop-r-pkg/index.html#why-write-an-r-package",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Why Write an R Package?",
-    "text": "Why Write an R Package?\n\nIf you copy-paste the same function twice, it belongs in a package."
+    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
+    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Hospital outbreaks",
+    "text": "Hospital outbreaks\nIn 2018, a multi-institutional outbreak of CPE highlighted the interlinked nature of healthcare in Victoria.\nSince then, CPE is now notifiable, but there is not a centralised surveillance or outbreak response system."
   },
   {
-    "objectID": "workshop-r-pkg/index.html#getting-started",
-    "href": "workshop-r-pkg/index.html#getting-started",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Getting Started",
-    "text": "Getting Started\nCreate a new package\nusethis::create_package(\"path/to/mypackage\")\nThis creates the scaffolding for your package:\n\nDESCRIPTION\nNAMESPACE\nR/ directory for code"
+    "objectID": "acefa-launch/talk-acefa-launch.html#carbanememase-producing-enterobacterales",
+    "href": "acefa-launch/talk-acefa-launch.html#carbanememase-producing-enterobacterales",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Carbanememase-producing Enterobacterales",
+    "text": "Carbanememase-producing Enterobacterales\n\nAcquired primarily in hospital\nResistant to last-line antibiotics\nMortality, given clinical symptoms, in the order of 30%\nCarriage for &gt;= 12 months\n\n\nTesting via rectal swab\nCan carry with no symptoms\nUnknown if asymptomatic people can transmit"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#before-you-commit-check-your-data",
-    "href": "workshop-r-pkg/index.html#before-you-commit-check-your-data",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "⚠️ Before You Commit: Check Your Data",
-    "text": "⚠️ Before You Commit: Check Your Data\nUsing Git is great — but before you commit anything:\n\n🔍 Review your data files\n📜 Check any license or data-sharing agreement\n❌ Avoid committing raw data unless you’re sure it’s okay\n\n\nEven private Git repos are not fully secure.\n\n\n\n\n\n\n\nWarning\n\n\nNever commit:\n\nPersonally identifiable information (PII)\nInternal business data\nAnything you wouldn’t email to a stranger"
+    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-1",
+    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-1",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Hospital outbreaks",
+    "text": "Hospital outbreaks\nThe immediate question:\n\nWhen an outbreak is detected, what other hospitals could be affected?\n\n\nNatural to consider patients in a hospital as a network, that has the nodes as the hospitals and edges between them related to the probability of transfer.\n\n\nCurrent methods can grossly over-estimate the rate of spread of disease between hospitals"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#key-package-files",
-    "href": "workshop-r-pkg/index.html#key-package-files",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Key Package Files",
-    "text": "Key Package Files\n\n\n📁 DESCRIPTION - Metadata about your package\n📁 NAMESPACE - Controls what functions are visible\n\n📁 R/ - All your function files live here\n📁 man/ - Auto-generated documentation"
+    "objectID": "acefa-launch/talk-acefa-launch.html#current-state-of-the-field",
+    "href": "acefa-launch/talk-acefa-launch.html#current-state-of-the-field",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Current state of the field",
+    "text": "Current state of the field\nMost methods are based on line-listed admissions data:\n\n\n\n\n\n\n\n\n\n\n\n\npatient_id\nadmission_date\nseparation_date\nlocation\ndiagnosis_codes\n\n\n\n\n1\n2020-01-01\n2020-01-02\nH1\nA B C\n\n\n2\n2020-01-01\n2020-01-02\nH2\nA B C\n\n\n1\n2020-01-03\n2020-01-04\nH2\nA B C\n\n\n\n\n\n\nThis is interpreted as one transfer from H1 to H2, with a one-day gap."
   },
   {
-    "objectID": "workshop-r-pkg/index.html#the-description-file",
-    "href": "workshop-r-pkg/index.html#the-description-file",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "The DESCRIPTION File",
-    "text": "The DESCRIPTION File\nEvery R package has a DESCRIPTION file — it’s the package’s metadata.\nPackage: mypackage\nTitle: What the Package Does (One Line, Title Case)\nVersion: 0.0.0.9000\nAuthors@R: person(\"Your\", \"Name\", email = \"you@example.com\", role = c(\"aut\", \"cre\"))\nDescription: A longer description of what your package does.\nLicense: MIT + file LICENSE\nEncoding: UTF-8\nRoxygen: list(markdown = TRUE)\nRoxygenNote: 7.2.3"
+    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data",
+    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Different ways to collapse the data",
+    "text": "Different ways to collapse the data\nSome notation:\n\nu, v are locations\ns, t are times, t \\geq s\nHazard for patients returning home, never readmitted: \\zeta_u(t)\nw_{uv}(s,t) patients discharged from u at s, then readmitted to v at t"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#the-namespace-file",
-    "href": "workshop-r-pkg/index.html#the-namespace-file",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "The NAMESPACE File",
-    "text": "The NAMESPACE File\nThe NAMESPACE tells R what to export to users and what to import from other packages.\nExample (auto-generated):\nexport(add_numbers)\nimportFrom(stats, lm)\n\n🧠 If it’s not in NAMESPACE, users can’t use it — even if the function exists."
+    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-1",
+    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-1",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Different ways to collapse the data",
+    "text": "Different ways to collapse the data\nThen, we have the following set of governing equations:\n\nHospital to home: \\lambda(u(s) \\to \\emptyset) = \\zeta_u(s)\nDirect transfers: \\lambda(u(s) \\to v(t)) = d_{uv}(s, t)\nIndirect transfers:\n\nHospital to home: \\lambda(u(s) \\to z_{uv}(t)) = \\eta_{uv}(s, t)\nHome to hospital: \\lambda(z_{uv}(t) \\to v(t)) = \\rho_{uv}(s, t)"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#your-first-function",
-    "href": "workshop-r-pkg/index.html#your-first-function",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Your First Function",
-    "text": "Your First Function\nCreate a new R script:\nusethis::use_r(\"add_numbers\")"
+    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-2",
+    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-2",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Different ways to collapse the data",
+    "text": "Different ways to collapse the data"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#add-documentation-with-roxygen2",
-    "href": "workshop-r-pkg/index.html#add-documentation-with-roxygen2",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Add Documentation with Roxygen2",
-    "text": "Add Documentation with Roxygen2\n#' Add two numbers\n#'\n#' @param x A number\n#' @param y Another number\n#' @return The sum of x and y\n#' @export\nadd_numbers &lt;- function(x, y) {\n  x + y\n}\n\n💡 Each line starts with #' and sits directly above the function."
+    "objectID": "acefa-launch/talk-acefa-launch.html#model-1-naive-static-method",
+    "href": "acefa-launch/talk-acefa-launch.html#model-1-naive-static-method",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Model 1: Naive Static Method",
+    "text": "Model 1: Naive Static Method\nd_{uv}(s,t) = \\frac{\\sum_{s,t} w_{uv}(s,t)}{T_\\Sigma N_u}\n\n\n\n\n\n\nTip\n\n\nAll movements are instanteous, and the rate of movement is the mean over the entire observation period."
   },
   {
-    "objectID": "workshop-r-pkg/index.html#including-data",
-    "href": "workshop-r-pkg/index.html#including-data",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Including Data",
-    "text": "Including Data\nSetup for raw data\nusethis::use_data_raw(\"my_dataset\")\nThis creates a data-raw/ folder and a script you can use to clean/load data."
+    "objectID": "acefa-launch/talk-acefa-launch.html#model-2-improved-static-method",
+    "href": "acefa-launch/talk-acefa-launch.html#model-2-improved-static-method",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Model 2: Improved Static Method",
+    "text": "Model 2: Improved Static Method\nChoose a threshold value, \\omega, to separate direct and indirect transfers\nd_{uv}(s,t) = d_{uv} =  \\frac{\\sum_{s,t: (t-s) &lt; \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\eta_{uv}(s,t) = \\eta_{uv} = \\frac{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\rho_{uv}(s,t) = \\rho_{uv} = \\left[ \\frac{\\sum_{s,t: (t-s) \\geq \\omega} (t-s) w_{uv}(s,t)}{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}  \\right]^{-1}"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#documenting-data",
-    "href": "workshop-r-pkg/index.html#documenting-data",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Documenting Data",
-    "text": "Documenting Data\nLike functions, you can document datasets using roxygen.\nCreate a new .R file (e.g., R/data-documentation.R) and add:\n#' Example dataset: my_dataset\n#'\n#' This dataset contains example data imported from a CSV.\n#'\n#' @format A data frame with 100 rows and 5 variables:\n#' \\describe{\n#'   \\item{col1}{Description of column 1}\n#'   \\item{col2}{Description of column 2}\n#'   \\item{col3}{Description of column 3}\n#' }\n#' @source Imported from a CSV file.\n\"my_dataset\"\n\n💡 The name in quotes at the end (\"my_dataset\") must match the object name."
+    "objectID": "acefa-launch/talk-acefa-launch.html#model-3-snapshot-model",
+    "href": "acefa-launch/talk-acefa-launch.html#model-3-snapshot-model",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Model 3: Snapshot Model",
+    "text": "Model 3: Snapshot Model\nChoose a snapshot duration \\omega. This defines the threshold duration of an indirect transfer.\n\\begin{aligned}\n\\lambda(u(s) \\to {z'}_{uv}(t)) &= \\eta_{uv}(s, t)\\\\\n\\lambda({z'}_{uv}(t) \\to z_{uv}(t)) &= \\delta(t \\; \\mathrm{ mod } \\; \\omega)\\\\\n\\end{aligned}\n\nz' contains the individuals that would enter z within the duration of a given snapshot [t, t+\\omega], so that they do not immediately readmit to their next hospital."
   },
   {
-    "objectID": "workshop-r-pkg/index.html#building-your-package",
-    "href": "workshop-r-pkg/index.html#building-your-package",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Building Your Package",
-    "text": "Building Your Package\ndevtools::document()  # Ensure docs are updated\ndevtools::check()     # Run package checks\ndevtools::install()   # Install locally\n\ncheck() will catch most common problems before they become bugs."
+    "objectID": "acefa-launch/talk-acefa-launch.html#model-4-temporal-model",
+    "href": "acefa-launch/talk-acefa-launch.html#model-4-temporal-model",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Model 4: Temporal Model",
+    "text": "Model 4: Temporal Model\nEffecitvely, choose a very small snapshot window, \\omega. Individuals are not re-admitted to z', instead they are re-admitted to v uniformly between t and t+\\omega. This gives,\nd_{uv}(s, t) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s, t)}{\\omega N_u} \\eta_{uv}(s, t) = \\frac{\\sum_{t: (t-s) \\geq \\omega} w_{uv}(s, t)}{\\omega N_u} \\rho_{uv}(s,t) = \\frac{1}{\\lceil t \\rceil_\\omega - t}"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#wrap-up",
-    "href": "workshop-r-pkg/index.html#wrap-up",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Wrap-up",
-    "text": "Wrap-up\n\nYour first package: ✅\nFunctions with documentation: ✅\nEmbedded data: ✅\nReady to grow your code into a real tool!"
+    "objectID": "acefa-launch/talk-acefa-launch.html#too-much-maths-for-12-minutes",
+    "href": "acefa-launch/talk-acefa-launch.html#too-much-maths-for-12-minutes",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Too much maths for 12 minutes!",
+    "text": "Too much maths for 12 minutes!\nCurrent state-of-the-art: Patients move instantly, no concept of home, using average return rates over the entire data period\n\nOur models: from least to most ‘accurate’\n\nState-of-the-art\nState-of-the-art + patients return home\nReturn rates change over time, patients held at home in “blocks”\nReturn rates change over time, patients held at home for actual time"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#next-steps",
-    "href": "workshop-r-pkg/index.html#next-steps",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Next Steps",
-    "text": "Next Steps\n\nBuild more functions\nExplore usethis::use_testthat() for testing\nShare it via GitHub: usethis::use_github()"
+    "objectID": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make",
+    "href": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "What difference does it make?",
+    "text": "What difference does it make?"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#resources",
-    "href": "workshop-r-pkg/index.html#resources",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Resources",
-    "text": "Resources\n\n📘 https://r-pkgs.org\n🔧 usethis cheatsheet: https://usethis.r-lib.org\n🧰 devtools docs: https://devtools.r-lib.org"
+    "objectID": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make-1",
+    "href": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make-1",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "What difference does it make?",
+    "text": "What difference does it make?"
   },
   {
-    "objectID": "workshop-r-pkg/index.html#link-to-extended-guide",
-    "href": "workshop-r-pkg/index.html#link-to-extended-guide",
-    "title": "Intro to R Packages with {usethis}",
-    "section": "Link to Extended Guide",
-    "text": "Link to Extended Guide\n👉 View full examples, exercises, and practice materials"
+    "objectID": "acefa-launch/talk-acefa-launch.html#takeaway",
+    "href": "acefa-launch/talk-acefa-launch.html#takeaway",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Takeaway",
+    "text": "Takeaway\n\nTime is critical when considering an outbreak\n\n\nStill need to consider surveillance algorithms on these weighted, directed, temporal networks\nPatients going home slows down infection spread\nMost hospital transfer patterns aren’t stationary\nUsing the wrong collapsing process means you will probably miss infections\nMay declare a hospital “disease-free” when it truly hasn’t arrived yet"
   },
   {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#chytridiomycosis-infection",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#chytridiomycosis-infection",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Chytridiomycosis infection",
-    "text": "Chytridiomycosis infection\n\n\n\n\n\n\nFungal disease caused by Batrachochytrium dendrobatidis (Bd)\nBd is a fungus that lives in the gut of animals\nInfects frogs, and has caused decline in over 500 amphibian species\nCauses skin disease in the frogs, which is often fatal\n\n\n\n\n Image: New Scientist"
+    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-2",
+    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-2",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Hospital outbreaks",
+    "text": "Hospital outbreaks\nThe immediate question:\n\nWhen an outbreak is detected, what other hospitals could be affected?\n\n\nChanges over time, but it’s not as fast as you think it is"
   },
   {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#natural-history",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#natural-history",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Natural history",
-    "text": "Natural history\n\nBd fungus does not survive in warm climates (&gt; 30 degrees)\nWarm host climate also reduces lethality\n\n\n\n\n\n\n\n\nIdea\n\n\nIf we can heat frogs, maybe we can reduce the impact of this infection"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#experiment-setup",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#experiment-setup",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Experiment setup",
-    "text": "Experiment setup\n\nFrogs separated into two classes: shaded and unshaded (heated)\nArtifical refugia placed into each mesocosm (replicate)\nMeasure infection load and mortality\n\n\n\n\n\n\n\nImage: Waddle et. al, Nature 2024"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#hypothesis",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#hypothesis",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Hypothesis",
-    "text": "Hypothesis\n\nDo frogs in heated refugia experience a reduction in force of infection compared to non-heated refugia?\nDoes prior infection confer an immune response that reduces future susceptibility?\n\n\nTest using a stochastic compartmental model, with approximate Bayesian computation"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-setup",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-setup",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Model setup",
-    "text": "Model setup\n\n\n\n\n\n\n\n\n\n\\lambda_h(t) = \\beta_h \\sum_{k=\\{U,V\\}}\\sum_{j=1}^3 m_{k,j}I_{k,j},\n\nm_{k,j} = Relative infectiousness of frog to I_{U,3}\nI_{k,j} = Infection stage of frog"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#parameters-to-estimate",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#parameters-to-estimate",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Parameters to estimate",
-    "text": "Parameters to estimate\n\n\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\n\\beta_{\\text{sh}}, \\beta_{\\text{un}}, \\alpha, \\omega\nfitted\n\n\n\\mu\n0.021\n\n\n\\gamma_1\n1/2.5 per week\n\n\n\\gamma_2\n1/4.5 per week\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nm_{U,1}\n10\n\n\nm_{U,2}\n100\n\n\nm_{V,1}\n1\n\n\nm_{V,2}\n10\n\n\nm_{V,3}\n0.1"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#data",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#data",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Data",
-    "text": "Data\n\n8 mesocosms, 4 shaded 4 unshaded\n20 frogs per mesocosm, 10 vaccinated, 10 unvaccinated, half infected at t_0\nHalf frogs experienced prior infection\nFrogs observed at t=1, 2, 4, 6, 8, 10, 15 weeks only\nFrogs that couldn’t be found presumed dead\nIndividual infection load data for each frog at each time point\n\n\n\n\n\n\n\n\nCaution\n\n\nFor more data information, ask Claire Miller and/or read Waddle et. al Hotspot shelters stimulate frog resistance to chytridiomycosis."
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Model identifiability",
-    "text": "Model identifiability\nABC summary statistic:\n  \\Delta(\\theta) =  \\sum_{x \\in \\Omega} \\sum_{j=1}^7\\left(x^\\mathrm{sim}(t_j|\\theta)-x^\\mathrm{obs}(t_j)\\right)^2, \nwhere \\Omega = \\{S_k, \\; I_{k,i} \\; | \\; k=\\{U,V\\}, \\; i = 1, \\dots, 3\\}\n\nGiven infinite data, the model is fully identifiable\nOur data is not infinite, so it is not be possible to recover all model parameters"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Simulation-estimation experiment",
-    "text": "Simulation-estimation experiment\n\nSimulate the model using known parameters\nAttempt to recover known parameters\n\n\nParameters obtained from a least-squares fit to the mean-field approximation\n\n\n\n\n\n\n\n\nTip\n\n\nEstimates are valid up to the data-generating process (i.e. the model, including priors and summary statistics)"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-1",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-1",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Model identifiability",
-    "text": "Model identifiability"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-2",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-2",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Model identifiability",
-    "text": "Model identifiability"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-3",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-3",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Model identifiability",
-    "text": "Model identifiability"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#results",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#results",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Results",
-    "text": "Results\n\nSimulation-estimation revealed that \\omega, and the product of \\alpha\\beta were identifiable only\n\n\n\n\n\n\n\n\n\nParameter\nPrior\nPosterior (Mean, 95% CI)\n\n\n\n\n\\beta_\\text{sh}\n\\sim U(0,2)\n0.675 (0.025, 1.876)\n\n\n\\beta_\\text{un}\n\\sim U(0,2)\n0.401 (0.008, 1.767)\n\n\n\\alpha\n\\sim U(0,0.5)\n0.072 (0.003, 0.373)\n\n\n\\alpha\\beta_\\text{sh}\n\n0.018 (0.001, 0.061)\n\n\n\\alpha\\beta_\\text{un}\n\n0.009 (0.000, 0.031)\n\n\n\\omega\n\\sim U(0,2)\n0.569 (0.122, 1.688)"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#posterior-distributions",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#posterior-distributions",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Posterior distributions",
-    "text": "Posterior distributions"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#predicted-trajectories",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#predicted-trajectories",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Predicted trajectories",
-    "text": "Predicted trajectories"
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#summary",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#summary",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Summary",
-    "text": "Summary\n\nHeating of artifical refugia can reduce infection by almost 50%\nPrior infection highly protective (approx 97%)\nSmall numbers of frogs\nLimited observation frequency\nABC-rejection not the most refined algorithm\n\n\nThese refugia are cheap, easy to deploy, used by the frogs.\nChytrid has become a global issue, maybe this can help to at least slow the issue."
-  },
-  {
-    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#team",
-    "href": "chytrid-anziam/talk-chytrid-anziam.html#team",
-    "title": "Modelling chytridiomycosis transmission in frogs",
-    "section": "Team",
-    "text": "Team\n\n\n\n\n\n\nClaire Miller\n\n\n\n\n\n\n\nPatricia Campbell\n\n\n\n\n\n\n\nJennifer Flegg\n\n\n\n\n\n\nExperimental paper\nWaddle et. al, Hotspot shelters stimulate frog resistance to chytridiomycosis Nature 2024\nCode availability\n\nEstimation code: https://github.com/clairemiller/chytrid_model\nSlides: https://slides.michaellydeamore.com/chytrid-anziam"
-  },
-  {
-    "objectID": "acefa-launch/model.html",
-    "href": "acefa-launch/model.html",
-    "title": "Section: Model of Stochastic Processes and Network Models",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Michael Lydeamore - Slides",
     "section": "",
-    "text": "Notations"
-  },
-  {
-    "objectID": "acefa-launch/model.html#general-sketch",
-    "href": "acefa-launch/model.html#general-sketch",
-    "title": "Section: Model of Stochastic Processes and Network Models",
-    "section": "General Sketch",
-    "text": "General Sketch\nHere, \\(u\\) and \\(v\\) are locations (potentially identical locations), \\(s\\) and \\(t\\) are times. We take that \\(t \\geq s\\). \\(\\emptyset\\) represents patients that are not observed to return to the hospital system after their discharge from location \\(u\\). We assume the associated hazard for this process (\\(\\zeta_u(t)\\)) to be known for all locations \\(u\\) at all times \\(t\\): the modelling of this process is the same for all network models, and will be neglected in the following.\nFurther, we define the function \\(w_{uv}(s, t)\\) to be the number of individuals that are observed to discahrge from \\(u\\) at time \\(s\\) and readmit at time \\(t\\). We allow a maximum of one of the pairs \\(u,v\\) and \\(s,t\\) to be reflexive, i.e. \\(u=v\\) or \\(s=t\\), but not both.\nWe will also assume that we will have quantities \\(N_u\\) that represent the “size” of a location \\(u\\). We assume that all locations \\(u\\) will have \\(N_u\\) individuals in them at all times, and that the observed mvoements \\(w_{uv}(s, t)\\) can be thought of as being scaled by \\(N_u\\).\nThe governing equations can be roughly expressed as a function of the hazards of each process.\n\\[\\begin{aligned}\n\\lambda(u(s) \\to \\emptyset) &= \\zeta_u(s)\\\\\n\\lambda(u(s) \\to v(t)) &= d_{uv}(s, t)\\\\\n\\lambda(u(s) \\to z_{uv}(t)) &= \\eta{uv}(s, t)\\\\\n\\lambda(z_{uv}(t) \\to v(t)) &= \\rho_{uv}(s, t)\n\\end{aligned}\\]\nNote that\n\\[ \\lambda(U \\to V) = \\lambda \\]\nrepresents that in some time step \\(\\Delta t\\), the number of individuals that move from state \\(U\\) to state \\(V\\) is distributed as\n\\[ \\mathrm{Poisson}(\\lambda x_U \\Delta t) \\].\n\nNaïve Static Model\nFor both the naïve and improved static network models, we have that the observations of \\(w\\) are taken over a time period of \\(T_\\Sigma\\).\nIn the naïve static model , we have that:\n\\[d_{uv}(s,t) = d_{uv} = \\frac{\\sum_{s,t} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv} = 0\\] \\[\\rho_{uv}(s,t) = \\rho_{uv} = 0\\]\nThat is, all movements are instantaneous, and the rate of movement is the mean rate of movement over the entire observation period.\n\n\nImproved Static Model\nFor the improved static model, we choose some threshold value \\(\\omega\\) that delineates direct and indirect transfers.\nWe will have:\n\\[d_{uv}(s,t) = d_{uv} =  \\frac{\\sum_{s,t: (t-s) &lt; \\omega} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv} = \\frac{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\rho_{uv}(s,t) = \\rho_{uv} = \\left[ \\frac{\\sum_{s,t: (t-s) \\geq \\omega} (t-s) w_{uv}(s,t)}{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}  \\right]^{-1}\\]\nHere, we model the rate of indirect transfers \\(\\eta\\) similarly to the rate of direct transfers \\(d\\), by counting the average rate of observed movements. For the rate of readmission, \\(\\rho\\), we use the inverse of the mean readmission duration/delay.\n\n\nSnapshot Model\nFor the snapshot model, we choose a snapshot duration \\(\\omega\\). This defines the threshold duration of an indirect transfer.\nThis introduces an new intermediary state variable \\(z'\\) that contains the individuals that would enter \\(z\\) within the duration of a given snapshot \\([t, t+\\omega]\\), so that they do not immediately readmit to their next hospital. This alters the indirect transfer processes to\n\\[\\begin{aligned}\n\\lambda(u(s) \\to {z'}_{uv}(t)) &= \\eta_{uv}(s, t)\\\\\n\\lambda({z'}_{uv}(t) \\to z_{uv}(t)) &= \\delta(t \\mathrm{ mod } \\omega)\\\\\n\\end{aligned}\\]\nwhere \\(\\delta(\\cdot)\\) is the Dirac delta function.\nAlongside this, we also compute from the data, the number of patients “at home” at a given time, in order to inform the denominator for the process from \\(z'\\) to \\(z\\). We denote this quantity \\(H_{uv}(t)\\)\nWe will have that:\n\\[d_{uv}(s,t) = d_{uv}(s) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s,t)}{\\omega N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv}(s) = \\frac{\\sum_{t: (t-s) \\geq \\omega} {w_{uv}(s, t)}}{\\omega N_u}\\] \\[\\rho_{uv}(s,t) = \\rho_{uv}(t) = \\frac{\\sum_{s: (t-s) \\geq \\omega} {w_{uv}(s, t)}}{\\omega H_{uv}}\\]\n\n\nTemporal Model\nFor the temporal network, we make a choice of the time discretisation \\(\\omega\\). That is, events that occur within a time window \\([\\tau, \\tau+\\omega)\\) are collapsed and aggregated to occur at time \\(\\tau\\). Over the observation (and simulation) period, we will have a series of time window boundaries \\(\\{\\tau_0, \\tau_1, \\dots\\}\\). We denote the smallest value in that set larger than a given time \\(t\\) to be \\(\\ceil{t}_\\omega\\)\nFor the readmission process, we assume that individuals that would readmit within a given time window \\([\\tau, \\tau+\\omega)\\) do so uniformly.\nThis yields:\n\\[d_{uv}(s, t) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s, t)}{\\omega N_u}\\] \\[\\eta_{uv}(s, t) = \\frac{\\sum_{t: (t-s) \\geq \\omega} w_{uv}(s, t)}{\\omega N_u}\\] \\[\\rho_{uv}(s,t) = \\frac{1}{\\ceil{t}_\\omega - t}\\]\nThe readmission process thus has a uniform hazard."
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "healthcare-infections/index.html#hello-from-australia",
@@ -980,382 +1204,18 @@
     "text": "Other ongoing work\n\nMachine learning methods to identify risk factors for hospital infections\nLeong Zhuan Kee, Vis; Ewilly Liew\n\nEstimating rates of contact in the absence of local data, conmat\nNick Tierney; Nick Golding\n\nUnderstanding how non-linear dimension reduction warps your data\nJayani Lakshika; Di Cook\nPredicting extreme weather events using short- and long-term climate drivers\nKate Saunders; Jarryd Chapman\nApproximating patient movement patterns with piecewise constant networks\nDavid Wu; Andrew Stewardson\n\nDeveloping non-network based network layout algorithms\nKrisanat Anukarnsakulchularp; Di Cook\n\n…and more.\n\nIf your work is broadly related to infectious diseases, or biosciences, I would love to talk more."
   },
   {
-    "objectID": "wombat-airpurifyr-2024/index.html#air-quality",
-    "href": "wombat-airpurifyr-2024/index.html#air-quality",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Air Quality",
-    "text": "Air Quality\nAll sorts of processes release particles into the air\nThese measurements together form “air quality”.\n\nHas been linked with health conditions, life expectancy, mental conditions, poorer economic outcomes, global development indexes…"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#air-quality-1",
-    "href": "wombat-airpurifyr-2024/index.html#air-quality-1",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Air Quality",
-    "text": "Air Quality\nTypical measurements:\n\npm2.5/pm5: Particles that are 2.5/5 microns. Typically come from fires, industry, car exhausts etc\nso2: Sulfur Dioxide. Typically oil refineries, diesel vehicles, coal power stations\no3: Ozone. Typically bushfires, power stations. We want ozone but not too much!\nno2: Nitrogen dioxide. Typically car exhausts.\nco: Carbon monoxide. Typically Wood smoke, car exhausts."
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#uses",
-    "href": "wombat-airpurifyr-2024/index.html#uses",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Uses",
-    "text": "Uses\nPublic Health\n\nAssociation of Changes in Air Quality With Incident Asthma in Children in California, 1993-2014 (Garcia et. al, JAMA 2019)\nUncertainty and Variability in Health-Related Damages from Coal-Fired Power Plants in the United States (Levy et. al, Risk Analysis 2009)"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#uses-1",
-    "href": "wombat-airpurifyr-2024/index.html#uses-1",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Uses",
-    "text": "Uses\nEconomics\n\nA cost-effectiveness analysis of alternative air quality control strategies (Atkinson & Lewis, Journal of Environmental Economics and Management 1974)\nCost of economic growth: Air pollution and health expenditure (Chen & Chen, Science of the Total Environment 2021)\n\n\n…and more"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#air-quality-2",
-    "href": "wombat-airpurifyr-2024/index.html#air-quality-2",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Air Quality",
-    "text": "Air Quality\nSo people need this. But how?\n\nAd-hoc\nSingle dataset/source\nRange of dates/times\n“Whatever is available”"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#so-how-is-it-collected",
-    "href": "wombat-airpurifyr-2024/index.html#so-how-is-it-collected",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "So how is it collected?",
-    "text": "So how is it collected?\nSome (in this case 61%) governments have programs to collect this data. Much of the global data is sought from citizen science projects.\n\nAn air quality sensor"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#openaq",
-    "href": "wombat-airpurifyr-2024/index.html#openaq",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "OpenAQ",
-    "text": "OpenAQ\nOpenAQ is an environmental tech nonprofit.\nAggregate and harmonize open air quality data from across the globe onto an open-source, open-access data platform\nFreely available API and data explorer"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#the-package",
-    "href": "wombat-airpurifyr-2024/index.html#the-package",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "The package",
-    "text": "The package\nairpurifyr brings this API into R.\n\nUses httr (will one day be ported)\nv2 OpenAQ API (deprecated 18 days ago 😭)\nRequires a free API key"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#package-example",
-    "href": "wombat-airpurifyr-2024/index.html#package-example",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Package example",
-    "text": "Package example\nAPI effectively works on locations and measurements\n\naustralia_measurements &lt;- get_measurements_for_location(\n  country = \"AU\",\n  max_observations = 1000,\n  date_from = lubridate::ymd(\"2020-01-01\"),\n  date_to = lubridate::ymd(\"2020-01-14\"),\n  parameter = \"pm25\"\n)\n\naustralia_measurements\n\n# A tibble: 19,032 × 9\n   location_id location parameter value date_utc            unit    lat  long\n         &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1        2487 Bathurst pm25       18.9 2020-01-14 00:00:00 µg/m³ -33.4  150.\n 2        2487 Bathurst pm25       19.4 2020-01-13 23:00:00 µg/m³ -33.4  150.\n 3        2487 Bathurst pm25       20.2 2020-01-13 22:00:00 µg/m³ -33.4  150.\n 4        2487 Bathurst pm25       20.9 2020-01-13 21:00:00 µg/m³ -33.4  150.\n 5        2487 Bathurst pm25       22.1 2020-01-13 20:00:00 µg/m³ -33.4  150.\n 6        2487 Bathurst pm25       23   2020-01-13 19:00:00 µg/m³ -33.4  150.\n 7        2487 Bathurst pm25       23.7 2020-01-13 18:00:00 µg/m³ -33.4  150.\n 8        2487 Bathurst pm25       24.6 2020-01-13 17:00:00 µg/m³ -33.4  150.\n 9        2487 Bathurst pm25       25.3 2020-01-13 16:00:00 µg/m³ -33.4  150.\n10        2487 Bathurst pm25       25.8 2020-01-13 15:00:00 µg/m³ -33.4  150.\n# ℹ 19,022 more rows\n# ℹ 1 more variable: country &lt;chr&gt;"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#package-example-1",
-    "href": "wombat-airpurifyr-2024/index.html#package-example-1",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Package example",
-    "text": "Package example\n\n\n\n\n\n\nImportant\n\n\nYou will need to aggregate this data - sensors often report times to the second and may be slightly off!\nlubridate::floor_date is great for this"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#package-example-2",
-    "href": "wombat-airpurifyr-2024/index.html#package-example-2",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Package example",
-    "text": "Package example"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#package-example-3",
-    "href": "wombat-airpurifyr-2024/index.html#package-example-3",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Package example",
-    "text": "Package example\n\nlocations_of_interest &lt;- australia_measurements |&gt;\n  # East coast of Australia (roughly)\n  dplyr::filter(long &gt; 141, lat &lt; -31) |&gt;\n  dplyr::distinct(location) |&gt;\n  dplyr::pull()\n\nau_east_coast_2020 &lt;- get_measurements_for_location(\n  country = \"AU\",\n  location = locations_of_interest,\n  max_observations = 10000,\n  date_from = lubridate::ymd(\"2019-12-01\"),\n  date_to = lubridate::ymd(\"2020-02-01\"),\n  parameter = \"pm25\"\n)"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#package-example-4",
-    "href": "wombat-airpurifyr-2024/index.html#package-example-4",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Package example",
-    "text": "Package example\n\n\nstates &lt;- ozmaps::ozmap_states |&gt;\n  filter(NAME %in% c(\"New South Wales\", \"Victoria\"))\n\nstations &lt;- au_east_coast_2020 |&gt;\n  distinct(lat, long)\n\nggplot(states) +\n  geom_sf() +\n  geom_point(\n    aes(x = long, y = lat), \n    data = stations\n  ) +\n  theme_bw() +\n  labs(x=\"Longitude\", y=\"Latitude\") +\n  coord_sf()"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#examples",
-    "href": "wombat-airpurifyr-2024/index.html#examples",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Examples",
-    "text": "Examples\n\nmelb_weather &lt;- get_data_drill(\n  latitude = -37.8,\n  longitude = 145,\n  start_date = \"20200101\",\n  end_date = \"20200630\",\n  values = \"all\"\n)\nx &lt;- get_data_drill(\n  latitude = -37.8,\n  longitude = 145,\n  start_date = \"20200701\",\n  end_date = \"20201231\",\n  values = \"all\"\n)\nmelb_weather &lt;- bind_rows(melb_weather, x)"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#examples-1",
-    "href": "wombat-airpurifyr-2024/index.html#examples-1",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Examples",
-    "text": "Examples\n\n\nHigh pressure \\rightarrow temperature inversion \\rightarrow more ozone loss"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#industrial-fires-1",
-    "href": "wombat-airpurifyr-2024/index.html#industrial-fires-1",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Industrial fires",
-    "text": "Industrial fires\nOn July 11, there was a major factory fire in Brooklyn."
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#nearby-sensors-1",
-    "href": "wombat-airpurifyr-2024/index.html#nearby-sensors-1",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Nearby sensors",
-    "text": "Nearby sensors\nWe can check geographical coherence"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#rush-hour-1",
-    "href": "wombat-airpurifyr-2024/index.html#rush-hour-1",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Rush hour",
-    "text": "Rush hour\nCan we pick up extra pollutants from the weekday “rush-hour” in Melbourne CBD?"
-  },
-  {
-    "objectID": "wombat-airpurifyr-2024/index.html#summary",
-    "href": "wombat-airpurifyr-2024/index.html#summary",
-    "title": "airpurifyr: Open Air Quality in R",
-    "section": "Summary",
-    "text": "Summary\n\nOpenAQ gives reasonably clean air quality data\nairpurifyr helps bring this into R\nPlenty of hypotheses ready to explore\n\nNext steps:\n\nv3 API\nhttr2\nMore convenience cleaning/aggregating\n\nAvailable at https://github.com/numbats/airpurifyr"
-  },
-  {
-    "objectID": "hospital-network/index.html#monash-ebs-is-hiring",
-    "href": "hospital-network/index.html#monash-ebs-is-hiring",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Monash EBS is hiring",
-    "text": "Monash EBS is hiring\n\nEducation focussed Lecturer / Senior Lecturer - Business Statistics / Econometrics\nhttps://careers.pageuppeople.com/513/cw/en/job/670005/lecturer-ed-focused-senior-lecturer-ed-focused\nLecturer / Senior Lecturer - Actuarial Science\nhttps://careers.pageuppeople.com/513/cw/en/job/670008/lecturersenior-lecturer-actuarial-science"
-  },
-  {
-    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
-    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Carbapenemase-producing Enterobacterales",
-    "text": "Carbapenemase-producing Enterobacterales\n\n\n\n\nGram-negative bacilli occurring naturally in the GI tract\nResistant to carbapenem antibiotics\nSeveral different carbapenemases genes in CPE:\n\nImipenemase (IMP)\nKlebsiella penumoniae carbapenemase (KPC)\nNew-Delhi metallo-β-lactamase (NDM)\nVerona integron-encoded metallo-β-lactamase (VIM) and\nOxacillinases (OXA)\n\nFor Enterobacterales, IMP(-4) most commonly found in Victoria (28% of all cases)\nAssumed to be colonised indefinitely"
-  },
-  {
-    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
-    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Carbapenemase-producing Enterobacterales",
-    "text": "Carbapenemase-producing Enterobacterales\n\nSurveillance officially established in Victoria in 2015, became notifiable in 2018\nSince becoming notifiable, notifications have been steadily increasing"
-  },
-  {
-    "objectID": "hospital-network/index.html#modelling-possible-control",
-    "href": "hospital-network/index.html#modelling-possible-control",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Modelling possible control",
-    "text": "Modelling possible control\n\n\n\nWe know that healthcare is a network phenomenon\nNeed to understand if CPE+ patients are different to CPE- patients"
-  },
-  {
-    "objectID": "hospital-network/index.html#health-services-in-victoria-australia",
-    "href": "hospital-network/index.html#health-services-in-victoria-australia",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Health Services in Victoria, Australia",
-    "text": "Health Services in Victoria, Australia\n\nHealth services are individually governed\nCentralised guidelines for reporitng\nHave their own IP results, testing/screening requirements, admission & transfer patterns\nAre often spread across multiple campuses which operate independently but are administered centrally\n\n\nAs these services tend to operate on the same patient data platform, we assume that previously diagnosed patients will have infection prevention protocols in place if they are re-admitted to the same service.\nThis is less likely to be true in a different health service, as there is no centralised notification system to other health services."
-  },
-  {
-    "objectID": "hospital-network/index.html#notification-system",
-    "href": "hospital-network/index.html#notification-system",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Notification system",
-    "text": "Notification system"
-  },
-  {
-    "objectID": "hospital-network/index.html#data-sources",
-    "href": "hospital-network/index.html#data-sources",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Data sources",
-    "text": "Data sources\nVictorian Admitted Episodes Dataset (VAED):\n\nLine list of every hospital admission (public and private)\nReports demographics, conditions, treatments, timing, location\n\nPublic Health Event Surveillance System (PHESS):\n\nRecords information on notifiable disease events\nIncludes patient demographics, date of notification, date of test\nOperational system, used for contact tracing and outbreak analytics"
-  },
-  {
-    "objectID": "hospital-network/index.html#network-construction",
-    "href": "hospital-network/index.html#network-construction",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network construction",
-    "text": "Network construction\nWe model how patients move around the network.\n\nNodes: Hospital (physical)\nEdge: Transfer of patient between two hospitals, within 365 days\nWeight: Number of patients transferred\n\n\nThis is a weighted, directed network. The worst kind of non-temporal network."
-  },
-  {
-    "objectID": "hospital-network/index.html#network-construction-1",
-    "href": "hospital-network/index.html#network-construction-1",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network construction",
-    "text": "Network construction\n\nClustering: Infomap (based on a random walk through the network)\n\n\\max_{M} L(M) = q H(\\mathcal{Q}) + \\sum_{i=1}^m p^{i} H(\\mathcal{P}^i)\n\nEffectively maximising entropy of the “walk” subject to a partition, Q, weighting within and between cluster movements.\np and q informed by edge weights"
-  },
-  {
-    "objectID": "hospital-network/index.html#network-construction-2",
-    "href": "hospital-network/index.html#network-construction-2",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network construction",
-    "text": "Network construction\n\nImportance of certain facilites: Adjusted Rand Index\n\nR = \\frac{a+b}{a+b+c+d} = \\frac{a+b}{n\\choose 2},\nwhere\n\na is the number of pairs of elements that are in the same subset in X and the same subset in Y,\nb be the number of pairs of elements that are in different subsets in X and different subsets of Y,\nc be the number of pairs of elements that are in the same subset in X and different subsets in Y and,\nd be the number of pairs of elements that are in different subsets in X and the same subset in Y."
-  },
-  {
-    "objectID": "hospital-network/index.html#admission-demographics",
-    "href": "hospital-network/index.html#admission-demographics",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Admission demographics",
-    "text": "Admission demographics\n\n\n\n\n\n\n\n\nVariable\nN\n\n\n\n\nGender\n\n\nMale\n12,723,729\n\n\nFemale\n14,071,488\n\n\nOther\n1,190\n\n\nAge Group\n\n\n&lt;20\n2,567,643\n\n\n20-39\n4,744,744\n\n\n50-59\n6,372,288\n\n\n&gt;60\n13,111,732\n\n\nLength of Stay\n\n\nMean\n2.739\n\n\nMedian (IQR)\n2 (1-3)"
-  },
-  {
-    "objectID": "hospital-network/index.html#network-exploration-1",
-    "href": "hospital-network/index.html#network-exploration-1",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network exploration",
-    "text": "Network exploration\n\nDensity: High (0.44)\nClustering: Reasonably strong (foreshadowing)"
-  },
-  {
-    "objectID": "hospital-network/index.html#network-exploration-2",
-    "href": "hospital-network/index.html#network-exploration-2",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Network exploration",
-    "text": "Network exploration"
-  },
-  {
-    "objectID": "hospital-network/index.html#clustering",
-    "href": "hospital-network/index.html#clustering",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Clustering",
-    "text": "Clustering"
-  },
-  {
-    "objectID": "hospital-network/index.html#clustering-1",
-    "href": "hospital-network/index.html#clustering-1",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Clustering",
-    "text": "Clustering"
-  },
-  {
-    "objectID": "hospital-network/index.html#clustering-2",
-    "href": "hospital-network/index.html#clustering-2",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Clustering",
-    "text": "Clustering"
-  },
-  {
-    "objectID": "hospital-network/index.html#node-importance",
-    "href": "hospital-network/index.html#node-importance",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Node importance",
-    "text": "Node importance\nARI: Interpret at proportion of clustering structure “preserved”\n\n\nRemoving small and same-day facilities gives an ARI of between 0.58 and 0.62\n\nSeems key to making connections between larger hospitals\nRemoving one-by-one or all doesn’t notably change ARI\n\nRemoving public hospitals gives ARI of 0.22\nRemoving private hospitals gives ARI of 0.58"
-  },
-  {
-    "objectID": "hospital-network/index.html#next-steps",
-    "href": "hospital-network/index.html#next-steps",
-    "title": "Hospitalisations in Victoria: A network problem",
-    "section": "Next steps",
-    "text": "Next steps\n\nHospital system is dense, geographically clustered\nTransfers are incredibly frequent, tend to move towards metropolitan Melbourne\nNeed to include pretty much all facilities in system consideration\nSurveillance should be considered geographically\n\nLocal public health units?\n\nImpact of patients going home\nTesting/sampling for conditions\n\n\nThis is a very extensive and detailed dataset, with many more project ideas than time.\nBut presents an exciting opportunity to build a data-driven surveillance and outbreak response system."
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
-    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Hospital outbreaks",
-    "text": "Hospital outbreaks\nIn 2018, a multi-institutional outbreak of CPE highlighted the interlinked nature of healthcare in Victoria.\nSince then, CPE is now notifiable, but there is not a centralised surveillance or outbreak response system."
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#carbanememase-producing-enterobacterales",
-    "href": "acefa-launch/talk-acefa-launch.html#carbanememase-producing-enterobacterales",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Carbanememase-producing Enterobacterales",
-    "text": "Carbanememase-producing Enterobacterales\n\nAcquired primarily in hospital\nResistant to last-line antibiotics\nMortality, given clinical symptoms, in the order of 30%\nCarriage for &gt;= 12 months\n\n\nTesting via rectal swab\nCan carry with no symptoms\nUnknown if asymptomatic people can transmit"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-1",
-    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-1",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Hospital outbreaks",
-    "text": "Hospital outbreaks\nThe immediate question:\n\nWhen an outbreak is detected, what other hospitals could be affected?\n\n\nNatural to consider patients in a hospital as a network, that has the nodes as the hospitals and edges between them related to the probability of transfer.\n\n\nCurrent methods can grossly over-estimate the rate of spread of disease between hospitals"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#current-state-of-the-field",
-    "href": "acefa-launch/talk-acefa-launch.html#current-state-of-the-field",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Current state of the field",
-    "text": "Current state of the field\nMost methods are based on line-listed admissions data:\n\n\n\n\n\n\n\n\n\n\n\n\npatient_id\nadmission_date\nseparation_date\nlocation\ndiagnosis_codes\n\n\n\n\n1\n2020-01-01\n2020-01-02\nH1\nA B C\n\n\n2\n2020-01-01\n2020-01-02\nH2\nA B C\n\n\n1\n2020-01-03\n2020-01-04\nH2\nA B C\n\n\n\n\n\n\nThis is interpreted as one transfer from H1 to H2, with a one-day gap."
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data",
-    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Different ways to collapse the data",
-    "text": "Different ways to collapse the data\nSome notation:\n\nu, v are locations\ns, t are times, t \\geq s\nHazard for patients returning home, never readmitted: \\zeta_u(t)\nw_{uv}(s,t) patients discharged from u at s, then readmitted to v at t"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-1",
-    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-1",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Different ways to collapse the data",
-    "text": "Different ways to collapse the data\nThen, we have the following set of governing equations:\n\nHospital to home: \\lambda(u(s) \\to \\emptyset) = \\zeta_u(s)\nDirect transfers: \\lambda(u(s) \\to v(t)) = d_{uv}(s, t)\nIndirect transfers:\n\nHospital to home: \\lambda(u(s) \\to z_{uv}(t)) = \\eta_{uv}(s, t)\nHome to hospital: \\lambda(z_{uv}(t) \\to v(t)) = \\rho_{uv}(s, t)"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-2",
-    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-2",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Different ways to collapse the data",
-    "text": "Different ways to collapse the data"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#model-1-naive-static-method",
-    "href": "acefa-launch/talk-acefa-launch.html#model-1-naive-static-method",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Model 1: Naive Static Method",
-    "text": "Model 1: Naive Static Method\nd_{uv}(s,t) = \\frac{\\sum_{s,t} w_{uv}(s,t)}{T_\\Sigma N_u}\n\n\n\n\n\n\nTip\n\n\nAll movements are instanteous, and the rate of movement is the mean over the entire observation period."
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#model-2-improved-static-method",
-    "href": "acefa-launch/talk-acefa-launch.html#model-2-improved-static-method",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Model 2: Improved Static Method",
-    "text": "Model 2: Improved Static Method\nChoose a threshold value, \\omega, to separate direct and indirect transfers\nd_{uv}(s,t) = d_{uv} =  \\frac{\\sum_{s,t: (t-s) &lt; \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\eta_{uv}(s,t) = \\eta_{uv} = \\frac{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\rho_{uv}(s,t) = \\rho_{uv} = \\left[ \\frac{\\sum_{s,t: (t-s) \\geq \\omega} (t-s) w_{uv}(s,t)}{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}  \\right]^{-1}"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#model-3-snapshot-model",
-    "href": "acefa-launch/talk-acefa-launch.html#model-3-snapshot-model",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Model 3: Snapshot Model",
-    "text": "Model 3: Snapshot Model\nChoose a snapshot duration \\omega. This defines the threshold duration of an indirect transfer.\n\\begin{aligned}\n\\lambda(u(s) \\to {z'}_{uv}(t)) &= \\eta_{uv}(s, t)\\\\\n\\lambda({z'}_{uv}(t) \\to z_{uv}(t)) &= \\delta(t \\; \\mathrm{ mod } \\; \\omega)\\\\\n\\end{aligned}\n\nz' contains the individuals that would enter z within the duration of a given snapshot [t, t+\\omega], so that they do not immediately readmit to their next hospital."
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#model-4-temporal-model",
-    "href": "acefa-launch/talk-acefa-launch.html#model-4-temporal-model",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Model 4: Temporal Model",
-    "text": "Model 4: Temporal Model\nEffecitvely, choose a very small snapshot window, \\omega. Individuals are not re-admitted to z', instead they are re-admitted to v uniformly between t and t+\\omega. This gives,\nd_{uv}(s, t) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s, t)}{\\omega N_u} \\eta_{uv}(s, t) = \\frac{\\sum_{t: (t-s) \\geq \\omega} w_{uv}(s, t)}{\\omega N_u} \\rho_{uv}(s,t) = \\frac{1}{\\lceil t \\rceil_\\omega - t}"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#too-much-maths-for-12-minutes",
-    "href": "acefa-launch/talk-acefa-launch.html#too-much-maths-for-12-minutes",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Too much maths for 12 minutes!",
-    "text": "Too much maths for 12 minutes!\nCurrent state-of-the-art: Patients move instantly, no concept of home, using average return rates over the entire data period\n\nOur models: from least to most ‘accurate’\n\nState-of-the-art\nState-of-the-art + patients return home\nReturn rates change over time, patients held at home in “blocks”\nReturn rates change over time, patients held at home for actual time"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make",
-    "href": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "What difference does it make?",
-    "text": "What difference does it make?"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make-1",
-    "href": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make-1",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "What difference does it make?",
-    "text": "What difference does it make?"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#takeaway",
-    "href": "acefa-launch/talk-acefa-launch.html#takeaway",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Takeaway",
-    "text": "Takeaway\n\nTime is critical when considering an outbreak\n\n\nStill need to consider surveillance algorithms on these weighted, directed, temporal networks\nPatients going home slows down infection spread\nMost hospital transfer patterns aren’t stationary\nUsing the wrong collapsing process means you will probably miss infections\nMay declare a hospital “disease-free” when it truly hasn’t arrived yet"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-2",
-    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-2",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Hospital outbreaks",
-    "text": "Hospital outbreaks\nThe immediate question:\n\nWhen an outbreak is detected, what other hospitals could be affected?\n\n\nChanges over time, but it’s not as fast as you think it is"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Michael Lydeamore - Slides",
+    "objectID": "acefa-launch/model.html",
+    "href": "acefa-launch/model.html",
+    "title": "Section: Model of Stochastic Processes and Network Models",
     "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nJun 18, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nJun 18, 2025\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nJun 18, 2025\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nJun 18, 2025\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nJun 18, 2025\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nJun 18, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Notations"
+  },
+  {
+    "objectID": "acefa-launch/model.html#general-sketch",
+    "href": "acefa-launch/model.html#general-sketch",
+    "title": "Section: Model of Stochastic Processes and Network Models",
+    "section": "General Sketch",
+    "text": "General Sketch\nHere, \\(u\\) and \\(v\\) are locations (potentially identical locations), \\(s\\) and \\(t\\) are times. We take that \\(t \\geq s\\). \\(\\emptyset\\) represents patients that are not observed to return to the hospital system after their discharge from location \\(u\\). We assume the associated hazard for this process (\\(\\zeta_u(t)\\)) to be known for all locations \\(u\\) at all times \\(t\\): the modelling of this process is the same for all network models, and will be neglected in the following.\nFurther, we define the function \\(w_{uv}(s, t)\\) to be the number of individuals that are observed to discahrge from \\(u\\) at time \\(s\\) and readmit at time \\(t\\). We allow a maximum of one of the pairs \\(u,v\\) and \\(s,t\\) to be reflexive, i.e. \\(u=v\\) or \\(s=t\\), but not both.\nWe will also assume that we will have quantities \\(N_u\\) that represent the “size” of a location \\(u\\). We assume that all locations \\(u\\) will have \\(N_u\\) individuals in them at all times, and that the observed mvoements \\(w_{uv}(s, t)\\) can be thought of as being scaled by \\(N_u\\).\nThe governing equations can be roughly expressed as a function of the hazards of each process.\n\\[\\begin{aligned}\n\\lambda(u(s) \\to \\emptyset) &= \\zeta_u(s)\\\\\n\\lambda(u(s) \\to v(t)) &= d_{uv}(s, t)\\\\\n\\lambda(u(s) \\to z_{uv}(t)) &= \\eta{uv}(s, t)\\\\\n\\lambda(z_{uv}(t) \\to v(t)) &= \\rho_{uv}(s, t)\n\\end{aligned}\\]\nNote that\n\\[ \\lambda(U \\to V) = \\lambda \\]\nrepresents that in some time step \\(\\Delta t\\), the number of individuals that move from state \\(U\\) to state \\(V\\) is distributed as\n\\[ \\mathrm{Poisson}(\\lambda x_U \\Delta t) \\].\n\nNaïve Static Model\nFor both the naïve and improved static network models, we have that the observations of \\(w\\) are taken over a time period of \\(T_\\Sigma\\).\nIn the naïve static model , we have that:\n\\[d_{uv}(s,t) = d_{uv} = \\frac{\\sum_{s,t} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv} = 0\\] \\[\\rho_{uv}(s,t) = \\rho_{uv} = 0\\]\nThat is, all movements are instantaneous, and the rate of movement is the mean rate of movement over the entire observation period.\n\n\nImproved Static Model\nFor the improved static model, we choose some threshold value \\(\\omega\\) that delineates direct and indirect transfers.\nWe will have:\n\\[d_{uv}(s,t) = d_{uv} =  \\frac{\\sum_{s,t: (t-s) &lt; \\omega} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv} = \\frac{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\rho_{uv}(s,t) = \\rho_{uv} = \\left[ \\frac{\\sum_{s,t: (t-s) \\geq \\omega} (t-s) w_{uv}(s,t)}{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}  \\right]^{-1}\\]\nHere, we model the rate of indirect transfers \\(\\eta\\) similarly to the rate of direct transfers \\(d\\), by counting the average rate of observed movements. For the rate of readmission, \\(\\rho\\), we use the inverse of the mean readmission duration/delay.\n\n\nSnapshot Model\nFor the snapshot model, we choose a snapshot duration \\(\\omega\\). This defines the threshold duration of an indirect transfer.\nThis introduces an new intermediary state variable \\(z'\\) that contains the individuals that would enter \\(z\\) within the duration of a given snapshot \\([t, t+\\omega]\\), so that they do not immediately readmit to their next hospital. This alters the indirect transfer processes to\n\\[\\begin{aligned}\n\\lambda(u(s) \\to {z'}_{uv}(t)) &= \\eta_{uv}(s, t)\\\\\n\\lambda({z'}_{uv}(t) \\to z_{uv}(t)) &= \\delta(t \\mathrm{ mod } \\omega)\\\\\n\\end{aligned}\\]\nwhere \\(\\delta(\\cdot)\\) is the Dirac delta function.\nAlongside this, we also compute from the data, the number of patients “at home” at a given time, in order to inform the denominator for the process from \\(z'\\) to \\(z\\). We denote this quantity \\(H_{uv}(t)\\)\nWe will have that:\n\\[d_{uv}(s,t) = d_{uv}(s) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s,t)}{\\omega N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv}(s) = \\frac{\\sum_{t: (t-s) \\geq \\omega} {w_{uv}(s, t)}}{\\omega N_u}\\] \\[\\rho_{uv}(s,t) = \\rho_{uv}(t) = \\frac{\\sum_{s: (t-s) \\geq \\omega} {w_{uv}(s, t)}}{\\omega H_{uv}}\\]\n\n\nTemporal Model\nFor the temporal network, we make a choice of the time discretisation \\(\\omega\\). That is, events that occur within a time window \\([\\tau, \\tau+\\omega)\\) are collapsed and aggregated to occur at time \\(\\tau\\). Over the observation (and simulation) period, we will have a series of time window boundaries \\(\\{\\tau_0, \\tau_1, \\dots\\}\\). We denote the smallest value in that set larger than a given time \\(t\\) to be \\(\\ceil{t}_\\omega\\)\nFor the readmission process, we assume that individuals that would readmit within a given time window \\([\\tau, \\tau+\\omega)\\) do so uniformly.\nThis yields:\n\\[d_{uv}(s, t) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s, t)}{\\omega N_u}\\] \\[\\eta_{uv}(s, t) = \\frac{\\sum_{t: (t-s) \\geq \\omega} w_{uv}(s, t)}{\\omega N_u}\\] \\[\\rho_{uv}(s,t) = \\frac{1}{\\ceil{t}_\\omega - t}\\]\nThe readmission process thus has a uniform hazard."
   },
   {
     "objectID": "2024-adsc-lunchbox/index.html#etc5513-title",
@@ -1631,115 +1491,381 @@
     "text": "Data science and impact\nDon’t let a small amount of data limit your reach\n\nData is expensive, we all want more all the time…\nBut a “handful” of observations can lead to real change\nAt the same time, more data does not always mean more good\n\n\n\nYou can’t model your way out of bad data\nBut you can model good data badly\n\n\n\nImpactful projects rely on good people, good problems and good techniques."
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#what-are-contact-matrices",
-    "href": "conmat-spectrum-2024/index.html#what-are-contact-matrices",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "What are contact matrices",
-    "text": "What are contact matrices\n\nEstimates of the numbers of contact between individuals in various categories\nUsed in models to investigate:\n\nEffect of NPIs\nUnderstand effects of demographic changes\n“More accurately” estimate transmission\n\n\n\nBut how do they come about!?"
+    "objectID": "wombat-airpurifyr-2024/index.html#air-quality",
+    "href": "wombat-airpurifyr-2024/index.html#air-quality",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Air Quality",
+    "text": "Air Quality\nAll sorts of processes release particles into the air\nThese measurements together form “air quality”.\n\nHas been linked with health conditions, life expectancy, mental conditions, poorer economic outcomes, global development indexes…"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#contact-diary-studies",
-    "href": "conmat-spectrum-2024/index.html#contact-diary-studies",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Contact diary studies",
-    "text": "Contact diary studies\nContact diary studies follow individuals and ask them:\n\nhow many contacts of a certain type,\nthe duration of contact,\nthe location of the contact,\nthe frequency of the contact\n\n\nThey are undoubtedly the gold standard for data on the number of contacts.\nBut they are prohibitively expensive, and logistically very challenging."
+    "objectID": "wombat-airpurifyr-2024/index.html#air-quality-1",
+    "href": "wombat-airpurifyr-2024/index.html#air-quality-1",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Air Quality",
+    "text": "Air Quality\nTypical measurements:\n\npm2.5/pm5: Particles that are 2.5/5 microns. Typically come from fires, industry, car exhausts etc\nso2: Sulfur Dioxide. Typically oil refineries, diesel vehicles, coal power stations\no3: Ozone. Typically bushfires, power stations. We want ozone but not too much!\nno2: Nitrogen dioxide. Typically car exhausts.\nco: Carbon monoxide. Typically Wood smoke, car exhausts."
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#polymod",
-    "href": "conmat-spectrum-2024/index.html#polymod",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "POLYMOD",
-    "text": "POLYMOD\nPublished in 2008, Mossong et. al undertook a contact diary study of 7290 participants across Europe.\nIt remains the most widely cited contact diary study."
+    "objectID": "wombat-airpurifyr-2024/index.html#uses",
+    "href": "wombat-airpurifyr-2024/index.html#uses",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Uses",
+    "text": "Uses\nPublic Health\n\nAssociation of Changes in Air Quality With Incident Asthma in Children in California, 1993-2014 (Garcia et. al, JAMA 2019)\nUncertainty and Variability in Health-Related Damages from Coal-Fired Power Plants in the United States (Levy et. al, Risk Analysis 2009)"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#contact-matrix-projection",
-    "href": "conmat-spectrum-2024/index.html#contact-matrix-projection",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Contact matrix projection",
-    "text": "Contact matrix projection\nPrem et. al formed a model that predicts the number of contacts based on the age structure of the population.\nThis model then allows for prediction to settings that are outside the original POLYMOD countries."
+    "objectID": "wombat-airpurifyr-2024/index.html#uses-1",
+    "href": "wombat-airpurifyr-2024/index.html#uses-1",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Uses",
+    "text": "Uses\nEconomics\n\nA cost-effectiveness analysis of alternative air quality control strategies (Atkinson & Lewis, Journal of Environmental Economics and Management 1974)\nCost of economic growth: Air pollution and health expenditure (Chen & Chen, Science of the Total Environment 2021)\n\n\n…and more"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#what-is-provided",
-    "href": "conmat-spectrum-2024/index.html#what-is-provided",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "What is provided:",
-    "text": "What is provided:"
+    "objectID": "wombat-airpurifyr-2024/index.html#air-quality-2",
+    "href": "wombat-airpurifyr-2024/index.html#air-quality-2",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Air Quality",
+    "text": "Air Quality\nSo people need this. But how?\n\nAd-hoc\nSingle dataset/source\nRange of dates/times\n“Whatever is available”"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#our-model-of-contact",
-    "href": "conmat-spectrum-2024/index.html#our-model-of-contact",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Our model of contact",
-    "text": "Our model of contact\nNot much information to train model. We model the number of contacts an individual in bin i has with bin j:\n\\begin{aligned}\nc_{ij} = \\beta_{0,i} + \\beta_1(|i-j|) + &\\beta_2(|i-j|^2) + \\beta_3(i\\times j) + \\beta_4(i+j) +\\\\ &\\beta_5\\max(i, j) + \\beta_6\\min(i, j)\n\\end{aligned}\n\n\n\n\n\n\n\n\n🤓 Akshually 🤓\n\n\nWe want to fit this as a generalised additive model, so actually we have splines on these terms to satisfy the smoothness requirements.\nThis is very similar to the approach by Prem et. al who perform post-hoc smoothing of the parameters after MCMC."
+    "objectID": "wombat-airpurifyr-2024/index.html#so-how-is-it-collected",
+    "href": "wombat-airpurifyr-2024/index.html#so-how-is-it-collected",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "So how is it collected?",
+    "text": "So how is it collected?\nSome (in this case 61%) governments have programs to collect this data. Much of the global data is sought from citizen science projects.\n\nAn air quality sensor"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#model-terms",
-    "href": "conmat-spectrum-2024/index.html#model-terms",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Model terms",
-    "text": "Model terms"
+    "objectID": "wombat-airpurifyr-2024/index.html#openaq",
+    "href": "wombat-airpurifyr-2024/index.html#openaq",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "OpenAQ",
+    "text": "OpenAQ\nOpenAQ is an environmental tech nonprofit.\nAggregate and harmonize open air quality data from across the globe onto an open-source, open-access data platform\nFreely available API and data explorer"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#projection-onto-target-demography",
-    "href": "conmat-spectrum-2024/index.html#projection-onto-target-demography",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Projection onto target demography",
-    "text": "Projection onto target demography"
+    "objectID": "wombat-airpurifyr-2024/index.html#the-package",
+    "href": "wombat-airpurifyr-2024/index.html#the-package",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "The package",
+    "text": "The package\nairpurifyr brings this API into R.\n\nUses httr (will one day be ported)\nv2 OpenAQ API (deprecated 18 days ago 😭)\nRequires a free API key"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#importance-of-contact-diary-study",
-    "href": "conmat-spectrum-2024/index.html#importance-of-contact-diary-study",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Importance of contact diary study",
-    "text": "Importance of contact diary study\nWe’ve used POLYMOD-trained models for over a decade.\nThere are 44 other surveys available in one collection on Zenodo, and probably more out there in the wild.\n\nSome recent work from Harris et. al has shown that differences in the survey design can have a significant impact on these synthetic contact matrices.\n\n\n\n\n\n\n\n\nTip\n\n\nconmat allows for training on survey of choice, and projection onto target demographic of choice"
+    "objectID": "wombat-airpurifyr-2024/index.html#package-example",
+    "href": "wombat-airpurifyr-2024/index.html#package-example",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Package example",
+    "text": "Package example\nAPI effectively works on locations and measurements\n\naustralia_measurements &lt;- get_measurements_for_location(\n  country = \"AU\",\n  max_observations = 1000,\n  date_from = lubridate::ymd(\"2020-01-01\"),\n  date_to = lubridate::ymd(\"2020-01-14\"),\n  parameter = \"pm25\"\n)\n\naustralia_measurements\n\n# A tibble: 19,032 × 9\n   location_id location parameter value date_utc            unit    lat  long\n         &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1        2487 Bathurst pm25       18.9 2020-01-14 00:00:00 µg/m³ -33.4  150.\n 2        2487 Bathurst pm25       19.4 2020-01-13 23:00:00 µg/m³ -33.4  150.\n 3        2487 Bathurst pm25       20.2 2020-01-13 22:00:00 µg/m³ -33.4  150.\n 4        2487 Bathurst pm25       20.9 2020-01-13 21:00:00 µg/m³ -33.4  150.\n 5        2487 Bathurst pm25       22.1 2020-01-13 20:00:00 µg/m³ -33.4  150.\n 6        2487 Bathurst pm25       23   2020-01-13 19:00:00 µg/m³ -33.4  150.\n 7        2487 Bathurst pm25       23.7 2020-01-13 18:00:00 µg/m³ -33.4  150.\n 8        2487 Bathurst pm25       24.6 2020-01-13 17:00:00 µg/m³ -33.4  150.\n 9        2487 Bathurst pm25       25.3 2020-01-13 16:00:00 µg/m³ -33.4  150.\n10        2487 Bathurst pm25       25.8 2020-01-13 15:00:00 µg/m³ -33.4  150.\n# ℹ 19,022 more rows\n# ℹ 1 more variable: country &lt;chr&gt;"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#example-of-using-a-different-study",
-    "href": "conmat-spectrum-2024/index.html#example-of-using-a-different-study",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Example of using a different study",
-    "text": "Example of using a different study\n\nchina_survey &lt;- socialmixr::get_survey(\"https://doi.org/10.5281/zenodo.3878754\") |&gt;\n    summarise(contacts = sum(cnt_home))\n\nchina_pop &lt;- read_csv(\"./data/china_pop_age_dist.csv\")\nchina_pop_cm &lt;- conmat::as_conmat_population(\n  data = china_pop,\n  age = lower.age.limit,\n  population = population\n)"
+    "objectID": "wombat-airpurifyr-2024/index.html#package-example-1",
+    "href": "wombat-airpurifyr-2024/index.html#package-example-1",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Package example",
+    "text": "Package example\n\n\n\n\n\n\nImportant\n\n\nYou will need to aggregate this data - sensors often report times to the second and may be slightly off!\nlubridate::floor_date is great for this"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#example-of-using-a-different-study-1",
-    "href": "conmat-spectrum-2024/index.html#example-of-using-a-different-study-1",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Example of using a different study",
-    "text": "Example of using a different study\n\nchina_survey &lt;- socialmixr::get_survey(\"https://doi.org/10.5281/zenodo.3878754\") |&gt;\n    summarise(contacts = sum(cnt_home))\n\nchina_pop &lt;- read_csv(\"./data/china_pop_age_dist.csv\")\nchina_pop_cm &lt;- conmat::as_conmat_population(\n  data = china_pop,\n  age = lower.age.limit,\n  population = population\n)\n\nmodel &lt;- conmat::fit_single_contact_model(\n    contact_data = china_survey,\n    population = china_pop_cm\n)\n\npredicted_contacts &lt;- conmat::predict_contacts(\n    model = model,\n    population = china_pop_cm,\n    age_breaks = c(seq(0, 80, by = 5), Inf)\n)"
+    "objectID": "wombat-airpurifyr-2024/index.html#package-example-2",
+    "href": "wombat-airpurifyr-2024/index.html#package-example-2",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Package example",
+    "text": "Package example"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#why-input-survey-matters",
-    "href": "conmat-spectrum-2024/index.html#why-input-survey-matters",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Why input survey matters",
-    "text": "Why input survey matters\nThese matrices are for a Chinese population, using a Chinese survey (left) and POLYMOD (right), for the home setting."
+    "objectID": "wombat-airpurifyr-2024/index.html#package-example-3",
+    "href": "wombat-airpurifyr-2024/index.html#package-example-3",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Package example",
+    "text": "Package example\n\nlocations_of_interest &lt;- australia_measurements |&gt;\n  # East coast of Australia (roughly)\n  dplyr::filter(long &gt; 141, lat &lt; -31) |&gt;\n  dplyr::distinct(location) |&gt;\n  dplyr::pull()\n\nau_east_coast_2020 &lt;- get_measurements_for_location(\n  country = \"AU\",\n  location = locations_of_interest,\n  max_observations = 10000,\n  date_from = lubridate::ymd(\"2019-12-01\"),\n  date_to = lubridate::ymd(\"2020-02-01\"),\n  parameter = \"pm25\"\n)"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#why-input-survey-matters-1",
-    "href": "conmat-spectrum-2024/index.html#why-input-survey-matters-1",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Why input survey matters",
-    "text": "Why input survey matters\nThese matrices are for a Chinese population, using a Chinese survey (left) and POLYMOD (right), for the home setting."
+    "objectID": "wombat-airpurifyr-2024/index.html#package-example-4",
+    "href": "wombat-airpurifyr-2024/index.html#package-example-4",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Package example",
+    "text": "Package example\n\n\nstates &lt;- ozmaps::ozmap_states |&gt;\n  filter(NAME %in% c(\"New South Wales\", \"Victoria\"))\n\nstations &lt;- au_east_coast_2020 |&gt;\n  distinct(lat, long)\n\nggplot(states) +\n  geom_sf() +\n  geom_point(\n    aes(x = long, y = lat), \n    data = stations\n  ) +\n  theme_bw() +\n  labs(x=\"Longitude\", y=\"Latitude\") +\n  coord_sf()"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#summary",
-    "href": "conmat-spectrum-2024/index.html#summary",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "objectID": "wombat-airpurifyr-2024/index.html#examples",
+    "href": "wombat-airpurifyr-2024/index.html#examples",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Examples",
+    "text": "Examples\n\nmelb_weather &lt;- get_data_drill(\n  latitude = -37.8,\n  longitude = 145,\n  start_date = \"20200101\",\n  end_date = \"20200630\",\n  values = \"all\"\n)\nx &lt;- get_data_drill(\n  latitude = -37.8,\n  longitude = 145,\n  start_date = \"20200701\",\n  end_date = \"20201231\",\n  values = \"all\"\n)\nmelb_weather &lt;- bind_rows(melb_weather, x)"
+  },
+  {
+    "objectID": "wombat-airpurifyr-2024/index.html#examples-1",
+    "href": "wombat-airpurifyr-2024/index.html#examples-1",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Examples",
+    "text": "Examples\n\n\nHigh pressure \\rightarrow temperature inversion \\rightarrow more ozone loss"
+  },
+  {
+    "objectID": "wombat-airpurifyr-2024/index.html#industrial-fires-1",
+    "href": "wombat-airpurifyr-2024/index.html#industrial-fires-1",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Industrial fires",
+    "text": "Industrial fires\nOn July 11, there was a major factory fire in Brooklyn."
+  },
+  {
+    "objectID": "wombat-airpurifyr-2024/index.html#nearby-sensors-1",
+    "href": "wombat-airpurifyr-2024/index.html#nearby-sensors-1",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Nearby sensors",
+    "text": "Nearby sensors\nWe can check geographical coherence"
+  },
+  {
+    "objectID": "wombat-airpurifyr-2024/index.html#rush-hour-1",
+    "href": "wombat-airpurifyr-2024/index.html#rush-hour-1",
+    "title": "airpurifyr: Open Air Quality in R",
+    "section": "Rush hour",
+    "text": "Rush hour\nCan we pick up extra pollutants from the weekday “rush-hour” in Melbourne CBD?"
+  },
+  {
+    "objectID": "wombat-airpurifyr-2024/index.html#summary",
+    "href": "wombat-airpurifyr-2024/index.html#summary",
+    "title": "airpurifyr: Open Air Quality in R",
     "section": "Summary",
-    "text": "Summary\nconmat is a new, open-source, programmable system to generate synthetic contact matrices\n\nCan use arbitrary contact survey and arbitrary demography\nConvenience functions for next generation matrices, numbers of contacts\nChoice of input survey is crucial:\n\nThese models have no information on terms like “intergenerational mixing”"
+    "text": "Summary\n\nOpenAQ gives reasonably clean air quality data\nairpurifyr helps bring this into R\nPlenty of hypotheses ready to explore\n\nNext steps:\n\nv3 API\nhttr2\nMore convenience cleaning/aggregating\n\nAvailable at https://github.com/numbats/airpurifyr"
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#summary-1",
-    "href": "conmat-spectrum-2024/index.html#summary-1",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#chytridiomycosis-infection",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#chytridiomycosis-infection",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Chytridiomycosis infection",
+    "text": "Chytridiomycosis infection\n\n\n\n\n\n\nFungal disease caused by Batrachochytrium dendrobatidis (Bd)\nBd is a fungus that lives in the gut of animals\nInfects frogs, and has caused decline in over 500 amphibian species\nCauses skin disease in the frogs, which is often fatal\n\n\n\n\n Image: New Scientist"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#natural-history",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#natural-history",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Natural history",
+    "text": "Natural history\n\nBd fungus does not survive in warm climates (&gt; 30 degrees)\nWarm host climate also reduces lethality\n\n\n\n\n\n\n\n\nIdea\n\n\nIf we can heat frogs, maybe we can reduce the impact of this infection"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#experiment-setup",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#experiment-setup",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Experiment setup",
+    "text": "Experiment setup\n\nFrogs separated into two classes: shaded and unshaded (heated)\nArtifical refugia placed into each mesocosm (replicate)\nMeasure infection load and mortality\n\n\n\n\n\n\n\nImage: Waddle et. al, Nature 2024"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#hypothesis",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#hypothesis",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Hypothesis",
+    "text": "Hypothesis\n\nDo frogs in heated refugia experience a reduction in force of infection compared to non-heated refugia?\nDoes prior infection confer an immune response that reduces future susceptibility?\n\n\nTest using a stochastic compartmental model, with approximate Bayesian computation"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-setup",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-setup",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model setup",
+    "text": "Model setup\n\n\n\n\n\n\n\n\n\n\\lambda_h(t) = \\beta_h \\sum_{k=\\{U,V\\}}\\sum_{j=1}^3 m_{k,j}I_{k,j},\n\nm_{k,j} = Relative infectiousness of frog to I_{U,3}\nI_{k,j} = Infection stage of frog"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#parameters-to-estimate",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#parameters-to-estimate",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Parameters to estimate",
+    "text": "Parameters to estimate\n\n\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\n\\beta_{\\text{sh}}, \\beta_{\\text{un}}, \\alpha, \\omega\nfitted\n\n\n\\mu\n0.021\n\n\n\\gamma_1\n1/2.5 per week\n\n\n\\gamma_2\n1/4.5 per week\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nm_{U,1}\n10\n\n\nm_{U,2}\n100\n\n\nm_{V,1}\n1\n\n\nm_{V,2}\n10\n\n\nm_{V,3}\n0.1"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#data",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#data",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Data",
+    "text": "Data\n\n8 mesocosms, 4 shaded 4 unshaded\n20 frogs per mesocosm, 10 vaccinated, 10 unvaccinated, half infected at t_0\nHalf frogs experienced prior infection\nFrogs observed at t=1, 2, 4, 6, 8, 10, 15 weeks only\nFrogs that couldn’t be found presumed dead\nIndividual infection load data for each frog at each time point\n\n\n\n\n\n\n\n\nCaution\n\n\nFor more data information, ask Claire Miller and/or read Waddle et. al Hotspot shelters stimulate frog resistance to chytridiomycosis."
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model identifiability",
+    "text": "Model identifiability\nABC summary statistic:\n  \\Delta(\\theta) =  \\sum_{x \\in \\Omega} \\sum_{j=1}^7\\left(x^\\mathrm{sim}(t_j|\\theta)-x^\\mathrm{obs}(t_j)\\right)^2, \nwhere \\Omega = \\{S_k, \\; I_{k,i} \\; | \\; k=\\{U,V\\}, \\; i = 1, \\dots, 3\\}\n\nGiven infinite data, the model is fully identifiable\nOur data is not infinite, so it is not be possible to recover all model parameters"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#simulation-estimation-experiment",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Simulation-estimation experiment",
+    "text": "Simulation-estimation experiment\n\nSimulate the model using known parameters\nAttempt to recover known parameters\n\n\nParameters obtained from a least-squares fit to the mean-field approximation\n\n\n\n\n\n\n\n\nTip\n\n\nEstimates are valid up to the data-generating process (i.e. the model, including priors and summary statistics)"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-1",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-1",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model identifiability",
+    "text": "Model identifiability"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-2",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-2",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model identifiability",
+    "text": "Model identifiability"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-3",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#model-identifiability-3",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Model identifiability",
+    "text": "Model identifiability"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#results",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#results",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Results",
+    "text": "Results\n\nSimulation-estimation revealed that \\omega, and the product of \\alpha\\beta were identifiable only\n\n\n\n\n\n\n\n\n\nParameter\nPrior\nPosterior (Mean, 95% CI)\n\n\n\n\n\\beta_\\text{sh}\n\\sim U(0,2)\n0.675 (0.025, 1.876)\n\n\n\\beta_\\text{un}\n\\sim U(0,2)\n0.401 (0.008, 1.767)\n\n\n\\alpha\n\\sim U(0,0.5)\n0.072 (0.003, 0.373)\n\n\n\\alpha\\beta_\\text{sh}\n\n0.018 (0.001, 0.061)\n\n\n\\alpha\\beta_\\text{un}\n\n0.009 (0.000, 0.031)\n\n\n\\omega\n\\sim U(0,2)\n0.569 (0.122, 1.688)"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#posterior-distributions",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#posterior-distributions",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Posterior distributions",
+    "text": "Posterior distributions"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#predicted-trajectories",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#predicted-trajectories",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Predicted trajectories",
+    "text": "Predicted trajectories"
+  },
+  {
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#summary",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#summary",
+    "title": "Modelling chytridiomycosis transmission in frogs",
     "section": "Summary",
-    "text": "Summary\nconmat is a new, open-source, programmable system to generate synthetic contact matrices\nAvailable right now:\n\nremotes::install_github(\"idem-lab/conmat\")\n\nor pre-computed matrices on Zenodo: https://zenodo.org/records/12776714"
+    "text": "Summary\n\nHeating of artifical refugia can reduce infection by almost 50%\nPrior infection highly protective (approx 97%)\nSmall numbers of frogs\nLimited observation frequency\nABC-rejection not the most refined algorithm\n\n\nThese refugia are cheap, easy to deploy, used by the frogs.\nChytrid has become a global issue, maybe this can help to at least slow the issue."
   },
   {
-    "objectID": "conmat-spectrum-2024/index.html#acknowledgements",
-    "href": "conmat-spectrum-2024/index.html#acknowledgements",
-    "title": "conmat: Programmatic generation of synthetic contact matrices",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\n\n\n\n\n\n\nChitra Saraswati\n\n\n\n\n\n\n\nAarathy Babu\n\n\n\n\n\n\n\nNick Tierney\n\n\n\n\n\n\n\nNick Golding\n\n\n\n\n\nSPECTRUM-SPARK Seed Funding\n\nCode and slides are available at https://github.com/MikeLydeamore/talk-conmat-projections"
+    "objectID": "chytrid-anziam/talk-chytrid-anziam.html#team",
+    "href": "chytrid-anziam/talk-chytrid-anziam.html#team",
+    "title": "Modelling chytridiomycosis transmission in frogs",
+    "section": "Team",
+    "text": "Team\n\n\n\n\n\n\nClaire Miller\n\n\n\n\n\n\n\nPatricia Campbell\n\n\n\n\n\n\n\nJennifer Flegg\n\n\n\n\n\n\nExperimental paper\nWaddle et. al, Hotspot shelters stimulate frog resistance to chytridiomycosis Nature 2024\nCode availability\n\nEstimation code: https://github.com/clairemiller/chytrid_model\nSlides: https://slides.michaellydeamore.com/chytrid-anziam"
+  },
+  {
+    "objectID": "hospital-network/index.html#monash-ebs-is-hiring",
+    "href": "hospital-network/index.html#monash-ebs-is-hiring",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Monash EBS is hiring",
+    "text": "Monash EBS is hiring\n\nEducation focussed Lecturer / Senior Lecturer - Business Statistics / Econometrics\nhttps://careers.pageuppeople.com/513/cw/en/job/670005/lecturer-ed-focused-senior-lecturer-ed-focused\nLecturer / Senior Lecturer - Actuarial Science\nhttps://careers.pageuppeople.com/513/cw/en/job/670008/lecturersenior-lecturer-actuarial-science"
+  },
+  {
+    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
+    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Carbapenemase-producing Enterobacterales",
+    "text": "Carbapenemase-producing Enterobacterales\n\n\n\n\nGram-negative bacilli occurring naturally in the GI tract\nResistant to carbapenem antibiotics\nSeveral different carbapenemases genes in CPE:\n\nImipenemase (IMP)\nKlebsiella penumoniae carbapenemase (KPC)\nNew-Delhi metallo-β-lactamase (NDM)\nVerona integron-encoded metallo-β-lactamase (VIM) and\nOxacillinases (OXA)\n\nFor Enterobacterales, IMP(-4) most commonly found in Victoria (28% of all cases)\nAssumed to be colonised indefinitely"
+  },
+  {
+    "objectID": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
+    "href": "hospital-network/index.html#carbapenemase-producing-enterobacterales-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Carbapenemase-producing Enterobacterales",
+    "text": "Carbapenemase-producing Enterobacterales\n\nSurveillance officially established in Victoria in 2015, became notifiable in 2018\nSince becoming notifiable, notifications have been steadily increasing"
+  },
+  {
+    "objectID": "hospital-network/index.html#modelling-possible-control",
+    "href": "hospital-network/index.html#modelling-possible-control",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Modelling possible control",
+    "text": "Modelling possible control\n\n\n\nWe know that healthcare is a network phenomenon\nNeed to understand if CPE+ patients are different to CPE- patients"
+  },
+  {
+    "objectID": "hospital-network/index.html#health-services-in-victoria-australia",
+    "href": "hospital-network/index.html#health-services-in-victoria-australia",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Health Services in Victoria, Australia",
+    "text": "Health Services in Victoria, Australia\n\nHealth services are individually governed\nCentralised guidelines for reporitng\nHave their own IP results, testing/screening requirements, admission & transfer patterns\nAre often spread across multiple campuses which operate independently but are administered centrally\n\n\nAs these services tend to operate on the same patient data platform, we assume that previously diagnosed patients will have infection prevention protocols in place if they are re-admitted to the same service.\nThis is less likely to be true in a different health service, as there is no centralised notification system to other health services."
+  },
+  {
+    "objectID": "hospital-network/index.html#notification-system",
+    "href": "hospital-network/index.html#notification-system",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Notification system",
+    "text": "Notification system"
+  },
+  {
+    "objectID": "hospital-network/index.html#data-sources",
+    "href": "hospital-network/index.html#data-sources",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Data sources",
+    "text": "Data sources\nVictorian Admitted Episodes Dataset (VAED):\n\nLine list of every hospital admission (public and private)\nReports demographics, conditions, treatments, timing, location\n\nPublic Health Event Surveillance System (PHESS):\n\nRecords information on notifiable disease events\nIncludes patient demographics, date of notification, date of test\nOperational system, used for contact tracing and outbreak analytics"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-construction",
+    "href": "hospital-network/index.html#network-construction",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network construction",
+    "text": "Network construction\nWe model how patients move around the network.\n\nNodes: Hospital (physical)\nEdge: Transfer of patient between two hospitals, within 365 days\nWeight: Number of patients transferred\n\n\nThis is a weighted, directed network. The worst kind of non-temporal network."
+  },
+  {
+    "objectID": "hospital-network/index.html#network-construction-1",
+    "href": "hospital-network/index.html#network-construction-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network construction",
+    "text": "Network construction\n\nClustering: Infomap (based on a random walk through the network)\n\n\\max_{M} L(M) = q H(\\mathcal{Q}) + \\sum_{i=1}^m p^{i} H(\\mathcal{P}^i)\n\nEffectively maximising entropy of the “walk” subject to a partition, Q, weighting within and between cluster movements.\np and q informed by edge weights"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-construction-2",
+    "href": "hospital-network/index.html#network-construction-2",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network construction",
+    "text": "Network construction\n\nImportance of certain facilites: Adjusted Rand Index\n\nR = \\frac{a+b}{a+b+c+d} = \\frac{a+b}{n\\choose 2},\nwhere\n\na is the number of pairs of elements that are in the same subset in X and the same subset in Y,\nb be the number of pairs of elements that are in different subsets in X and different subsets of Y,\nc be the number of pairs of elements that are in the same subset in X and different subsets in Y and,\nd be the number of pairs of elements that are in different subsets in X and the same subset in Y."
+  },
+  {
+    "objectID": "hospital-network/index.html#admission-demographics",
+    "href": "hospital-network/index.html#admission-demographics",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Admission demographics",
+    "text": "Admission demographics\n\n\n\n\n\n\n\n\nVariable\nN\n\n\n\n\nGender\n\n\nMale\n12,723,729\n\n\nFemale\n14,071,488\n\n\nOther\n1,190\n\n\nAge Group\n\n\n&lt;20\n2,567,643\n\n\n20-39\n4,744,744\n\n\n50-59\n6,372,288\n\n\n&gt;60\n13,111,732\n\n\nLength of Stay\n\n\nMean\n2.739\n\n\nMedian (IQR)\n2 (1-3)"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-exploration-1",
+    "href": "hospital-network/index.html#network-exploration-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network exploration",
+    "text": "Network exploration\n\nDensity: High (0.44)\nClustering: Reasonably strong (foreshadowing)"
+  },
+  {
+    "objectID": "hospital-network/index.html#network-exploration-2",
+    "href": "hospital-network/index.html#network-exploration-2",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Network exploration",
+    "text": "Network exploration"
+  },
+  {
+    "objectID": "hospital-network/index.html#clustering",
+    "href": "hospital-network/index.html#clustering",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Clustering",
+    "text": "Clustering"
+  },
+  {
+    "objectID": "hospital-network/index.html#clustering-1",
+    "href": "hospital-network/index.html#clustering-1",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Clustering",
+    "text": "Clustering"
+  },
+  {
+    "objectID": "hospital-network/index.html#clustering-2",
+    "href": "hospital-network/index.html#clustering-2",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Clustering",
+    "text": "Clustering"
+  },
+  {
+    "objectID": "hospital-network/index.html#node-importance",
+    "href": "hospital-network/index.html#node-importance",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Node importance",
+    "text": "Node importance\nARI: Interpret at proportion of clustering structure “preserved”\n\n\nRemoving small and same-day facilities gives an ARI of between 0.58 and 0.62\n\nSeems key to making connections between larger hospitals\nRemoving one-by-one or all doesn’t notably change ARI\n\nRemoving public hospitals gives ARI of 0.22\nRemoving private hospitals gives ARI of 0.58"
+  },
+  {
+    "objectID": "hospital-network/index.html#next-steps",
+    "href": "hospital-network/index.html#next-steps",
+    "title": "Hospitalisations in Victoria: A network problem",
+    "section": "Next steps",
+    "text": "Next steps\n\nHospital system is dense, geographically clustered\nTransfers are incredibly frequent, tend to move towards metropolitan Melbourne\nNeed to include pretty much all facilities in system consideration\nSurveillance should be considered geographically\n\nLocal public health units?\n\nImpact of patients going home\nTesting/sampling for conditions\n\n\nThis is a very extensive and detailed dataset, with many more project ideas than time.\nBut presents an exciting opportunity to build a data-driven surveillance and outbreak response system."
   }
 ]

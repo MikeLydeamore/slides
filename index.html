@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,14 +33,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dda6bcf18c14475f7348b817eb15352b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,7 +113,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -150,7 +151,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1750222462574" data-listing-reading-time-sort="21" data-listing-word-count-sort="4172">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1758786653735" data-listing-reading-time-sort="21" data-listing-word-count-sort="4172">
 <a href="./2024-adsc-lunchbox/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -169,7 +170,7 @@ Michael Lydeamore
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1750222462903" data-listing-reading-time-sort="14" data-listing-word-count-sort="2771">
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1758786654063" data-listing-reading-time-sort="14" data-listing-word-count-sort="2771">
 <a href="./anziam2024/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -188,7 +189,7 @@ Michael Lydeamore, Nick Tierney, Nick Golding
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1750204800000" data-listing-file-modified-sort="1750222463274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1846">
+<div class="g-col-1" data-index="2" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1758786654434" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1846">
 <a href="./healthcare-infections/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -204,13 +205,35 @@ Data-driven insights into healthcare acquired infections: two case studies
 Michael Lydeamore
 </div>
 <div class="listing-date">
-Jun 18, 2025
+Sep 25, 2025
 </div>
 </div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-listing-date-sort="1750204800000" data-listing-file-modified-sort="1750222463499" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2151">
+<div class="g-col-1" data-index="3" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1758786654725" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1049">
+<a href="./talk-procrastination/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Data-driven insights into healthcare acquired infections: two case studies
+</h5>
+<div class="card-text listing-description delink">
+
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Michael Lydeamore
+</div>
+<div class="listing-date">
+Sep 25, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1758786654658" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2151">
 <a href="./talk-midsea-hospital-infections/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -226,13 +249,13 @@ Data-driven insights into healthcare acquired infections: two case studies
 Michael Lydeamore
 </div>
 <div class="listing-date">
-Jun 18, 2025
+Sep 25, 2025
 </div>
 </div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-listing-date-sort="1750204800000" data-listing-file-modified-sort="1750222463384" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="756">
+<div class="g-col-1" data-index="5" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1758786654544" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="756">
 <a href="./hospital-network/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -248,13 +271,13 @@ Hospitalisations in Victoria: A network problem
 M. J. Lydeamore
 </div>
 <div class="listing-date">
-Jun 18, 2025
+Sep 25, 2025
 </div>
 </div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-listing-file-modified-sort="1750222464121" data-listing-reading-time-sort="5" data-listing-word-count-sort="816">
+<div class="g-col-1" data-index="6" data-listing-file-modified-sort="1758786655336" data-listing-reading-time-sort="5" data-listing-word-count-sort="816">
 <a href="./workshop-r-pkg/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -273,7 +296,7 @@ Intro to R Packages with {usethis}
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-listing-file-modified-sort="1750222463070" data-listing-reading-time-sort="6" data-listing-word-count-sort="1163">
+<div class="g-col-1" data-index="7" data-listing-file-modified-sort="1758786654229" data-listing-reading-time-sort="6" data-listing-word-count-sort="1163">
 <a href="./chytrid-anziam/talk-chytrid-anziam.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -292,7 +315,7 @@ Modelling chytridiomycosis transmission in frogs
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-listing-date-sort="1750204800000" data-listing-file-modified-sort="1750222462675" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="681">
+<div class="g-col-1" data-index="8" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1758786653836" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="681">
 <a href="./acefa-launch/talk-acefa-launch.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -308,13 +331,13 @@ Modelling patient movements for hospital outbreaks
 David Wu; Michael Lydeamore
 </div>
 <div class="listing-date">
-Jun 18, 2025
+Sep 25, 2025
 </div>
 </div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="8" data-listing-file-modified-sort="1750222462652" data-listing-reading-time-sort="4" data-listing-word-count-sort="712">
+<div class="g-col-1" data-index="9" data-listing-file-modified-sort="1758786653812" data-listing-reading-time-sort="4" data-listing-word-count-sort="712">
 <a href="./acefa-launch/model.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -333,7 +356,7 @@ Notations
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="9" data-listing-date-sort="1750204800000" data-listing-file-modified-sort="1750222464058" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1440">
+<div class="g-col-1" data-index="10" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1758786655274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1440">
 <a href="./wombat-airpurifyr-2024/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -349,13 +372,13 @@ Notations
 M. J. Lydeamore, D. Wu, J. P. Lakshika
 </div>
 <div class="listing-date">
-Jun 18, 2025
+Sep 25, 2025
 </div>
 </div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="10" data-listing-date-sort="1750204800000" data-listing-file-modified-sort="1750222463164" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1433">
+<div class="g-col-1" data-index="11" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1758786654323" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1433">
 <a href="./conmat-spectrum-2024/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -371,7 +394,7 @@ Jun 18, 2025
 M. J. Lydeamore
 </div>
 <div class="listing-date">
-Jun 18, 2025
+Sep 25, 2025
 </div>
 </div>
 </div>
@@ -431,13 +454,14 @@ Jun 18, 2025
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="Michael Lydeamore, Nick Tierney, Nick Golding">
   <title>Michael Lydeamore - Slides – conmat: Programmatic generation of synthetic contact matrices</title>
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-ab6b36bbab3668bdf0f1114154846d00.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-d057ed7f7864d8e5ad99972a645a7249.css">
   <link rel="stylesheet" href="assets/tachyons-addon.css">
   <link rel="stylesheet" href="assets/custom.css">
   <link rel="stylesheet" href="assets/lecture-01.css">
@@ -298,7 +298,7 @@
 <p>You can view the package online: <a href="https://www.github.com/idem-lab/conmat">https://www.github.com/idem-lab/conmat</a></p>
 <p>or install using:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"idem-lab/conmat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"idem-lab/conmat"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="model-details" class="slide level2">
@@ -340,7 +340,7 @@ c_{ij} = \beta_0 + \beta_1(|i-j|) + &amp;\beta_2(|i-j|^2) + \beta_3(i\times j) +
 <li>The <code>socialmixr</code> package has this information for most countries:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>socialmixr<span class="sc">::</span><span class="fu">wpp_age</span>(<span class="st">"Australia"</span>, <span class="dv">2015</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>socialmixr<span class="sc">::</span><span class="fu">wpp_age</span>(<span class="st">"Australia"</span>, <span class="dv">2015</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     country lower.age.limit year population
 1  Australia               0 2015    1545114
@@ -369,7 +369,7 @@ c_{ij} = \beta_0 + \beta_1(|i-j|) + &amp;\beta_2(|i-j|^2) + \beta_3(i\times j) +
 </div><div class="column fragment" style="width:50%;">
 <p>And for inside Australia, <code>conmat</code> provides some ABS functions:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>conmat<span class="sc">::</span><span class="fu">abs_age_lga</span>(<span class="st">"Melbourne (C)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>conmat<span class="sc">::</span><span class="fu">abs_age_lga</span>(<span class="st">"Melbourne (C)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 18 × 4 (conmat_population)
  - age: lower.age.limit
@@ -486,7 +486,7 @@ c_{ij} = \beta_0 + \beta_1(|i-j|) + &amp;\beta_2(|i-j|^2) + \beta_3(i\times j) +
 <h2>Why should I use this? It’s easy!</h2>
 <p>Getting a contact matrix is easy:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>world_data <span class="ot">&lt;-</span> socialmixr<span class="sc">::</span><span class="fu">wpp_age</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>world_data <span class="ot">&lt;-</span> socialmixr<span class="sc">::</span><span class="fu">wpp_age</span>()</span>
 <span id="cb6-2"><a></a>population <span class="ot">&lt;-</span> <span class="fu">age_population</span>(</span>
 <span id="cb6-3"><a></a>    <span class="at">data =</span> world_data,</span>
 <span id="cb6-4"><a></a>    <span class="at">location_col =</span> country,</span>
@@ -496,7 +496,7 @@ c_{ij} = \beta_0 + \beta_1(|i-j|) + &amp;\beta_2(|i-j|^2) + \beta_3(i\times j) +
 <span id="cb6-8"><a></a>    <span class="at">year =</span> <span class="dv">2015</span></span>
 <span id="cb6-9"><a></a>)</span>
 <span id="cb6-10"><a></a></span>
-<span id="cb6-11"><a></a>population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-11"><a></a>population</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 21 × 5 (conmat_population)
  - age: lower.age.limit
@@ -521,18 +521,18 @@ c_{ij} = \beta_0 + \beta_1(|i-j|) + &amp;\beta_2(|i-j|^2) + \beta_3(i\times j) +
 <h2>Why should I use this?</h2>
 <p>Getting a contact matrix is easy:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>contact_rates <span class="ot">&lt;-</span> <span class="fu">extrapolate_polymod</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>contact_rates <span class="ot">&lt;-</span> <span class="fu">extrapolate_polymod</span>(</span>
 <span id="cb8-2"><a></a>    <span class="at">population =</span> population,</span>
 <span id="cb8-3"><a></a>    <span class="at">age_breaks =</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>), <span class="cn">Inf</span>)</span>
 <span id="cb8-4"><a></a>)</span>
 <span id="cb8-5"><a></a></span>
-<span id="cb8-6"><a></a><span class="fu">print</span>(contact_rates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-6"><a></a><span class="fu">print</span>(contact_rates)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="why-should-i-use-this-1" class="slide level2">
 <h2>Why should I use this?</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>contact_rates<span class="sc">$</span>home</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>contact_rates<span class="sc">$</span>home</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 [0,5)       [5,10)      [10,15)      [15,20)      [20,25)
 [0,5)     5.802591e-01 4.813549e-01 2.402471e-01 1.620169e-01 2.321232e-01
@@ -650,7 +650,7 @@ c_{ij} = \beta_0 + \beta_1(|i-j|) + &amp;\beta_2(|i-j|^2) + \beta_3(i\times j) +
 <section id="why-should-i-use-this-you-can-use-a-custom-population" class="slide level2">
 <h2>Why should I use this? You can use a custom population</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="1-6|8-15|17-20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>flat_population_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" data-code-line-numbers="1-6|8-15|17-20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>flat_population_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb11-2"><a></a>    <span class="at">country =</span> <span class="st">"flatland"</span>,</span>
 <span id="cb11-3"><a></a>    <span class="at">year =</span> <span class="dv">2024</span>,</span>
 <span id="cb11-4"><a></a>    <span class="at">population =</span> <span class="dv">1000</span>,</span>
@@ -669,13 +669,13 @@ c_{ij} = \beta_0 + \beta_1(|i-j|) + &amp;\beta_2(|i-j|^2) + \beta_3(i\times j) +
 <span id="cb11-17"><a></a>flat_contact_rates <span class="ot">&lt;-</span> <span class="fu">extrapolate_polymod</span>(</span>
 <span id="cb11-18"><a></a>    <span class="at">population =</span> flat_population,</span>
 <span id="cb11-19"><a></a>    <span class="at">age_breaks =</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="at">by=</span><span class="dv">5</span>), <span class="cn">Inf</span>)</span>
-<span id="cb11-20"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-20"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="why-should-i-use-this-you-can-use-a-custom-population-1" class="slide level2">
 <h2>Why should I use this? You can use a custom population</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>flat_contact_rates<span class="sc">$</span>home</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>flat_contact_rates<span class="sc">$</span>home</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              [0,5)     [5,10)    [10,15)    [15,20)    [20,25)    [25,30)
 [0,5)    0.56828986 0.47107930 0.23528412 0.15828319 0.22562515 0.42964988
@@ -955,7 +955,7 @@ c_{ij} = \beta_0 + \beta_1(|i-j|) + &amp;\beta_2(|i-j|^2) + \beta_3(i\times j) +
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1071,13 +1071,14 @@ c_{ij} = \beta_0 + \beta_1(|i-j|) + &amp;\beta_2(|i-j|^2) + \beta_3(i\times j) +
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
