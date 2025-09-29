@@ -548,126 +548,126 @@
   {
     "objectID": "talk-procrastination/index.html#tooling",
     "href": "talk-procrastination/index.html#tooling",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Tooling",
     "text": "Tooling"
   },
   {
     "objectID": "talk-procrastination/index.html#teleport-github-action",
     "href": "talk-procrastination/index.html#teleport-github-action",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "teleport GitHub Action",
     "text": "teleport GitHub Action\nGitHub actions are a way to run code automatically in response to events on GitHub. Triggers include:\n\nPushing\nPull request\nOn a schedule!!!\nManually\n\n\nIn EBS many of us are managing all our teaching materials in GitHub repos.\n\n\nThe slides and tutorials obviously need to be public, but assignment solutions should not"
   },
   {
     "objectID": "talk-procrastination/index.html#possible-solutions",
     "href": "talk-procrastination/index.html#possible-solutions",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Possible solutions",
     "text": "Possible solutions\n\nDon’t put assignment solutions in GitHub repos\nPay for GitHub Enterprise\nManage two repositories: one public, one private\n\n\nWhen I started at EBS, we had a version of option 3 using the copycat action. Sadly this action is no longer maintained."
   },
   {
     "objectID": "talk-procrastination/index.html#teleport",
     "href": "talk-procrastination/index.html#teleport",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "teleport",
     "text": "teleport\nMy first draft of this was a manual implementation which effectively:\n\nSchematicCode\n\n\n\nChecks out both repos\nUses rsync to copy files from one repo to a specific directory in another\nCommits and pushes changes if there are any using a bot account\n\n\n\nsteps:\n      - name: Checkout source repo\n        uses: actions/checkout@v4\n        with:\n          repository: ${{ github.repository }}\n          path: source\n\n      - name: Checkout target repo\n        uses: actions/checkout@v4\n        with:\n          repository: spectrum-spark/courses \n          path: target-repo\n          token: ${{ secrets.PERSONAL_TOKEN }}       # Personal Access Token with repo write perms\n\n      - name: Copy files\n        run: |\n          mkdir -p target-repo/courses/intro-mathematical-modelling\n          rsync -av --delete source/student_materials/ target-repo/courses/intro-mathematical-modelling\n\n      - name: Commit & push changes\n        working-directory: target-repo\n        run: |\n          git config user.name \"github-actions[bot]\"\n          git config user.email \"41898282+github-actions[bot]@users.noreply.github.com\"\n          git add .\n          git commit -m \"Sync directory from source repo\" || echo \"No changes to commit\"\n          git push"
   },
   {
     "objectID": "talk-procrastination/index.html#teleport-1",
     "href": "talk-procrastination/index.html#teleport-1",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "teleport",
     "text": "teleport\nBundled into an action, you can now just add this to your workflow:\nsteps:\n      - uses: MikeLydeamore/teleport-action@v1\n        with:\n          target_repo: \"OWNER/TARGET_REPO\"\n          target_path: \"path/in/target\"\n          source_path: \"path/in/source\"\n          token: ${{ secrets.CROSS_REPO_PAT }}\n\nThe token needs the following scopes:\n\nTarget Repo: Contents (read/write)\nSource repo: Contents (read) if the repo is private\n\n\n\nThere are also some semantics about trailing / in paths, see the README for details."
   },
   {
     "objectID": "talk-procrastination/index.html#usage",
     "href": "talk-procrastination/index.html#usage",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Usage",
     "text": "Usage\nSee the action online: MikeLydeamore/teleport\nNow deployed in:\n\nAt least one EBS course material repo\nID Modelling course materials\n\nAnd one dayTM it’s how I will deploy my slides."
   },
   {
     "objectID": "talk-procrastination/index.html#unilur-quarto-filter",
     "href": "talk-procrastination/index.html#unilur-quarto-filter",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "unilur quarto filter",
     "text": "unilur quarto filter\nOne of the principles of reproducibility is to reduce duplication\n\n\nIf you use a variable more than once, define it once and refer to it\n\n\n\nMy repo looked something like this:\ntutorials\n├── 01-questions.qmd\n├── 01-solutions.qmd\n\n\nAnd the content in questions and solutions was almost identical, except for the answers."
   },
   {
     "objectID": "talk-procrastination/index.html#unilur",
     "href": "talk-procrastination/index.html#unilur",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "unilur",
     "text": "unilur\nIn the world of RMarkdown, an output format called unilur exists koncina/unilur"
   },
   {
     "objectID": "talk-procrastination/index.html#unilur-quarto-filter-1",
     "href": "talk-procrastination/index.html#unilur-quarto-filter-1",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "unilur quarto filter",
     "text": "unilur quarto filter\nAurélien Ginolhac has ported this to Quarto as a filter: ginolhac/unilur, and I have added support for various output formats:\nformat:\n  unilur-html: default\n  unilur-html+solution:\n    output-file: example-solution.html\n  unilur-pdf: default\n  unilur-pdf+solution: default"
   },
   {
     "objectID": "talk-procrastination/index.html#unilur-quarto-filter-2",
     "href": "talk-procrastination/index.html#unilur-quarto-filter-2",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "unilur quarto filter",
     "text": "unilur quarto filter\n\nSpecify solution blocks with ::: {.solution}\nOr as a chunk option #| solution: true\n\n\nYou can also use unilur-comment to add comments that only appear in solutions such as marking guides"
   },
   {
     "objectID": "talk-procrastination/index.html#collaborative-writing-and-quarto",
     "href": "talk-procrastination/index.html#collaborative-writing-and-quarto",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Collaborative writing and Quarto",
     "text": "Collaborative writing and Quarto\n\nQuarto works well with git\nViewing diffs of .qmd files is not very user friendly\nLeaving feedback (i.e. without changing the text) is not practical\n\n\nOne approach: Use HTML comments (which never render in any format) to give feedback."
   },
   {
     "objectID": "talk-procrastination/index.html#collaborative-writing-and-quarto-1",
     "href": "talk-procrastination/index.html#collaborative-writing-and-quarto-1",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Collaborative writing and Quarto",
     "text": "Collaborative writing and Quarto\nProblem: Finding these comments again!\n\nGrep?\nCustom script?\nPositron extension?"
   },
   {
     "objectID": "talk-procrastination/index.html#comment-viewer-positron-extension-1",
     "href": "talk-procrastination/index.html#comment-viewer-positron-extension-1",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Comment Viewer Positron Extension",
     "text": "Comment Viewer Positron Extension\nMikeLydeamore/code-comment-viewer-extension\n\n\nYou can hover and click on comments to jump your document to them."
   },
   {
     "objectID": "talk-procrastination/index.html#code-golf",
     "href": "talk-procrastination/index.html#code-golf",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Code Golf",
     "text": "Code Golf\nCode golf is a game where the aim is to solve a problem as quickly, and often in as few characters of code as possible.\n\nIn my opinion few characters is a poor metric, but speed, and accuracy are interesting.\n\n\nSee for example CSSBattle"
   },
   {
     "objectID": "talk-procrastination/index.html#gamifying-data-visualisation",
     "href": "talk-procrastination/index.html#gamifying-data-visualisation",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Gamifying data visualisation",
     "text": "Gamifying data visualisation\nI built ggplot battles to gamify learning ggplot2.\n\nAvailable at: https://www.ggplotbattles.dev\n\n\nThis involved:\n\nGetting webr working in pure javascript\nGetting canvases to display ggplots, which is way harder than it sounds\nPixel-by-pixel image comparison using resemble.js\nWriting a custom Quarto-like argument parser for challenges"
   },
   {
     "objectID": "talk-procrastination/index.html#contributing",
     "href": "talk-procrastination/index.html#contributing",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Contributing",
     "text": "Contributing\nMore challenges = more good\nInstructions are on GitHub, but if you can write a qmd you can write these.\n\nThe build system is entirely custom, and will likely break, but for now I remain the gatekeeper of all things ggplot battles."
   },
   {
     "objectID": "talk-procrastination/index.html#testing",
     "href": "talk-procrastination/index.html#testing",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Testing",
     "text": "Testing\nI’m rolling this out in my communication unit. You are welcome to do the same, or try on your own.\nCurrently, there is no leaderboard or unified scoring system, but maybe it will come."
   },
   {
     "objectID": "talk-procrastination/index.html#innovation-through-procastination",
     "href": "talk-procrastination/index.html#innovation-through-procastination",
-    "title": "Data-driven insights into healthcare acquired infections: two case studies",
+    "title": "When procrastination leads to innovation",
     "section": "Innovation through Procastination",
     "text": "Innovation through Procastination\n\n\n\nWhy spend time doing this?\n\nIt generates a disgusting amount of LinkedIn likes\n\n\nMaking small tools keeps my skills sharp\nHelps me learn new coding styles to take to bigger projects\nIt gives me great joy to see someone else use something I built\nIt’s often a good break from deep thinking work"
   },
@@ -956,7 +956,7 @@
     "href": "index.html",
     "title": "Michael Lydeamore - Slides",
     "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nSep 25, 2025\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nSep 25, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhen procrastination leads to innovation\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "healthcare-infections/index.html#hello-from-australia",
