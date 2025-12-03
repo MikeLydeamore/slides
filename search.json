@@ -672,291 +672,151 @@
     "text": "Innovation through Procastination\n\n\n\nWhy spend time doing this?\n\nIt generates a disgusting amount of LinkedIn likes\n\n\nMaking small tools keeps my skills sharp\nHelps me learn new coding styles to take to bigger projects\nIt gives me great joy to see someone else use something I built\nIt’s often a good break from deep thinking work"
   },
   {
-    "objectID": "anziam2024/index.html#etc5513-title",
-    "href": "anziam2024/index.html#etc5513-title",
-    "title": "Michael Lydeamore - Slides",
-    "section": "conmat: Programmatic generation of synthetic contact matrices",
-    "text": "conmat: Programmatic generation of synthetic contact matrices\nGoing beyond Prem\nMichael Lydeamore, Nick Tierney, Nick Golding\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\nhttps://slides.michaellydeamore.com/anziam2024"
-  },
-  {
-    "objectID": "anziam2024/index.html#contact-matrices",
-    "href": "anziam2024/index.html#contact-matrices",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Contact matrices",
-    "text": "Contact matrices\n\nSome infectious diseases are spread from contact between individuals\nWhen we model disease, we need some idea of how often people contact other people\nTypically, we turn to contact diary studies"
-  },
-  {
-    "objectID": "anziam2024/index.html#contact-diary-studies",
-    "href": "anziam2024/index.html#contact-diary-studies",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Contact Diary Studies",
-    "text": "Contact Diary Studies\nContact diary studies follow individuals and ask them:\n\nhow many contacts of a certain type,\nthe duration of contact,\nthe location of the contact,\nthe frequency of the contact\n\n\nThey are undoubtedly the gold standard for data on the number of contacts.\nBut they are prohibitively expensive, and logistically very challenging."
-  },
-  {
-    "objectID": "anziam2024/index.html#polymod",
-    "href": "anziam2024/index.html#polymod",
-    "title": "Michael Lydeamore - Slides",
-    "section": "POLYMOD",
-    "text": "POLYMOD\nPublished in 2008, Mossong et. al undertook a contact diary study of 7290 participants across Europe.\nIt remains the most widely cited contact diary study."
-  },
-  {
-    "objectID": "anziam2024/index.html#contact-matrix-projection",
-    "href": "anziam2024/index.html#contact-matrix-projection",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Contact matrix projection",
-    "text": "Contact matrix projection\nPrem et. al formed a model that predicts the number of contacts based on the age of participants.\nThis model then allows for prediction to settings that are outside the original POLYMOD countries."
-  },
-  {
-    "objectID": "anziam2024/index.html#what-is-provided",
-    "href": "anziam2024/index.html#what-is-provided",
-    "title": "Michael Lydeamore - Slides",
-    "section": "What is provided:",
-    "text": "What is provided:"
-  },
-  {
-    "objectID": "anziam2024/index.html#what-is-provided-1",
-    "href": "anziam2024/index.html#what-is-provided-1",
-    "title": "Michael Lydeamore - Slides",
-    "section": "What is provided:",
-    "text": "What is provided:\nEstimates for 155 countries.\nThere is code, but it is not easily expandable to new settings.\n\nIf your country isn’t in the list of 155: no estimates for you.\n\n\n\n\n\n\n\n\nCaution\n\n\nAustralia was in the original set of 155, but was not included in the updated estimates a few years ago.\n\n\n\n\n\nThere are other more technical concerns with components of the model that probably have minor influence on the projects."
-  },
-  {
-    "objectID": "anziam2024/index.html#an-alternative-approach",
-    "href": "anziam2024/index.html#an-alternative-approach",
-    "title": "Michael Lydeamore - Slides",
-    "section": "An alternative approach",
-    "text": "An alternative approach\nWe developed an open-source approach, that can be applied to any input population (big or small).\nYou can view the package online: https://www.github.com/idem-lab/conmat\nor install using:\n\nremotes::install_github(\"idem-lab/conmat\")"
-  },
-  {
-    "objectID": "anziam2024/index.html#model-details",
-    "href": "anziam2024/index.html#model-details",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Model details",
-    "text": "Model details\nFundamentally, these models have pretty little to go on. They are trained on the number of contacts between two age groups \\(i\\) and \\(j\\). In conmat, this takes the form:\n\\[\\begin{aligned}\nc_{ij} = \\beta_0 + \\beta_1(|i-j|) + &\\beta_2(|i-j|^2) + \\beta_3(i\\times j) + \\beta_4(i+j) +\\\\ &\\beta_5\\max(i, j) + \\beta_6\\min(i, j)\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\nTip\n\n\nWe want to fit this as a generalised additive model, so actually we have splines on these terms to satisfy the smoothness requirements.\nThis is very similar to the approach by Prem et. al who perform post-hoc smoothing of the parameters after MCMC."
-  },
-  {
-    "objectID": "anziam2024/index.html#model-details-1",
-    "href": "anziam2024/index.html#model-details-1",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Model details",
-    "text": "Model details\n\nAll that is needed to make predictions is the number of individuals in different age groups.\nThis is easily obtainable information from most statistics bureaus/governments."
-  },
-  {
-    "objectID": "anziam2024/index.html#data-sources",
-    "href": "anziam2024/index.html#data-sources",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Data sources",
-    "text": "Data sources\n\n\n\nThe socialmixr package has this information for most countries:\n\n\nsocialmixr::wpp_age(\"Australia\", 2015)\n\n     country lower.age.limit year population\n1  Australia               0 2015    1545114\n2  Australia               5 2015    1521110\n3  Australia              10 2015    1416482\n4  Australia              15 2015    1480341\n5  Australia              20 2015    1663584\n6  Australia              25 2015    1763281\n7  Australia              30 2015    1753076\n8  Australia              35 2015    1574157\n9  Australia              40 2015    1655520\n10 Australia              45 2015    1559506\n11 Australia              50 2015    1569432\n12 Australia              55 2015    1451869\n13 Australia              60 2015    1281612\n14 Australia              65 2015    1153780\n15 Australia              70 2015     843695\n16 Australia              75 2015     628870\n17 Australia              80 2015     466797\n18 Australia              85 2015     303108\n19 Australia              90 2015     135089\n20 Australia              95 2015      29268\n21 Australia             100 2015       3855\n\n\n\nAnd for inside Australia, conmat provides some ABS functions:\n\nconmat::abs_age_lga(\"Melbourne (C)\")\n\n# A tibble: 18 × 4 (conmat_population)\n - age: lower.age.limit\n - population: population\n   lga           lower.age.limit  year population\n   &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n 1 Melbourne (C)               0  2020       4882\n 2 Melbourne (C)               5  2020       3450\n 3 Melbourne (C)              10  2020       2675\n 4 Melbourne (C)              15  2020       9396\n 5 Melbourne (C)              20  2020      38434\n 6 Melbourne (C)              25  2020      38546\n 7 Melbourne (C)              30  2020      25834\n 8 Melbourne (C)              35  2020      15072\n 9 Melbourne (C)              40  2020       8554\n10 Melbourne (C)              45  2020       6753\n11 Melbourne (C)              50  2020       5941\n12 Melbourne (C)              55  2020       5859\n13 Melbourne (C)              60  2020       5060\n14 Melbourne (C)              65  2020       4443\n15 Melbourne (C)              70  2020       3611\n16 Melbourne (C)              75  2020       2320\n17 Melbourne (C)              80  2020       1467\n18 Melbourne (C)              85  2020       1459"
-  },
-  {
-    "objectID": "anziam2024/index.html#testing-model-fit-sir-model",
-    "href": "anziam2024/index.html#testing-model-fit-sir-model",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Testing model fit: SIR Model",
-    "text": "Testing model fit: SIR Model\nTo test model fit, we will use a structured, SIR model. For the population in group \\(i\\),\n\\[ \\lambda(t) = \\beta \\times C \\times I(t),\\] where\n\n\\(\\beta\\) represents the probability of transmission given contact (here assumed to be independent of age group)\n\\(C\\) is an \\(N \\times N\\) matrix with element \\((i,j)\\) representing the number of contacts from age group \\(i\\) to age group \\(j\\), and\n\\(I(t)\\) is a \\(N \\times 1\\) vector of the number of infected individuals"
-  },
-  {
-    "objectID": "anziam2024/index.html#testing-model-fit-sir-model-1",
-    "href": "anziam2024/index.html#testing-model-fit-sir-model-1",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Testing model fit: SIR Model",
-    "text": "Testing model fit: SIR Model\nThen,\n\\[\\begin{aligned}\n\\frac{dS}{dt} &= -\\lambda(t) S I \\\\\n\\frac{dI}{dt} &= \\lambda(t) S I - \\gamma I \\\\\n\\frac{dR}{dt} &= \\gamma I\n\\end{aligned}\n\\]\nand the total population size is conserved (\\(S+I+R = N\\))."
-  },
-  {
-    "objectID": "anziam2024/index.html#difference-in-peak-size-compared-to-polymod",
-    "href": "anziam2024/index.html#difference-in-peak-size-compared-to-polymod",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Difference in peak size compared to POLYMOD",
-    "text": "Difference in peak size compared to POLYMOD\n\nDepends on R0 but contact model estimates are systematically lower\nPossibly because of unequal sampling which isn’t accounted for in data"
-  },
-  {
-    "objectID": "anziam2024/index.html#difference-in-peak-size-compared-to-prem",
-    "href": "anziam2024/index.html#difference-in-peak-size-compared-to-prem",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Difference in peak size compared to Prem",
-    "text": "Difference in peak size compared to Prem\n\nconmat method systematically gives larger epidemics compared to Prem et. al\nCould be due to different interpretations of parameters or slightly different data sources"
-  },
-  {
-    "objectID": "anziam2024/index.html#for-a-fixed-r01.5",
-    "href": "anziam2024/index.html#for-a-fixed-r01.5",
-    "title": "Michael Lydeamore - Slides",
-    "section": "For a fixed R0=1.5",
-    "text": "For a fixed R0=1.5"
-  },
-  {
-    "objectID": "anziam2024/index.html#why-not-just-use-prem",
-    "href": "anziam2024/index.html#why-not-just-use-prem",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Why not just use Prem?",
-    "text": "Why not just use Prem?\n\nThere’s no ground truth in these projects, making comparisons to almost impossible"
-  },
-  {
-    "objectID": "anziam2024/index.html#why-should-i-use-this-its-easy",
-    "href": "anziam2024/index.html#why-should-i-use-this-its-easy",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Why should I use this? It’s easy!",
-    "text": "Why should I use this? It’s easy!\nGetting a contact matrix is easy:\n\nworld_data &lt;- socialmixr::wpp_age()\npopulation &lt;- age_population(\n    data = world_data,\n    location_col = country,\n    location = \"Australia\",\n    age_col = lower.age.limit,\n    year_col = year,\n    year = 2015\n)\n\npopulation\n\n# A tibble: 21 × 5 (conmat_population)\n - age: lower.age.limit\n - population: population\n   country    year population lower.age.limit upper.age.limit\n   &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;\n 1 Australia  2015    1545114               0               4\n 2 Australia  2015    1521110               5               9\n 3 Australia  2015    1416482              10              14\n 4 Australia  2015    1480341              15              19\n 5 Australia  2015    1663584              20              24\n 6 Australia  2015    1763281              25              29\n 7 Australia  2015    1753076              30              34\n 8 Australia  2015    1574157              35              39\n 9 Australia  2015    1655520              40              44\n10 Australia  2015    1559506              45              49\n# ℹ 11 more rows"
-  },
-  {
-    "objectID": "anziam2024/index.html#why-should-i-use-this",
-    "href": "anziam2024/index.html#why-should-i-use-this",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Why should I use this?",
-    "text": "Why should I use this?\nGetting a contact matrix is easy:\n\ncontact_rates &lt;- extrapolate_polymod(\n    population = population,\n    age_breaks = c(seq(0, 100, by = 5), Inf)\n)\n\nprint(contact_rates)"
-  },
-  {
-    "objectID": "anziam2024/index.html#why-should-i-use-this-1",
-    "href": "anziam2024/index.html#why-should-i-use-this-1",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Why should I use this?",
-    "text": "Why should I use this?\n\ncontact_rates$home\n\n                 [0,5)       [5,10)      [10,15)      [15,20)      [20,25)\n[0,5)     5.802591e-01 4.813549e-01 2.402471e-01 1.620169e-01 2.321232e-01\n[5,10)    4.646578e-01 7.514361e-01 4.946728e-01 1.791579e-01 1.174632e-01\n[10,15)   2.269854e-01 4.841612e-01 7.948923e-01 4.093514e-01 1.390883e-01\n[15,20)   1.577753e-01 1.807368e-01 4.219247e-01 6.808458e-01 3.419038e-01\n[20,25)   2.432882e-01 1.275370e-01 1.542955e-01 3.679832e-01 5.807800e-01\n[25,30)   4.886107e-01 2.352219e-01 1.226892e-01 1.477810e-01 3.335959e-01\n[30,35)   6.641648e-01 5.188639e-01 2.431926e-01 1.258683e-01 1.448990e-01\n[35,40)   4.878934e-01 6.644817e-01 4.999019e-01 2.317582e-01 1.165367e-01\n[40,45)   2.582931e-01 4.382340e-01 5.778488e-01 4.314489e-01 1.936253e-01\n[45,50)   1.687273e-01 2.152100e-01 3.566710e-01 4.708383e-01 3.386774e-01\n[50,55)   1.689770e-01 1.393551e-01 1.740598e-01 2.883215e-01 3.645253e-01\n[55,60)   1.852236e-01 1.352834e-01 1.089212e-01 1.338642e-01 2.115404e-01\n[60,65)   1.559059e-01 1.373831e-01 9.632628e-02 7.402672e-02 8.744629e-02\n[65,70)   9.671786e-02 1.081266e-01 8.924898e-02 5.758573e-02 4.288228e-02\n[70,75)   5.304213e-02 6.517089e-02 6.630047e-02 4.931502e-02 3.157968e-02\n[75,80)   3.063155e-02 3.655708e-02 3.961536e-02 3.605985e-02 2.759811e-02\n[80,85)   1.701003e-02 2.046395e-02 2.097059e-02 2.037989e-02 1.984339e-02\n[85,90)   6.793228e-03 9.262530e-03 9.350083e-03 8.704453e-03 9.446582e-03\n[90,95)   1.485635e-03 2.547974e-03 2.852779e-03 2.654936e-03 2.853791e-03\n[95,100)  1.550040e-04 3.807001e-04 5.280096e-04 5.572703e-04 6.106408e-04\n[100,Inf) 4.001678e-06 1.569944e-05 2.851021e-05 3.613939e-05 4.352133e-05\n               [25,30)      [30,35)      [35,40)      [40,45)      [45,50)\n[0,5)     4.406440e-01 5.982784e-01 4.552888e-01 2.465532e-01 1.640271e-01\n[5,10)    2.047720e-01 4.511788e-01 5.985671e-01 4.038050e-01 2.019578e-01\n[10,15)   1.045372e-01 2.069748e-01 4.407441e-01 5.211368e-01 3.275955e-01\n[15,20)   1.297843e-01 1.104135e-01 2.106083e-01 4.010565e-01 4.457390e-01\n[20,25)   3.153175e-01 1.368029e-01 1.139796e-01 1.937146e-01 3.450794e-01\n[25,30)   5.243732e-01 3.144551e-01 1.356807e-01 1.013971e-01 1.623030e-01\n[30,35)   3.148155e-01 4.980613e-01 2.954307e-01 1.163616e-01 8.325675e-02\n[35,40)   1.311236e-01 2.851813e-01 4.517921e-01 2.542122e-01 9.813646e-02\n[40,45)   9.579716e-02 1.098093e-01 2.485196e-01 4.075377e-01 2.345534e-01\n[45,50)   1.505639e-01 7.714654e-02 9.420239e-02 2.303081e-01 4.062297e-01\n[50,55)   2.628503e-01 1.238732e-01 6.901509e-02 9.188973e-02 2.408397e-01\n[55,60)   2.718109e-01 2.122671e-01 1.101458e-01 6.639312e-02 9.279330e-02\n[60,65)   1.446095e-01 2.063714e-01 1.771966e-01 9.622107e-02 5.879160e-02\n[65,70)   5.498418e-02 1.035664e-01 1.608957e-01 1.394100e-01 7.437032e-02\n[70,75)   2.651484e-02 3.913120e-02 7.821431e-02 1.191438e-01 1.011711e-01\n[75,80)   2.059216e-02 1.972887e-02 2.968419e-02 5.702188e-02 8.691144e-02\n[80,85)   1.798484e-02 1.488353e-02 1.402809e-02 2.034797e-02 4.046827e-02\n[85,90)   1.090387e-02 1.044056e-02 8.227622e-03 7.649566e-03 1.201023e-02\n[90,95)   3.633180e-03 4.228353e-03 3.796308e-03 3.023101e-03 3.099944e-03\n[95,100)  7.478837e-04 9.265512e-04 1.031428e-03 9.725087e-04 8.415508e-04\n[100,Inf) 5.166363e-05 6.101144e-05 7.499761e-05 8.726638e-05 8.258968e-05\n               [50,55)      [55,60)      [60,65)      [65,70)      [70,75)\n[0,5)     1.687022e-01 1.961683e-01 0.1832025702 0.1331132999 0.0918863354\n[5,10)    1.343025e-01 1.383072e-01 0.1558369131 0.1436531774 0.1089811502\n[10,15)   1.641843e-01 1.089894e-01 0.1069433218 0.1160533779 0.1085141367\n[15,20)   2.803165e-01 1.380623e-01 0.0847102640 0.0771805911 0.0831931640\n[20,25)   3.814376e-01 2.348162e-01 0.1076993145 0.0618578959 0.0573376911\n[25,30)   2.909892e-01 3.192085e-01 0.1884261254 0.0839126928 0.0509323900\n[30,35)   1.372914e-01 2.495673e-01 0.2692099753 0.1582363271 0.0752533160\n[35,40)   7.383723e-02 1.250082e-01 0.2231323234 0.2372997628 0.1451958462\n[40,45)   9.610865e-02 7.366441e-02 0.1184517518 0.2010068440 0.2162238279\n[45,50)   2.473381e-01 1.010924e-01 0.0710647072 0.1052892436 0.1802835840\n[50,55)   4.428859e-01 2.631261e-01 0.0980390321 0.0637188708 0.0974964688\n[55,60)   2.480418e-01 4.500001e-01 0.2527757109 0.0905781696 0.0621663591\n[60,65)   8.329582e-02 2.278236e-01 0.4239011662 0.2392786574 0.0895750648\n[65,70)   4.622177e-02 6.970135e-02 0.2042952564 0.3920370894 0.2228202559\n[70,75)   5.618912e-02 3.800650e-02 0.0607611916 0.1770269961 0.3268365761\n[75,80)   7.927543e-02 4.788099e-02 0.0330311910 0.0500190560 0.1358156077\n[80,85)   6.696845e-02 6.405183e-02 0.0377136045 0.0242834312 0.0344473988\n[85,90)   2.589055e-02 4.275948e-02 0.0381342648 0.0207240237 0.0126427866\n[90,95)   5.199957e-03 1.089333e-02 0.0165873700 0.0135501574 0.0068514835\n[95,100)  8.791712e-04 1.406558e-03 0.0027504099 0.0038776570 0.0029390575\n[100,Inf) 6.969596e-05 7.464274e-05 0.0001226298 0.0002243481 0.0002723907\n               [75,80)      [80,85)      [85,90)      [90,95)     [95,100)\n[0,5)     0.0695641984 0.0532109912 3.471403e-02 1.729263e-02 0.0058435830\n[5,10)    0.0801412678 0.0617950322 4.569054e-02 2.862937e-02 0.0138543803\n[10,15)   0.0850002537 0.0619793297 4.514235e-02 3.137307e-02 0.0188069300\n[15,20)   0.0797478903 0.0620835720 4.331605e-02 3.009411e-02 0.0204588230\n[20,25)   0.0656899136 0.0650600964 5.059482e-02 3.481559e-02 0.0241281820\n[25,30)   0.0518553897 0.0623847088 6.178521e-02 4.689333e-02 0.0312640673\n[30,35)   0.0497383729 0.0516862432 5.922775e-02 5.463775e-02 0.0387773632\n[35,40)   0.0722403975 0.0470254386 4.505482e-02 4.735311e-02 0.0416690143\n[40,45)   0.1356627465 0.0666837054 4.095132e-02 3.686412e-02 0.0384089094\n[45,50)   0.2030314881 0.1302208821 6.313202e-02 3.711697e-02 0.0326351958\n[50,55)   0.1803275843 0.2098327714 1.325186e-01 6.062553e-02 0.0331983468\n[55,60)   0.1026709549 0.1891888359 2.063141e-01 1.197230e-01 0.0500681572\n[60,65)   0.0638369340 0.1003980607 1.658346e-01 1.643075e-01 0.0882398189\n[65,70)   0.0825348941 0.0551939725 7.694638e-02 1.145984e-01 0.1062162347\n[70,75)   0.1780478029 0.0622046521 3.729424e-02 4.603665e-02 0.0639608777\n[75,80)   0.2379470305 0.1226411587 3.901666e-02 2.061227e-02 0.0235174032\n[80,85)   0.0890341775 0.1467765207 6.996593e-02 2.039686e-02 0.0100720633\n[85,90)   0.0173395593 0.0428305924 6.727551e-02 3.055193e-02 0.0085097343\n[90,95)   0.0040215520 0.0054816419 1.341277e-02 2.108756e-02 0.0091691088\n[95,100)  0.0014166741 0.0008357541 1.153476e-03 2.831000e-03 0.0045419826\n[100,Inf) 0.0001757175 0.0000815589 5.608818e-05 9.113023e-05 0.0002356887\n             [100,Inf)\n[0,5)     0.0015969450\n[5,10)    0.0060478325\n[10,15)   0.0107494942\n[15,20)   0.0140445284\n[20,25)   0.0182033974\n[25,30)   0.0228616687\n[30,35)   0.0270291084\n[35,40)   0.0320725374\n[40,45)   0.0364835436\n[45,50)   0.0339033995\n[50,55)   0.0278587842\n[55,60)   0.0281256815\n[60,65)   0.0416461592\n[65,70)   0.0650512285\n[70,75)   0.0627494825\n[75,80)   0.0308777682\n[80,85)   0.0104045396\n[85,90)   0.0043801633\n[90,95)   0.0031243614\n[95,100)  0.0024948840\n[100,Inf) 0.0003784101"
-  },
-  {
-    "objectID": "anziam2024/index.html#why-should-i-use-this-you-can-use-a-custom-population",
-    "href": "anziam2024/index.html#why-should-i-use-this-you-can-use-a-custom-population",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Why should I use this? You can use a custom population",
-    "text": "Why should I use this? You can use a custom population\n\nflat_population_data &lt;- tibble(\n    country = \"flatland\",\n    year = 2024,\n    population = 1000,\n    lower.age.limit = seq(0, 75, by=5)\n)\n\nflat_population &lt;- age_population(\n    data = flat_population_data,\n    location_col = country,\n    location = \"flatland\",\n    age_col = lower.age.limit,\n    year_col = year,\n    year = 2024\n)\n\nflat_contact_rates &lt;- extrapolate_polymod(\n    population = flat_population,\n    age_breaks = c(seq(0, 75, by=5), Inf)\n)"
-  },
-  {
-    "objectID": "anziam2024/index.html#why-should-i-use-this-you-can-use-a-custom-population-1",
-    "href": "anziam2024/index.html#why-should-i-use-this-you-can-use-a-custom-population-1",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Why should I use this? You can use a custom population",
-    "text": "Why should I use this? You can use a custom population\n\nflat_contact_rates$home\n\n              [0,5)     [5,10)    [10,15)    [15,20)    [20,25)    [25,30)\n[0,5)    0.56828986 0.47107930 0.23528412 0.15828319 0.22562515 0.42964988\n[5,10)   0.47107930 0.76196823 0.50231004 0.18255328 0.11883529 0.20659277\n[10,15)  0.23528412 0.50231004 0.82299109 0.42595334 0.14470685 0.10812909\n[15,20)  0.15828319 0.18255328 0.42595334 0.68440444 0.34414245 0.13015930\n[20,25)  0.22562515 0.11883529 0.14470685 0.34414245 0.54276791 0.29342160\n[25,30)  0.42964988 0.20659277 0.10812909 0.13015930 0.29342160 0.46253966\n[30,35)  0.58525292 0.45701473 0.21462152 0.11113527 0.12706493 0.27630913\n[35,40)  0.44529458 0.60639263 0.45689173 0.21281962 0.10667273 0.11928571\n[40,45)  0.24127232 0.40933635 0.53934055 0.40417570 0.18192135 0.08953615\n[45,50)  0.16037541 0.20465635 0.33875107 0.44747109 0.32351471 0.14362854\n[50,55)  0.16492113 0.13600777 0.16964705 0.28029573 0.35573859 0.25736993\n[55,60)  0.19180402 0.14014100 0.11268901 0.13779345 0.21749363 0.28104124\n[60,65)  0.17876427 0.15784117 0.11080587 0.08487633 0.09950725 0.16466518\n[65,70)  0.12947242 0.14506103 0.12018401 0.07774984 0.05748962 0.07309408\n[70,75)  0.08932050 0.10972788 0.11192484 0.08381432 0.05375817 0.04473290\n[75,Inf) 0.05512666 0.06576018 0.07106603 0.06492533 0.05030197 0.03782410\n            [30,35)    [35,40)    [40,45)    [45,50)    [50,55)    [55,60)\n[0,5)    0.58525292 0.44529458 0.24127232 0.16037541 0.16492113 0.19180402\n[5,10)   0.45701473 0.60639263 0.40933635 0.20465635 0.13600777 0.14014100\n[10,15)  0.21462152 0.45689173 0.53934055 0.33875107 0.16964705 0.11268901\n[15,20)  0.11113527 0.21281962 0.40417570 0.44747109 0.28029573 0.13779345\n[20,25)  0.12706493 0.10667273 0.18192135 0.32351471 0.35573859 0.21749363\n[25,30)  0.27630913 0.11928571 0.08953615 0.14362854 0.25736993 0.28104124\n[30,35)  0.43869100 0.26005794 0.10254775 0.07332365 0.12101602 0.22021310\n[35,40)  0.26005794 0.41225918 0.23226955 0.08961730 0.06739027 0.11438638\n[40,45)  0.10254775 0.23226955 0.38043054 0.21889793 0.08962625 0.06884477\n[45,50)  0.07332365 0.08961730 0.21889793 0.38628120 0.23490447 0.09578732\n[50,55)  0.12101602 0.06739027 0.08962625 0.23490447 0.43255518 0.25611626\n[55,60)  0.22021310 0.11438638 0.06884477 0.09578732 0.25611626 0.46618257\n[60,65)  0.23655846 0.20418776 0.11121066 0.06761476 0.09516248 0.26086699\n[65,70)  0.13798606 0.21578768 0.18859484 0.10093986 0.06227115 0.09317464\n[70,75)  0.06552314 0.13088028 0.20091654 0.17270637 0.09635242 0.06459090\n[75,Inf) 0.03588289 0.05306184 0.10103208 0.15531574 0.14574253 0.09020024\n            [60,65)    [65,70)    [70,75)   [75,Inf)\n[0,5)    0.17876427 0.12947242 0.08932050 0.06737703\n[5,10)   0.15784117 0.14506103 0.10972788 0.08037355\n[10,15)  0.11080587 0.12018401 0.11192484 0.08685848\n[15,20)  0.08487633 0.07774984 0.08381432 0.07935318\n[20,25)  0.09950725 0.05748962 0.05375817 0.06148018\n[25,30)  0.16466518 0.07309408 0.04473290 0.04622945\n[30,35)  0.23655846 0.13798606 0.06552314 0.04385687\n[35,40)  0.20418776 0.21578768 0.13088028 0.06485336\n[40,45)  0.11121066 0.18859484 0.20091654 0.12348365\n[45,50)  0.06761476 0.10093986 0.17270637 0.18983035\n[50,55)  0.09516248 0.06227115 0.09635242 0.17812976\n[55,60)  0.26086699 0.09317464 0.06459090 0.11024474\n[60,65)  0.48737980 0.27379182 0.10227898 0.07483573\n[65,70)  0.27379182 0.52813388 0.29877425 0.11049744\n[70,75)  0.10227898 0.29877425 0.55330597 0.29782838\n[75,Inf) 0.06122924 0.09040699 0.24367777 0.41218989"
-  },
-  {
-    "objectID": "anziam2024/index.html#conclusion",
-    "href": "anziam2024/index.html#conclusion",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Conclusion",
-    "text": "Conclusion\n\nContact matrices are frequently used in infectious diseases modelling\nStandard Prem et. al matrices are not written for re-use\nconmat provides an interface to easily generate and update models from any data source\nCan integrate vaccination, calculate next generation matrices, and a handful of other features\n\n\nAnd it’s available right now\nhttps://www.github.com/idem-lab/conmat"
-  },
-  {
-    "objectID": "anziam2024/index.html#acknowledgements",
-    "href": "anziam2024/index.html#acknowledgements",
-    "title": "Michael Lydeamore - Slides",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\n\n\nTelethon Kids Institute\n\nNick Tierney\nNick Golding\nAarathy Babu\n\n\n\nSPECTRUM-SPARK Travel Funding\nDepartment of Econometrics and Business Statistics, Monash University"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
-    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
+    "objectID": "talk-asc2025/index.html#hospital-outbreaks",
+    "href": "talk-asc2025/index.html#hospital-outbreaks",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Hospital outbreaks",
     "text": "Hospital outbreaks\nIn 2018, a multi-institutional outbreak of CPE highlighted the interlinked nature of healthcare in Victoria.\nSince then, CPE is now notifiable, but there is not a centralised surveillance or outbreak response system."
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#carbanememase-producing-enterobacterales",
-    "href": "acefa-launch/talk-acefa-launch.html#carbanememase-producing-enterobacterales",
+    "objectID": "talk-asc2025/index.html#carbanememase-producing-enterobacterales",
+    "href": "talk-asc2025/index.html#carbanememase-producing-enterobacterales",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Carbanememase-producing Enterobacterales",
     "text": "Carbanememase-producing Enterobacterales\n\nAcquired primarily in hospital\nResistant to last-line antibiotics\nMortality, given clinical symptoms, in the order of 30%\nCarriage for &gt;= 12 months\n\n\nTesting via rectal swab\nCan carry with no symptoms\nUnknown if asymptomatic people can transmit"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-1",
-    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-1",
+    "objectID": "talk-asc2025/index.html#surveillance-and-outbreak-control",
+    "href": "talk-asc2025/index.html#surveillance-and-outbreak-control",
     "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Hospital outbreaks",
-    "text": "Hospital outbreaks\nThe immediate question:\n\nWhen an outbreak is detected, what other hospitals could be affected?\n\n\nNatural to consider patients in a hospital as a network, that has the nodes as the hospitals and edges between them related to the probability of transfer.\n\n\nCurrent methods can grossly over-estimate the rate of spread of disease between hospitals"
+    "section": "Surveillance and outbreak control",
+    "text": "Surveillance and outbreak control\nEnd goal is to model outbreak spread, and then surveillance/control methods.\n\nTo do this, we need to model how patients move around in hospitals"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#current-state-of-the-field",
-    "href": "acefa-launch/talk-acefa-launch.html#current-state-of-the-field",
+    "objectID": "talk-asc2025/index.html#data",
+    "href": "talk-asc2025/index.html#data",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Data",
+    "text": "Data\nWe have line-listed hospital admissions data for all hospitals in Victoria, Australia, from 2016-2021.\nThe dataset is linked, allowing us to follow individuals through time. Each observation has:\n\nAdmission time,\nDischarge (separation time),\nHospital of admission,\nDiagnosis codes,\nHandful of demographics"
+  },
+  {
+    "objectID": "talk-asc2025/index.html#current-state-of-the-field",
+    "href": "talk-asc2025/index.html#current-state-of-the-field",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Current state of the field",
-    "text": "Current state of the field\nMost methods are based on line-listed admissions data:\n\n\n\n\n\n\n\n\n\n\n\n\npatient_id\nadmission_date\nseparation_date\nlocation\ndiagnosis_codes\n\n\n\n\n1\n2020-01-01\n2020-01-02\nH1\nA B C\n\n\n2\n2020-01-01\n2020-01-02\nH2\nA B C\n\n\n1\n2020-01-03\n2020-01-04\nH2\nA B C\n\n\n\n\n\n\nThis is interpreted as one transfer from H1 to H2, with a one-day gap."
+    "text": "Current state of the field\nWe need to convert this sort of data into a structure appropriate for modelling.\n\n\n\n\n\n\n\n\n\n\n\n\n\npatient_id\nadmission_date\nseparation_date\nlocation\ndiagnosis_codes\n\n\n\n\n1\n2020-01-01\n2020-01-02\nH1\nA B C\n\n\n2\n2020-01-01\n2020-01-02\nH2\nA B C\n\n\n1\n2020-01-03\n2020-01-04\nH2\nA B C\n\n\n\n\n\n\n\nThis is interpreted as one transfer from H1 to H2, with a one-day gap."
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data",
-    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data",
+    "objectID": "talk-asc2025/index.html#different-ways-to-collapse-the-data",
+    "href": "talk-asc2025/index.html#different-ways-to-collapse-the-data",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Different ways to collapse the data",
     "text": "Different ways to collapse the data\nSome notation:\n\nu, v are locations\ns, t are times, t \\geq s\nHazard for patients returning home, never readmitted: \\zeta_u(t)\nw_{uv}(s,t) patients discharged from u at s, then readmitted to v at t"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-1",
-    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-1",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Different ways to collapse the data",
-    "text": "Different ways to collapse the data\nThen, we have the following set of governing equations:\n\nHospital to home: \\lambda(u(s) \\to \\emptyset) = \\zeta_u(s)\nDirect transfers: \\lambda(u(s) \\to v(t)) = d_{uv}(s, t)\nIndirect transfers:\n\nHospital to home: \\lambda(u(s) \\to z_{uv}(t)) = \\eta_{uv}(s, t)\nHome to hospital: \\lambda(z_{uv}(t) \\to v(t)) = \\rho_{uv}(s, t)"
-  },
-  {
-    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-2",
-    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-2",
+    "objectID": "talk-asc2025/index.html#different-ways-to-collapse-the-data-1",
+    "href": "talk-asc2025/index.html#different-ways-to-collapse-the-data-1",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Different ways to collapse the data",
     "text": "Different ways to collapse the data"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#model-1-naive-static-method",
-    "href": "acefa-launch/talk-acefa-launch.html#model-1-naive-static-method",
+    "objectID": "talk-asc2025/index.html#different-ways-to-collapse-the-data-2",
+    "href": "talk-asc2025/index.html#different-ways-to-collapse-the-data-2",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Different ways to collapse the data",
+    "text": "Different ways to collapse the data\nThen, we have the following set of governing equations:\n\nHospital to home: \\lambda(u(s) \\to \\emptyset) = \\zeta_u(s)\nDirect transfers: \\lambda(u(s) \\to v(t)) = d_{uv}(s, t)\nIndirect transfers:\n\nHospital to home: \\lambda(u(s) \\to z_{uv}(t)) = \\eta_{uv}(s, t)\nHome to hospital: \\lambda(z_{uv}(t) \\to v(t)) = \\rho_{uv}(s, t)"
+  },
+  {
+    "objectID": "talk-asc2025/index.html#model-1-naive-static-method",
+    "href": "talk-asc2025/index.html#model-1-naive-static-method",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Model 1: Naive Static Method",
     "text": "Model 1: Naive Static Method\nd_{uv}(s,t) = \\frac{\\sum_{s,t} w_{uv}(s,t)}{T_\\Sigma N_u}\n\n\n\n\n\n\nTip\n\n\nAll movements are instanteous, and the rate of movement is the mean over the entire observation period."
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#model-2-improved-static-method",
-    "href": "acefa-launch/talk-acefa-launch.html#model-2-improved-static-method",
+    "objectID": "talk-asc2025/index.html#model-1-naive-static-method-1",
+    "href": "talk-asc2025/index.html#model-1-naive-static-method-1",
     "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Model 2: Improved Static Method",
-    "text": "Model 2: Improved Static Method\nChoose a threshold value, \\omega, to separate direct and indirect transfers\nd_{uv}(s,t) = d_{uv} =  \\frac{\\sum_{s,t: (t-s) &lt; \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\eta_{uv}(s,t) = \\eta_{uv} = \\frac{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\rho_{uv}(s,t) = \\rho_{uv} = \\left[ \\frac{\\sum_{s,t: (t-s) \\geq \\omega} (t-s) w_{uv}(s,t)}{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}  \\right]^{-1}"
+    "section": "Model 1: Naive Static Method",
+    "text": "Model 1: Naive Static Method"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#model-3-snapshot-model",
-    "href": "acefa-launch/talk-acefa-launch.html#model-3-snapshot-model",
+    "objectID": "talk-asc2025/index.html#transfer-patterns-change-over-time",
+    "href": "talk-asc2025/index.html#transfer-patterns-change-over-time",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Transfer patterns change over time",
+    "text": "Transfer patterns change over time"
+  },
+  {
+    "objectID": "talk-asc2025/index.html#model-2-static-method",
+    "href": "talk-asc2025/index.html#model-2-static-method",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Model 2: Static Method",
+    "text": "Model 2: Static Method\nChoose a threshold value, \\omega, to separate direct and indirect transfers\nd_{uv}(s,t) = d_{uv} =  \\frac{\\sum_{s,t: (t-s) &lt; \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\eta_{uv}(s,t) = \\eta_{uv} = \\frac{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\rho_{uv}(s,t) = \\rho_{uv} = \\left[ \\frac{\\sum_{s,t: (t-s) \\geq \\omega} (t-s) w_{uv}(s,t)}{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}  \\right]^{-1}"
+  },
+  {
+    "objectID": "talk-asc2025/index.html#model-3-snapshot-model",
+    "href": "talk-asc2025/index.html#model-3-snapshot-model",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Model 3: Snapshot Model",
     "text": "Model 3: Snapshot Model\nChoose a snapshot duration \\omega. This defines the threshold duration of an indirect transfer.\n\\begin{aligned}\n\\lambda(u(s) \\to {z'}_{uv}(t)) &= \\eta_{uv}(s, t)\\\\\n\\lambda({z'}_{uv}(t) \\to z_{uv}(t)) &= \\delta(t \\; \\mathrm{ mod } \\; \\omega)\\\\\n\\end{aligned}\n\nz' contains the individuals that would enter z within the duration of a given snapshot [t, t+\\omega], so that they do not immediately readmit to their next hospital."
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#model-4-temporal-model",
-    "href": "acefa-launch/talk-acefa-launch.html#model-4-temporal-model",
+    "objectID": "talk-asc2025/index.html#model-4-temporal-model",
+    "href": "talk-asc2025/index.html#model-4-temporal-model",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Model 4: Temporal Model",
     "text": "Model 4: Temporal Model\nEffecitvely, choose a very small snapshot window, \\omega. Individuals are not re-admitted to z', instead they are re-admitted to v uniformly between t and t+\\omega. This gives,\nd_{uv}(s, t) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s, t)}{\\omega N_u} \\eta_{uv}(s, t) = \\frac{\\sum_{t: (t-s) \\geq \\omega} w_{uv}(s, t)}{\\omega N_u} \\rho_{uv}(s,t) = \\frac{1}{\\lceil t \\rceil_\\omega - t}"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#too-much-maths-for-12-minutes",
-    "href": "acefa-launch/talk-acefa-launch.html#too-much-maths-for-12-minutes",
+    "objectID": "talk-asc2025/index.html#too-much-maths-for-12-minutes",
+    "href": "talk-asc2025/index.html#too-much-maths-for-12-minutes",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Too much maths for 12 minutes!",
+    "text": "Too much maths for 12 minutes!\n\n\n\n\n\n\nNaïve static\n\n\n\n\n\n\n\nStatic\n\n\n\n\n\n\n\n\n\nSnapshot\n\n\n\n\n\n\n\nTemporal"
+  },
+  {
+    "objectID": "talk-asc2025/index.html#too-much-maths-for-12-minutes-1",
+    "href": "talk-asc2025/index.html#too-much-maths-for-12-minutes-1",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Too much maths for 12 minutes!",
     "text": "Too much maths for 12 minutes!\nCurrent state-of-the-art: Patients move instantly, no concept of home, using average return rates over the entire data period\n\nOur models: from least to most ‘accurate’\n\nState-of-the-art\nState-of-the-art + patients return home\nReturn rates change over time, patients held at home in “blocks”\nReturn rates change over time, patients held at home for actual time"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make",
-    "href": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make",
+    "objectID": "talk-asc2025/index.html#what-difference-does-it-make",
+    "href": "talk-asc2025/index.html#what-difference-does-it-make",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "What difference does it make?",
     "text": "What difference does it make?"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make-1",
-    "href": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make-1",
+    "objectID": "talk-asc2025/index.html#what-difference-does-it-make-1",
+    "href": "talk-asc2025/index.html#what-difference-does-it-make-1",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "What difference does it make?",
     "text": "What difference does it make?"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#takeaway",
-    "href": "acefa-launch/talk-acefa-launch.html#takeaway",
+    "objectID": "talk-asc2025/index.html#takeaway",
+    "href": "talk-asc2025/index.html#takeaway",
     "title": "Modelling patient movements for hospital outbreaks",
     "section": "Takeaway",
-    "text": "Takeaway\n\nTime is critical when considering an outbreak\n\n\nStill need to consider surveillance algorithms on these weighted, directed, temporal networks\nPatients going home slows down infection spread\nMost hospital transfer patterns aren’t stationary\nUsing the wrong collapsing process means you will probably miss infections\nMay declare a hospital “disease-free” when it truly hasn’t arrived yet"
+    "text": "Takeaway\n\nPatients go home - and that needs to be modelled\n\n\nBut further temporal resolution seems to give diminishing returns\n\n\nStill need to consider surveillance algorithms on these weighted, directed, temporal networks\nPatients going home slows down infection spread\nMost hospital transfer patterns aren’t stationary\nUsing the wrong collapsing process means you will probably miss infections\nMay declare a hospital “disease-free” when it truly hasn’t arrived yet"
   },
   {
-    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-2",
-    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-2",
-    "title": "Modelling patient movements for hospital outbreaks",
-    "section": "Hospital outbreaks",
-    "text": "Hospital outbreaks\nThe immediate question:\n\nWhen an outbreak is detected, what other hospitals could be affected?\n\n\nChanges over time, but it’s not as fast as you think it is"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Michael Lydeamore - Slides",
+    "objectID": "acefa-launch/model.html",
+    "href": "acefa-launch/model.html",
+    "title": "Section: Model of Stochastic Processes and Network Models",
     "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhen procrastination leads to innovation\n\n\n\n\n\n\nMichael Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nSep 29, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Notations"
+  },
+  {
+    "objectID": "acefa-launch/model.html#general-sketch",
+    "href": "acefa-launch/model.html#general-sketch",
+    "title": "Section: Model of Stochastic Processes and Network Models",
+    "section": "General Sketch",
+    "text": "General Sketch\nHere, \\(u\\) and \\(v\\) are locations (potentially identical locations), \\(s\\) and \\(t\\) are times. We take that \\(t \\geq s\\). \\(\\emptyset\\) represents patients that are not observed to return to the hospital system after their discharge from location \\(u\\). We assume the associated hazard for this process (\\(\\zeta_u(t)\\)) to be known for all locations \\(u\\) at all times \\(t\\): the modelling of this process is the same for all network models, and will be neglected in the following.\nFurther, we define the function \\(w_{uv}(s, t)\\) to be the number of individuals that are observed to discahrge from \\(u\\) at time \\(s\\) and readmit at time \\(t\\). We allow a maximum of one of the pairs \\(u,v\\) and \\(s,t\\) to be reflexive, i.e. \\(u=v\\) or \\(s=t\\), but not both.\nWe will also assume that we will have quantities \\(N_u\\) that represent the “size” of a location \\(u\\). We assume that all locations \\(u\\) will have \\(N_u\\) individuals in them at all times, and that the observed mvoements \\(w_{uv}(s, t)\\) can be thought of as being scaled by \\(N_u\\).\nThe governing equations can be roughly expressed as a function of the hazards of each process.\n\\[\\begin{aligned}\n\\lambda(u(s) \\to \\emptyset) &= \\zeta_u(s)\\\\\n\\lambda(u(s) \\to v(t)) &= d_{uv}(s, t)\\\\\n\\lambda(u(s) \\to z_{uv}(t)) &= \\eta{uv}(s, t)\\\\\n\\lambda(z_{uv}(t) \\to v(t)) &= \\rho_{uv}(s, t)\n\\end{aligned}\\]\nNote that\n\\[ \\lambda(U \\to V) = \\lambda \\]\nrepresents that in some time step \\(\\Delta t\\), the number of individuals that move from state \\(U\\) to state \\(V\\) is distributed as\n\\[ \\mathrm{Poisson}(\\lambda x_U \\Delta t) \\].\n\nNaïve Static Model\nFor both the naïve and improved static network models, we have that the observations of \\(w\\) are taken over a time period of \\(T_\\Sigma\\).\nIn the naïve static model , we have that:\n\\[d_{uv}(s,t) = d_{uv} = \\frac{\\sum_{s,t} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv} = 0\\] \\[\\rho_{uv}(s,t) = \\rho_{uv} = 0\\]\nThat is, all movements are instantaneous, and the rate of movement is the mean rate of movement over the entire observation period.\n\n\nImproved Static Model\nFor the improved static model, we choose some threshold value \\(\\omega\\) that delineates direct and indirect transfers.\nWe will have:\n\\[d_{uv}(s,t) = d_{uv} =  \\frac{\\sum_{s,t: (t-s) &lt; \\omega} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv} = \\frac{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\rho_{uv}(s,t) = \\rho_{uv} = \\left[ \\frac{\\sum_{s,t: (t-s) \\geq \\omega} (t-s) w_{uv}(s,t)}{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}  \\right]^{-1}\\]\nHere, we model the rate of indirect transfers \\(\\eta\\) similarly to the rate of direct transfers \\(d\\), by counting the average rate of observed movements. For the rate of readmission, \\(\\rho\\), we use the inverse of the mean readmission duration/delay.\n\n\nSnapshot Model\nFor the snapshot model, we choose a snapshot duration \\(\\omega\\). This defines the threshold duration of an indirect transfer.\nThis introduces an new intermediary state variable \\(z'\\) that contains the individuals that would enter \\(z\\) within the duration of a given snapshot \\([t, t+\\omega]\\), so that they do not immediately readmit to their next hospital. This alters the indirect transfer processes to\n\\[\\begin{aligned}\n\\lambda(u(s) \\to {z'}_{uv}(t)) &= \\eta_{uv}(s, t)\\\\\n\\lambda({z'}_{uv}(t) \\to z_{uv}(t)) &= \\delta(t \\mathrm{ mod } \\omega)\\\\\n\\end{aligned}\\]\nwhere \\(\\delta(\\cdot)\\) is the Dirac delta function.\nAlongside this, we also compute from the data, the number of patients “at home” at a given time, in order to inform the denominator for the process from \\(z'\\) to \\(z\\). We denote this quantity \\(H_{uv}(t)\\)\nWe will have that:\n\\[d_{uv}(s,t) = d_{uv}(s) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s,t)}{\\omega N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv}(s) = \\frac{\\sum_{t: (t-s) \\geq \\omega} {w_{uv}(s, t)}}{\\omega N_u}\\] \\[\\rho_{uv}(s,t) = \\rho_{uv}(t) = \\frac{\\sum_{s: (t-s) \\geq \\omega} {w_{uv}(s, t)}}{\\omega H_{uv}}\\]\n\n\nTemporal Model\nFor the temporal network, we make a choice of the time discretisation \\(\\omega\\). That is, events that occur within a time window \\([\\tau, \\tau+\\omega)\\) are collapsed and aggregated to occur at time \\(\\tau\\). Over the observation (and simulation) period, we will have a series of time window boundaries \\(\\{\\tau_0, \\tau_1, \\dots\\}\\). We denote the smallest value in that set larger than a given time \\(t\\) to be \\(\\ceil{t}_\\omega\\)\nFor the readmission process, we assume that individuals that would readmit within a given time window \\([\\tau, \\tau+\\omega)\\) do so uniformly.\nThis yields:\n\\[d_{uv}(s, t) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s, t)}{\\omega N_u}\\] \\[\\eta_{uv}(s, t) = \\frac{\\sum_{t: (t-s) \\geq \\omega} w_{uv}(s, t)}{\\omega N_u}\\] \\[\\rho_{uv}(s,t) = \\frac{1}{\\ceil{t}_\\omega - t}\\]\nThe readmission process thus has a uniform hazard."
   },
   {
     "objectID": "healthcare-infections/index.html#hello-from-australia",
@@ -1204,18 +1064,291 @@
     "text": "Other ongoing work\n\nMachine learning methods to identify risk factors for hospital infections\nLeong Zhuan Kee, Vis; Ewilly Liew\n\nEstimating rates of contact in the absence of local data, conmat\nNick Tierney; Nick Golding\n\nUnderstanding how non-linear dimension reduction warps your data\nJayani Lakshika; Di Cook\nPredicting extreme weather events using short- and long-term climate drivers\nKate Saunders; Jarryd Chapman\nApproximating patient movement patterns with piecewise constant networks\nDavid Wu; Andrew Stewardson\n\nDeveloping non-network based network layout algorithms\nKrisanat Anukarnsakulchularp; Di Cook\n\n…and more.\n\nIf your work is broadly related to infectious diseases, or biosciences, I would love to talk more."
   },
   {
-    "objectID": "acefa-launch/model.html",
-    "href": "acefa-launch/model.html",
-    "title": "Section: Model of Stochastic Processes and Network Models",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Michael Lydeamore - Slides",
     "section": "",
-    "text": "Notations"
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhen procrastination leads to innovation\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "acefa-launch/model.html#general-sketch",
-    "href": "acefa-launch/model.html#general-sketch",
-    "title": "Section: Model of Stochastic Processes and Network Models",
-    "section": "General Sketch",
-    "text": "General Sketch\nHere, \\(u\\) and \\(v\\) are locations (potentially identical locations), \\(s\\) and \\(t\\) are times. We take that \\(t \\geq s\\). \\(\\emptyset\\) represents patients that are not observed to return to the hospital system after their discharge from location \\(u\\). We assume the associated hazard for this process (\\(\\zeta_u(t)\\)) to be known for all locations \\(u\\) at all times \\(t\\): the modelling of this process is the same for all network models, and will be neglected in the following.\nFurther, we define the function \\(w_{uv}(s, t)\\) to be the number of individuals that are observed to discahrge from \\(u\\) at time \\(s\\) and readmit at time \\(t\\). We allow a maximum of one of the pairs \\(u,v\\) and \\(s,t\\) to be reflexive, i.e. \\(u=v\\) or \\(s=t\\), but not both.\nWe will also assume that we will have quantities \\(N_u\\) that represent the “size” of a location \\(u\\). We assume that all locations \\(u\\) will have \\(N_u\\) individuals in them at all times, and that the observed mvoements \\(w_{uv}(s, t)\\) can be thought of as being scaled by \\(N_u\\).\nThe governing equations can be roughly expressed as a function of the hazards of each process.\n\\[\\begin{aligned}\n\\lambda(u(s) \\to \\emptyset) &= \\zeta_u(s)\\\\\n\\lambda(u(s) \\to v(t)) &= d_{uv}(s, t)\\\\\n\\lambda(u(s) \\to z_{uv}(t)) &= \\eta{uv}(s, t)\\\\\n\\lambda(z_{uv}(t) \\to v(t)) &= \\rho_{uv}(s, t)\n\\end{aligned}\\]\nNote that\n\\[ \\lambda(U \\to V) = \\lambda \\]\nrepresents that in some time step \\(\\Delta t\\), the number of individuals that move from state \\(U\\) to state \\(V\\) is distributed as\n\\[ \\mathrm{Poisson}(\\lambda x_U \\Delta t) \\].\n\nNaïve Static Model\nFor both the naïve and improved static network models, we have that the observations of \\(w\\) are taken over a time period of \\(T_\\Sigma\\).\nIn the naïve static model , we have that:\n\\[d_{uv}(s,t) = d_{uv} = \\frac{\\sum_{s,t} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv} = 0\\] \\[\\rho_{uv}(s,t) = \\rho_{uv} = 0\\]\nThat is, all movements are instantaneous, and the rate of movement is the mean rate of movement over the entire observation period.\n\n\nImproved Static Model\nFor the improved static model, we choose some threshold value \\(\\omega\\) that delineates direct and indirect transfers.\nWe will have:\n\\[d_{uv}(s,t) = d_{uv} =  \\frac{\\sum_{s,t: (t-s) &lt; \\omega} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv} = \\frac{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}{T_\\Sigma N_u}\\] \\[\\rho_{uv}(s,t) = \\rho_{uv} = \\left[ \\frac{\\sum_{s,t: (t-s) \\geq \\omega} (t-s) w_{uv}(s,t)}{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}  \\right]^{-1}\\]\nHere, we model the rate of indirect transfers \\(\\eta\\) similarly to the rate of direct transfers \\(d\\), by counting the average rate of observed movements. For the rate of readmission, \\(\\rho\\), we use the inverse of the mean readmission duration/delay.\n\n\nSnapshot Model\nFor the snapshot model, we choose a snapshot duration \\(\\omega\\). This defines the threshold duration of an indirect transfer.\nThis introduces an new intermediary state variable \\(z'\\) that contains the individuals that would enter \\(z\\) within the duration of a given snapshot \\([t, t+\\omega]\\), so that they do not immediately readmit to their next hospital. This alters the indirect transfer processes to\n\\[\\begin{aligned}\n\\lambda(u(s) \\to {z'}_{uv}(t)) &= \\eta_{uv}(s, t)\\\\\n\\lambda({z'}_{uv}(t) \\to z_{uv}(t)) &= \\delta(t \\mathrm{ mod } \\omega)\\\\\n\\end{aligned}\\]\nwhere \\(\\delta(\\cdot)\\) is the Dirac delta function.\nAlongside this, we also compute from the data, the number of patients “at home” at a given time, in order to inform the denominator for the process from \\(z'\\) to \\(z\\). We denote this quantity \\(H_{uv}(t)\\)\nWe will have that:\n\\[d_{uv}(s,t) = d_{uv}(s) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s,t)}{\\omega N_u}\\] \\[\\eta_{uv}(s,t) = \\eta_{uv}(s) = \\frac{\\sum_{t: (t-s) \\geq \\omega} {w_{uv}(s, t)}}{\\omega N_u}\\] \\[\\rho_{uv}(s,t) = \\rho_{uv}(t) = \\frac{\\sum_{s: (t-s) \\geq \\omega} {w_{uv}(s, t)}}{\\omega H_{uv}}\\]\n\n\nTemporal Model\nFor the temporal network, we make a choice of the time discretisation \\(\\omega\\). That is, events that occur within a time window \\([\\tau, \\tau+\\omega)\\) are collapsed and aggregated to occur at time \\(\\tau\\). Over the observation (and simulation) period, we will have a series of time window boundaries \\(\\{\\tau_0, \\tau_1, \\dots\\}\\). We denote the smallest value in that set larger than a given time \\(t\\) to be \\(\\ceil{t}_\\omega\\)\nFor the readmission process, we assume that individuals that would readmit within a given time window \\([\\tau, \\tau+\\omega)\\) do so uniformly.\nThis yields:\n\\[d_{uv}(s, t) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s, t)}{\\omega N_u}\\] \\[\\eta_{uv}(s, t) = \\frac{\\sum_{t: (t-s) \\geq \\omega} w_{uv}(s, t)}{\\omega N_u}\\] \\[\\rho_{uv}(s,t) = \\frac{1}{\\ceil{t}_\\omega - t}\\]\nThe readmission process thus has a uniform hazard."
+    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
+    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Hospital outbreaks",
+    "text": "Hospital outbreaks\nIn 2018, a multi-institutional outbreak of CPE highlighted the interlinked nature of healthcare in Victoria.\nSince then, CPE is now notifiable, but there is not a centralised surveillance or outbreak response system."
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#carbanememase-producing-enterobacterales",
+    "href": "acefa-launch/talk-acefa-launch.html#carbanememase-producing-enterobacterales",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Carbanememase-producing Enterobacterales",
+    "text": "Carbanememase-producing Enterobacterales\n\nAcquired primarily in hospital\nResistant to last-line antibiotics\nMortality, given clinical symptoms, in the order of 30%\nCarriage for &gt;= 12 months\n\n\nTesting via rectal swab\nCan carry with no symptoms\nUnknown if asymptomatic people can transmit"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-1",
+    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-1",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Hospital outbreaks",
+    "text": "Hospital outbreaks\nThe immediate question:\n\nWhen an outbreak is detected, what other hospitals could be affected?\n\n\nNatural to consider patients in a hospital as a network, that has the nodes as the hospitals and edges between them related to the probability of transfer.\n\n\nCurrent methods can grossly over-estimate the rate of spread of disease between hospitals"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#current-state-of-the-field",
+    "href": "acefa-launch/talk-acefa-launch.html#current-state-of-the-field",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Current state of the field",
+    "text": "Current state of the field\nMost methods are based on line-listed admissions data:\n\n\n\n\n\n\n\n\n\n\n\n\npatient_id\nadmission_date\nseparation_date\nlocation\ndiagnosis_codes\n\n\n\n\n1\n2020-01-01\n2020-01-02\nH1\nA B C\n\n\n2\n2020-01-01\n2020-01-02\nH2\nA B C\n\n\n1\n2020-01-03\n2020-01-04\nH2\nA B C\n\n\n\n\n\n\nThis is interpreted as one transfer from H1 to H2, with a one-day gap."
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data",
+    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Different ways to collapse the data",
+    "text": "Different ways to collapse the data\nSome notation:\n\nu, v are locations\ns, t are times, t \\geq s\nHazard for patients returning home, never readmitted: \\zeta_u(t)\nw_{uv}(s,t) patients discharged from u at s, then readmitted to v at t"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-1",
+    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-1",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Different ways to collapse the data",
+    "text": "Different ways to collapse the data\nThen, we have the following set of governing equations:\n\nHospital to home: \\lambda(u(s) \\to \\emptyset) = \\zeta_u(s)\nDirect transfers: \\lambda(u(s) \\to v(t)) = d_{uv}(s, t)\nIndirect transfers:\n\nHospital to home: \\lambda(u(s) \\to z_{uv}(t)) = \\eta_{uv}(s, t)\nHome to hospital: \\lambda(z_{uv}(t) \\to v(t)) = \\rho_{uv}(s, t)"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-2",
+    "href": "acefa-launch/talk-acefa-launch.html#different-ways-to-collapse-the-data-2",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Different ways to collapse the data",
+    "text": "Different ways to collapse the data"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#model-1-naive-static-method",
+    "href": "acefa-launch/talk-acefa-launch.html#model-1-naive-static-method",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Model 1: Naive Static Method",
+    "text": "Model 1: Naive Static Method\nd_{uv}(s,t) = \\frac{\\sum_{s,t} w_{uv}(s,t)}{T_\\Sigma N_u}\n\n\n\n\n\n\nTip\n\n\nAll movements are instanteous, and the rate of movement is the mean over the entire observation period."
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#model-2-improved-static-method",
+    "href": "acefa-launch/talk-acefa-launch.html#model-2-improved-static-method",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Model 2: Improved Static Method",
+    "text": "Model 2: Improved Static Method\nChoose a threshold value, \\omega, to separate direct and indirect transfers\nd_{uv}(s,t) = d_{uv} =  \\frac{\\sum_{s,t: (t-s) &lt; \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\eta_{uv}(s,t) = \\eta_{uv} = \\frac{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}{T_\\Sigma N_u} \\rho_{uv}(s,t) = \\rho_{uv} = \\left[ \\frac{\\sum_{s,t: (t-s) \\geq \\omega} (t-s) w_{uv}(s,t)}{\\sum_{s,t: (t-s) \\geq \\omega} w_{uv}(s,t)}  \\right]^{-1}"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#model-3-snapshot-model",
+    "href": "acefa-launch/talk-acefa-launch.html#model-3-snapshot-model",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Model 3: Snapshot Model",
+    "text": "Model 3: Snapshot Model\nChoose a snapshot duration \\omega. This defines the threshold duration of an indirect transfer.\n\\begin{aligned}\n\\lambda(u(s) \\to {z'}_{uv}(t)) &= \\eta_{uv}(s, t)\\\\\n\\lambda({z'}_{uv}(t) \\to z_{uv}(t)) &= \\delta(t \\; \\mathrm{ mod } \\; \\omega)\\\\\n\\end{aligned}\n\nz' contains the individuals that would enter z within the duration of a given snapshot [t, t+\\omega], so that they do not immediately readmit to their next hospital."
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#model-4-temporal-model",
+    "href": "acefa-launch/talk-acefa-launch.html#model-4-temporal-model",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Model 4: Temporal Model",
+    "text": "Model 4: Temporal Model\nEffecitvely, choose a very small snapshot window, \\omega. Individuals are not re-admitted to z', instead they are re-admitted to v uniformly between t and t+\\omega. This gives,\nd_{uv}(s, t) = \\frac{\\sum_{t: (t-s) &lt; \\omega} w_{uv}(s, t)}{\\omega N_u} \\eta_{uv}(s, t) = \\frac{\\sum_{t: (t-s) \\geq \\omega} w_{uv}(s, t)}{\\omega N_u} \\rho_{uv}(s,t) = \\frac{1}{\\lceil t \\rceil_\\omega - t}"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#too-much-maths-for-12-minutes",
+    "href": "acefa-launch/talk-acefa-launch.html#too-much-maths-for-12-minutes",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Too much maths for 12 minutes!",
+    "text": "Too much maths for 12 minutes!\nCurrent state-of-the-art: Patients move instantly, no concept of home, using average return rates over the entire data period\n\nOur models: from least to most ‘accurate’\n\nState-of-the-art\nState-of-the-art + patients return home\nReturn rates change over time, patients held at home in “blocks”\nReturn rates change over time, patients held at home for actual time"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make",
+    "href": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "What difference does it make?",
+    "text": "What difference does it make?"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make-1",
+    "href": "acefa-launch/talk-acefa-launch.html#what-difference-does-it-make-1",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "What difference does it make?",
+    "text": "What difference does it make?"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#takeaway",
+    "href": "acefa-launch/talk-acefa-launch.html#takeaway",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Takeaway",
+    "text": "Takeaway\n\nTime is critical when considering an outbreak\n\n\nStill need to consider surveillance algorithms on these weighted, directed, temporal networks\nPatients going home slows down infection spread\nMost hospital transfer patterns aren’t stationary\nUsing the wrong collapsing process means you will probably miss infections\nMay declare a hospital “disease-free” when it truly hasn’t arrived yet"
+  },
+  {
+    "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-2",
+    "href": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks-2",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Hospital outbreaks",
+    "text": "Hospital outbreaks\nThe immediate question:\n\nWhen an outbreak is detected, what other hospitals could be affected?\n\n\nChanges over time, but it’s not as fast as you think it is"
+  },
+  {
+    "objectID": "anziam2024/index.html#etc5513-title",
+    "href": "anziam2024/index.html#etc5513-title",
+    "title": "Michael Lydeamore - Slides",
+    "section": "conmat: Programmatic generation of synthetic contact matrices",
+    "text": "conmat: Programmatic generation of synthetic contact matrices\nGoing beyond Prem\nMichael Lydeamore, Nick Tierney, Nick Golding\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\nhttps://slides.michaellydeamore.com/anziam2024"
+  },
+  {
+    "objectID": "anziam2024/index.html#contact-matrices",
+    "href": "anziam2024/index.html#contact-matrices",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Contact matrices",
+    "text": "Contact matrices\n\nSome infectious diseases are spread from contact between individuals\nWhen we model disease, we need some idea of how often people contact other people\nTypically, we turn to contact diary studies"
+  },
+  {
+    "objectID": "anziam2024/index.html#contact-diary-studies",
+    "href": "anziam2024/index.html#contact-diary-studies",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Contact Diary Studies",
+    "text": "Contact Diary Studies\nContact diary studies follow individuals and ask them:\n\nhow many contacts of a certain type,\nthe duration of contact,\nthe location of the contact,\nthe frequency of the contact\n\n\nThey are undoubtedly the gold standard for data on the number of contacts.\nBut they are prohibitively expensive, and logistically very challenging."
+  },
+  {
+    "objectID": "anziam2024/index.html#polymod",
+    "href": "anziam2024/index.html#polymod",
+    "title": "Michael Lydeamore - Slides",
+    "section": "POLYMOD",
+    "text": "POLYMOD\nPublished in 2008, Mossong et. al undertook a contact diary study of 7290 participants across Europe.\nIt remains the most widely cited contact diary study."
+  },
+  {
+    "objectID": "anziam2024/index.html#contact-matrix-projection",
+    "href": "anziam2024/index.html#contact-matrix-projection",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Contact matrix projection",
+    "text": "Contact matrix projection\nPrem et. al formed a model that predicts the number of contacts based on the age of participants.\nThis model then allows for prediction to settings that are outside the original POLYMOD countries."
+  },
+  {
+    "objectID": "anziam2024/index.html#what-is-provided",
+    "href": "anziam2024/index.html#what-is-provided",
+    "title": "Michael Lydeamore - Slides",
+    "section": "What is provided:",
+    "text": "What is provided:"
+  },
+  {
+    "objectID": "anziam2024/index.html#what-is-provided-1",
+    "href": "anziam2024/index.html#what-is-provided-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "What is provided:",
+    "text": "What is provided:\nEstimates for 155 countries.\nThere is code, but it is not easily expandable to new settings.\n\nIf your country isn’t in the list of 155: no estimates for you.\n\n\n\n\n\n\n\n\nCaution\n\n\nAustralia was in the original set of 155, but was not included in the updated estimates a few years ago.\n\n\n\n\n\nThere are other more technical concerns with components of the model that probably have minor influence on the projects."
+  },
+  {
+    "objectID": "anziam2024/index.html#an-alternative-approach",
+    "href": "anziam2024/index.html#an-alternative-approach",
+    "title": "Michael Lydeamore - Slides",
+    "section": "An alternative approach",
+    "text": "An alternative approach\nWe developed an open-source approach, that can be applied to any input population (big or small).\nYou can view the package online: https://www.github.com/idem-lab/conmat\nor install using:\n\nremotes::install_github(\"idem-lab/conmat\")"
+  },
+  {
+    "objectID": "anziam2024/index.html#model-details",
+    "href": "anziam2024/index.html#model-details",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Model details",
+    "text": "Model details\nFundamentally, these models have pretty little to go on. They are trained on the number of contacts between two age groups \\(i\\) and \\(j\\). In conmat, this takes the form:\n\\[\\begin{aligned}\nc_{ij} = \\beta_0 + \\beta_1(|i-j|) + &\\beta_2(|i-j|^2) + \\beta_3(i\\times j) + \\beta_4(i+j) +\\\\ &\\beta_5\\max(i, j) + \\beta_6\\min(i, j)\n\\end{aligned}\n\\]\n\n\n\n\n\n\n\nTip\n\n\nWe want to fit this as a generalised additive model, so actually we have splines on these terms to satisfy the smoothness requirements.\nThis is very similar to the approach by Prem et. al who perform post-hoc smoothing of the parameters after MCMC."
+  },
+  {
+    "objectID": "anziam2024/index.html#model-details-1",
+    "href": "anziam2024/index.html#model-details-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Model details",
+    "text": "Model details\n\nAll that is needed to make predictions is the number of individuals in different age groups.\nThis is easily obtainable information from most statistics bureaus/governments."
+  },
+  {
+    "objectID": "anziam2024/index.html#data-sources",
+    "href": "anziam2024/index.html#data-sources",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Data sources",
+    "text": "Data sources\n\n\n\nThe socialmixr package has this information for most countries:\n\n\nsocialmixr::wpp_age(\"Australia\", 2015)\n\n     country lower.age.limit year population\n1  Australia               0 2015    1545114\n2  Australia               5 2015    1521110\n3  Australia              10 2015    1416482\n4  Australia              15 2015    1480341\n5  Australia              20 2015    1663584\n6  Australia              25 2015    1763281\n7  Australia              30 2015    1753076\n8  Australia              35 2015    1574157\n9  Australia              40 2015    1655520\n10 Australia              45 2015    1559506\n11 Australia              50 2015    1569432\n12 Australia              55 2015    1451869\n13 Australia              60 2015    1281612\n14 Australia              65 2015    1153780\n15 Australia              70 2015     843695\n16 Australia              75 2015     628870\n17 Australia              80 2015     466797\n18 Australia              85 2015     303108\n19 Australia              90 2015     135089\n20 Australia              95 2015      29268\n21 Australia             100 2015       3855\n\n\n\nAnd for inside Australia, conmat provides some ABS functions:\n\nconmat::abs_age_lga(\"Melbourne (C)\")\n\n# A tibble: 18 × 4 (conmat_population)\n - age: lower.age.limit\n - population: population\n   lga           lower.age.limit  year population\n   &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n 1 Melbourne (C)               0  2020       4882\n 2 Melbourne (C)               5  2020       3450\n 3 Melbourne (C)              10  2020       2675\n 4 Melbourne (C)              15  2020       9396\n 5 Melbourne (C)              20  2020      38434\n 6 Melbourne (C)              25  2020      38546\n 7 Melbourne (C)              30  2020      25834\n 8 Melbourne (C)              35  2020      15072\n 9 Melbourne (C)              40  2020       8554\n10 Melbourne (C)              45  2020       6753\n11 Melbourne (C)              50  2020       5941\n12 Melbourne (C)              55  2020       5859\n13 Melbourne (C)              60  2020       5060\n14 Melbourne (C)              65  2020       4443\n15 Melbourne (C)              70  2020       3611\n16 Melbourne (C)              75  2020       2320\n17 Melbourne (C)              80  2020       1467\n18 Melbourne (C)              85  2020       1459"
+  },
+  {
+    "objectID": "anziam2024/index.html#testing-model-fit-sir-model",
+    "href": "anziam2024/index.html#testing-model-fit-sir-model",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Testing model fit: SIR Model",
+    "text": "Testing model fit: SIR Model\nTo test model fit, we will use a structured, SIR model. For the population in group \\(i\\),\n\\[ \\lambda(t) = \\beta \\times C \\times I(t),\\] where\n\n\\(\\beta\\) represents the probability of transmission given contact (here assumed to be independent of age group)\n\\(C\\) is an \\(N \\times N\\) matrix with element \\((i,j)\\) representing the number of contacts from age group \\(i\\) to age group \\(j\\), and\n\\(I(t)\\) is a \\(N \\times 1\\) vector of the number of infected individuals"
+  },
+  {
+    "objectID": "anziam2024/index.html#testing-model-fit-sir-model-1",
+    "href": "anziam2024/index.html#testing-model-fit-sir-model-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Testing model fit: SIR Model",
+    "text": "Testing model fit: SIR Model\nThen,\n\\[\\begin{aligned}\n\\frac{dS}{dt} &= -\\lambda(t) S I \\\\\n\\frac{dI}{dt} &= \\lambda(t) S I - \\gamma I \\\\\n\\frac{dR}{dt} &= \\gamma I\n\\end{aligned}\n\\]\nand the total population size is conserved (\\(S+I+R = N\\))."
+  },
+  {
+    "objectID": "anziam2024/index.html#difference-in-peak-size-compared-to-polymod",
+    "href": "anziam2024/index.html#difference-in-peak-size-compared-to-polymod",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Difference in peak size compared to POLYMOD",
+    "text": "Difference in peak size compared to POLYMOD\n\nDepends on R0 but contact model estimates are systematically lower\nPossibly because of unequal sampling which isn’t accounted for in data"
+  },
+  {
+    "objectID": "anziam2024/index.html#difference-in-peak-size-compared-to-prem",
+    "href": "anziam2024/index.html#difference-in-peak-size-compared-to-prem",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Difference in peak size compared to Prem",
+    "text": "Difference in peak size compared to Prem\n\nconmat method systematically gives larger epidemics compared to Prem et. al\nCould be due to different interpretations of parameters or slightly different data sources"
+  },
+  {
+    "objectID": "anziam2024/index.html#for-a-fixed-r01.5",
+    "href": "anziam2024/index.html#for-a-fixed-r01.5",
+    "title": "Michael Lydeamore - Slides",
+    "section": "For a fixed R0=1.5",
+    "text": "For a fixed R0=1.5"
+  },
+  {
+    "objectID": "anziam2024/index.html#why-not-just-use-prem",
+    "href": "anziam2024/index.html#why-not-just-use-prem",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Why not just use Prem?",
+    "text": "Why not just use Prem?\n\nThere’s no ground truth in these projects, making comparisons to almost impossible"
+  },
+  {
+    "objectID": "anziam2024/index.html#why-should-i-use-this-its-easy",
+    "href": "anziam2024/index.html#why-should-i-use-this-its-easy",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Why should I use this? It’s easy!",
+    "text": "Why should I use this? It’s easy!\nGetting a contact matrix is easy:\n\nworld_data &lt;- socialmixr::wpp_age()\npopulation &lt;- age_population(\n    data = world_data,\n    location_col = country,\n    location = \"Australia\",\n    age_col = lower.age.limit,\n    year_col = year,\n    year = 2015\n)\n\npopulation\n\n# A tibble: 21 × 5 (conmat_population)\n - age: lower.age.limit\n - population: population\n   country    year population lower.age.limit upper.age.limit\n   &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;\n 1 Australia  2015    1545114               0               4\n 2 Australia  2015    1521110               5               9\n 3 Australia  2015    1416482              10              14\n 4 Australia  2015    1480341              15              19\n 5 Australia  2015    1663584              20              24\n 6 Australia  2015    1763281              25              29\n 7 Australia  2015    1753076              30              34\n 8 Australia  2015    1574157              35              39\n 9 Australia  2015    1655520              40              44\n10 Australia  2015    1559506              45              49\n# ℹ 11 more rows"
+  },
+  {
+    "objectID": "anziam2024/index.html#why-should-i-use-this",
+    "href": "anziam2024/index.html#why-should-i-use-this",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Why should I use this?",
+    "text": "Why should I use this?\nGetting a contact matrix is easy:\n\ncontact_rates &lt;- extrapolate_polymod(\n    population = population,\n    age_breaks = c(seq(0, 100, by = 5), Inf)\n)\n\nprint(contact_rates)"
+  },
+  {
+    "objectID": "anziam2024/index.html#why-should-i-use-this-1",
+    "href": "anziam2024/index.html#why-should-i-use-this-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Why should I use this?",
+    "text": "Why should I use this?\n\ncontact_rates$home\n\n                 [0,5)       [5,10)      [10,15)      [15,20)      [20,25)\n[0,5)     5.802591e-01 4.813549e-01 2.402471e-01 1.620169e-01 2.321232e-01\n[5,10)    4.646578e-01 7.514361e-01 4.946728e-01 1.791579e-01 1.174632e-01\n[10,15)   2.269854e-01 4.841612e-01 7.948923e-01 4.093514e-01 1.390883e-01\n[15,20)   1.577753e-01 1.807368e-01 4.219247e-01 6.808458e-01 3.419038e-01\n[20,25)   2.432882e-01 1.275370e-01 1.542955e-01 3.679832e-01 5.807800e-01\n[25,30)   4.886107e-01 2.352219e-01 1.226892e-01 1.477810e-01 3.335959e-01\n[30,35)   6.641648e-01 5.188639e-01 2.431926e-01 1.258683e-01 1.448990e-01\n[35,40)   4.878934e-01 6.644817e-01 4.999019e-01 2.317582e-01 1.165367e-01\n[40,45)   2.582931e-01 4.382340e-01 5.778488e-01 4.314489e-01 1.936253e-01\n[45,50)   1.687273e-01 2.152100e-01 3.566710e-01 4.708383e-01 3.386774e-01\n[50,55)   1.689770e-01 1.393551e-01 1.740598e-01 2.883215e-01 3.645253e-01\n[55,60)   1.852236e-01 1.352834e-01 1.089212e-01 1.338642e-01 2.115404e-01\n[60,65)   1.559059e-01 1.373831e-01 9.632628e-02 7.402672e-02 8.744629e-02\n[65,70)   9.671786e-02 1.081266e-01 8.924898e-02 5.758573e-02 4.288228e-02\n[70,75)   5.304213e-02 6.517089e-02 6.630047e-02 4.931502e-02 3.157968e-02\n[75,80)   3.063155e-02 3.655708e-02 3.961536e-02 3.605985e-02 2.759811e-02\n[80,85)   1.701003e-02 2.046395e-02 2.097059e-02 2.037989e-02 1.984339e-02\n[85,90)   6.793228e-03 9.262530e-03 9.350083e-03 8.704453e-03 9.446582e-03\n[90,95)   1.485635e-03 2.547974e-03 2.852779e-03 2.654936e-03 2.853791e-03\n[95,100)  1.550040e-04 3.807001e-04 5.280096e-04 5.572703e-04 6.106408e-04\n[100,Inf) 4.001678e-06 1.569944e-05 2.851021e-05 3.613939e-05 4.352133e-05\n               [25,30)      [30,35)      [35,40)      [40,45)      [45,50)\n[0,5)     4.406440e-01 5.982784e-01 4.552888e-01 2.465532e-01 1.640271e-01\n[5,10)    2.047720e-01 4.511788e-01 5.985671e-01 4.038050e-01 2.019578e-01\n[10,15)   1.045372e-01 2.069748e-01 4.407441e-01 5.211368e-01 3.275955e-01\n[15,20)   1.297843e-01 1.104135e-01 2.106083e-01 4.010565e-01 4.457390e-01\n[20,25)   3.153175e-01 1.368029e-01 1.139796e-01 1.937146e-01 3.450794e-01\n[25,30)   5.243732e-01 3.144551e-01 1.356807e-01 1.013971e-01 1.623030e-01\n[30,35)   3.148155e-01 4.980613e-01 2.954307e-01 1.163616e-01 8.325675e-02\n[35,40)   1.311236e-01 2.851813e-01 4.517921e-01 2.542122e-01 9.813646e-02\n[40,45)   9.579716e-02 1.098093e-01 2.485196e-01 4.075377e-01 2.345534e-01\n[45,50)   1.505639e-01 7.714654e-02 9.420239e-02 2.303081e-01 4.062297e-01\n[50,55)   2.628503e-01 1.238732e-01 6.901509e-02 9.188973e-02 2.408397e-01\n[55,60)   2.718109e-01 2.122671e-01 1.101458e-01 6.639312e-02 9.279330e-02\n[60,65)   1.446095e-01 2.063714e-01 1.771966e-01 9.622107e-02 5.879160e-02\n[65,70)   5.498418e-02 1.035664e-01 1.608957e-01 1.394100e-01 7.437032e-02\n[70,75)   2.651484e-02 3.913120e-02 7.821431e-02 1.191438e-01 1.011711e-01\n[75,80)   2.059216e-02 1.972887e-02 2.968419e-02 5.702188e-02 8.691144e-02\n[80,85)   1.798484e-02 1.488353e-02 1.402809e-02 2.034797e-02 4.046827e-02\n[85,90)   1.090387e-02 1.044056e-02 8.227622e-03 7.649566e-03 1.201023e-02\n[90,95)   3.633180e-03 4.228353e-03 3.796308e-03 3.023101e-03 3.099944e-03\n[95,100)  7.478837e-04 9.265512e-04 1.031428e-03 9.725087e-04 8.415508e-04\n[100,Inf) 5.166363e-05 6.101144e-05 7.499761e-05 8.726638e-05 8.258968e-05\n               [50,55)      [55,60)      [60,65)      [65,70)      [70,75)\n[0,5)     1.687022e-01 1.961683e-01 0.1832025702 0.1331132999 0.0918863354\n[5,10)    1.343025e-01 1.383072e-01 0.1558369131 0.1436531774 0.1089811502\n[10,15)   1.641843e-01 1.089894e-01 0.1069433218 0.1160533779 0.1085141367\n[15,20)   2.803165e-01 1.380623e-01 0.0847102640 0.0771805911 0.0831931640\n[20,25)   3.814376e-01 2.348162e-01 0.1076993145 0.0618578959 0.0573376911\n[25,30)   2.909892e-01 3.192085e-01 0.1884261254 0.0839126928 0.0509323900\n[30,35)   1.372914e-01 2.495673e-01 0.2692099753 0.1582363271 0.0752533160\n[35,40)   7.383723e-02 1.250082e-01 0.2231323234 0.2372997628 0.1451958462\n[40,45)   9.610865e-02 7.366441e-02 0.1184517518 0.2010068440 0.2162238279\n[45,50)   2.473381e-01 1.010924e-01 0.0710647072 0.1052892436 0.1802835840\n[50,55)   4.428859e-01 2.631261e-01 0.0980390321 0.0637188708 0.0974964688\n[55,60)   2.480418e-01 4.500001e-01 0.2527757109 0.0905781696 0.0621663591\n[60,65)   8.329582e-02 2.278236e-01 0.4239011662 0.2392786574 0.0895750648\n[65,70)   4.622177e-02 6.970135e-02 0.2042952564 0.3920370894 0.2228202559\n[70,75)   5.618912e-02 3.800650e-02 0.0607611916 0.1770269961 0.3268365761\n[75,80)   7.927543e-02 4.788099e-02 0.0330311910 0.0500190560 0.1358156077\n[80,85)   6.696845e-02 6.405183e-02 0.0377136045 0.0242834312 0.0344473988\n[85,90)   2.589055e-02 4.275948e-02 0.0381342648 0.0207240237 0.0126427866\n[90,95)   5.199957e-03 1.089333e-02 0.0165873700 0.0135501574 0.0068514835\n[95,100)  8.791712e-04 1.406558e-03 0.0027504099 0.0038776570 0.0029390575\n[100,Inf) 6.969596e-05 7.464274e-05 0.0001226298 0.0002243481 0.0002723907\n               [75,80)      [80,85)      [85,90)      [90,95)     [95,100)\n[0,5)     0.0695641984 0.0532109912 3.471403e-02 1.729263e-02 0.0058435830\n[5,10)    0.0801412678 0.0617950322 4.569054e-02 2.862937e-02 0.0138543803\n[10,15)   0.0850002537 0.0619793297 4.514235e-02 3.137307e-02 0.0188069300\n[15,20)   0.0797478903 0.0620835720 4.331605e-02 3.009411e-02 0.0204588230\n[20,25)   0.0656899136 0.0650600964 5.059482e-02 3.481559e-02 0.0241281820\n[25,30)   0.0518553897 0.0623847088 6.178521e-02 4.689333e-02 0.0312640673\n[30,35)   0.0497383729 0.0516862432 5.922775e-02 5.463775e-02 0.0387773632\n[35,40)   0.0722403975 0.0470254386 4.505482e-02 4.735311e-02 0.0416690143\n[40,45)   0.1356627465 0.0666837054 4.095132e-02 3.686412e-02 0.0384089094\n[45,50)   0.2030314881 0.1302208821 6.313202e-02 3.711697e-02 0.0326351958\n[50,55)   0.1803275843 0.2098327714 1.325186e-01 6.062553e-02 0.0331983468\n[55,60)   0.1026709549 0.1891888359 2.063141e-01 1.197230e-01 0.0500681572\n[60,65)   0.0638369340 0.1003980607 1.658346e-01 1.643075e-01 0.0882398189\n[65,70)   0.0825348941 0.0551939725 7.694638e-02 1.145984e-01 0.1062162347\n[70,75)   0.1780478029 0.0622046521 3.729424e-02 4.603665e-02 0.0639608777\n[75,80)   0.2379470305 0.1226411587 3.901666e-02 2.061227e-02 0.0235174032\n[80,85)   0.0890341775 0.1467765207 6.996593e-02 2.039686e-02 0.0100720633\n[85,90)   0.0173395593 0.0428305924 6.727551e-02 3.055193e-02 0.0085097343\n[90,95)   0.0040215520 0.0054816419 1.341277e-02 2.108756e-02 0.0091691088\n[95,100)  0.0014166741 0.0008357541 1.153476e-03 2.831000e-03 0.0045419826\n[100,Inf) 0.0001757175 0.0000815589 5.608818e-05 9.113023e-05 0.0002356887\n             [100,Inf)\n[0,5)     0.0015969450\n[5,10)    0.0060478325\n[10,15)   0.0107494942\n[15,20)   0.0140445284\n[20,25)   0.0182033974\n[25,30)   0.0228616687\n[30,35)   0.0270291084\n[35,40)   0.0320725374\n[40,45)   0.0364835436\n[45,50)   0.0339033995\n[50,55)   0.0278587842\n[55,60)   0.0281256815\n[60,65)   0.0416461592\n[65,70)   0.0650512285\n[70,75)   0.0627494825\n[75,80)   0.0308777682\n[80,85)   0.0104045396\n[85,90)   0.0043801633\n[90,95)   0.0031243614\n[95,100)  0.0024948840\n[100,Inf) 0.0003784101"
+  },
+  {
+    "objectID": "anziam2024/index.html#why-should-i-use-this-you-can-use-a-custom-population",
+    "href": "anziam2024/index.html#why-should-i-use-this-you-can-use-a-custom-population",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Why should I use this? You can use a custom population",
+    "text": "Why should I use this? You can use a custom population\n\nflat_population_data &lt;- tibble(\n    country = \"flatland\",\n    year = 2024,\n    population = 1000,\n    lower.age.limit = seq(0, 75, by=5)\n)\n\nflat_population &lt;- age_population(\n    data = flat_population_data,\n    location_col = country,\n    location = \"flatland\",\n    age_col = lower.age.limit,\n    year_col = year,\n    year = 2024\n)\n\nflat_contact_rates &lt;- extrapolate_polymod(\n    population = flat_population,\n    age_breaks = c(seq(0, 75, by=5), Inf)\n)"
+  },
+  {
+    "objectID": "anziam2024/index.html#why-should-i-use-this-you-can-use-a-custom-population-1",
+    "href": "anziam2024/index.html#why-should-i-use-this-you-can-use-a-custom-population-1",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Why should I use this? You can use a custom population",
+    "text": "Why should I use this? You can use a custom population\n\nflat_contact_rates$home\n\n              [0,5)     [5,10)    [10,15)    [15,20)    [20,25)    [25,30)\n[0,5)    0.56828986 0.47107930 0.23528412 0.15828319 0.22562515 0.42964988\n[5,10)   0.47107930 0.76196823 0.50231004 0.18255328 0.11883529 0.20659277\n[10,15)  0.23528412 0.50231004 0.82299109 0.42595334 0.14470685 0.10812909\n[15,20)  0.15828319 0.18255328 0.42595334 0.68440444 0.34414245 0.13015930\n[20,25)  0.22562515 0.11883529 0.14470685 0.34414245 0.54276791 0.29342160\n[25,30)  0.42964988 0.20659277 0.10812909 0.13015930 0.29342160 0.46253966\n[30,35)  0.58525292 0.45701473 0.21462152 0.11113527 0.12706493 0.27630913\n[35,40)  0.44529458 0.60639263 0.45689173 0.21281962 0.10667273 0.11928571\n[40,45)  0.24127232 0.40933635 0.53934055 0.40417570 0.18192135 0.08953615\n[45,50)  0.16037541 0.20465635 0.33875107 0.44747109 0.32351471 0.14362854\n[50,55)  0.16492113 0.13600777 0.16964705 0.28029573 0.35573859 0.25736993\n[55,60)  0.19180402 0.14014100 0.11268901 0.13779345 0.21749363 0.28104124\n[60,65)  0.17876427 0.15784117 0.11080587 0.08487633 0.09950725 0.16466518\n[65,70)  0.12947242 0.14506103 0.12018401 0.07774984 0.05748962 0.07309408\n[70,75)  0.08932050 0.10972788 0.11192484 0.08381432 0.05375817 0.04473290\n[75,Inf) 0.05512666 0.06576018 0.07106603 0.06492533 0.05030197 0.03782410\n            [30,35)    [35,40)    [40,45)    [45,50)    [50,55)    [55,60)\n[0,5)    0.58525292 0.44529458 0.24127232 0.16037541 0.16492113 0.19180402\n[5,10)   0.45701473 0.60639263 0.40933635 0.20465635 0.13600777 0.14014100\n[10,15)  0.21462152 0.45689173 0.53934055 0.33875107 0.16964705 0.11268901\n[15,20)  0.11113527 0.21281962 0.40417570 0.44747109 0.28029573 0.13779345\n[20,25)  0.12706493 0.10667273 0.18192135 0.32351471 0.35573859 0.21749363\n[25,30)  0.27630913 0.11928571 0.08953615 0.14362854 0.25736993 0.28104124\n[30,35)  0.43869100 0.26005794 0.10254775 0.07332365 0.12101602 0.22021310\n[35,40)  0.26005794 0.41225918 0.23226955 0.08961730 0.06739027 0.11438638\n[40,45)  0.10254775 0.23226955 0.38043054 0.21889793 0.08962625 0.06884477\n[45,50)  0.07332365 0.08961730 0.21889793 0.38628120 0.23490447 0.09578732\n[50,55)  0.12101602 0.06739027 0.08962625 0.23490447 0.43255518 0.25611626\n[55,60)  0.22021310 0.11438638 0.06884477 0.09578732 0.25611626 0.46618257\n[60,65)  0.23655846 0.20418776 0.11121066 0.06761476 0.09516248 0.26086699\n[65,70)  0.13798606 0.21578768 0.18859484 0.10093986 0.06227115 0.09317464\n[70,75)  0.06552314 0.13088028 0.20091654 0.17270637 0.09635242 0.06459090\n[75,Inf) 0.03588289 0.05306184 0.10103208 0.15531574 0.14574253 0.09020024\n            [60,65)    [65,70)    [70,75)   [75,Inf)\n[0,5)    0.17876427 0.12947242 0.08932050 0.06737703\n[5,10)   0.15784117 0.14506103 0.10972788 0.08037355\n[10,15)  0.11080587 0.12018401 0.11192484 0.08685848\n[15,20)  0.08487633 0.07774984 0.08381432 0.07935318\n[20,25)  0.09950725 0.05748962 0.05375817 0.06148018\n[25,30)  0.16466518 0.07309408 0.04473290 0.04622945\n[30,35)  0.23655846 0.13798606 0.06552314 0.04385687\n[35,40)  0.20418776 0.21578768 0.13088028 0.06485336\n[40,45)  0.11121066 0.18859484 0.20091654 0.12348365\n[45,50)  0.06761476 0.10093986 0.17270637 0.18983035\n[50,55)  0.09516248 0.06227115 0.09635242 0.17812976\n[55,60)  0.26086699 0.09317464 0.06459090 0.11024474\n[60,65)  0.48737980 0.27379182 0.10227898 0.07483573\n[65,70)  0.27379182 0.52813388 0.29877425 0.11049744\n[70,75)  0.10227898 0.29877425 0.55330597 0.29782838\n[75,Inf) 0.06122924 0.09040699 0.24367777 0.41218989"
+  },
+  {
+    "objectID": "anziam2024/index.html#conclusion",
+    "href": "anziam2024/index.html#conclusion",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nContact matrices are frequently used in infectious diseases modelling\nStandard Prem et. al matrices are not written for re-use\nconmat provides an interface to easily generate and update models from any data source\nCan integrate vaccination, calculate next generation matrices, and a handful of other features\n\n\nAnd it’s available right now\nhttps://www.github.com/idem-lab/conmat"
+  },
+  {
+    "objectID": "anziam2024/index.html#acknowledgements",
+    "href": "anziam2024/index.html#acknowledgements",
+    "title": "Michael Lydeamore - Slides",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\n\n\nTelethon Kids Institute\n\nNick Tierney\nNick Golding\nAarathy Babu\n\n\n\nSPECTRUM-SPARK Travel Funding\nDepartment of Econometrics and Business Statistics, Monash University"
   },
   {
     "objectID": "2024-adsc-lunchbox/index.html#etc5513-title",
