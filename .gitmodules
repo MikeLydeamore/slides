@@ -31,3 +31,6 @@
 [submodule "talk-procrastination"]
 	path = talk-procrastination
 	url = git@github.com:MikeLydeamore/talk-procrastination.git
+[submodule "talk-asc2025"]
+	path = talk-asc2025
+	url = git@github.com:MikeLydeamore/talk-asc2025.git
