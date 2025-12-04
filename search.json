@@ -686,6 +686,20 @@
     "text": "Carbanememase-producing Enterobacterales\n\nAcquired primarily in hospital\nResistant to last-line antibiotics\nMortality, given clinical symptoms, in the order of 30%\nCarriage for &gt;= 12 months\n\n\nTesting via rectal swab\nCan carry with no symptoms\nUnknown if asymptomatic people can transmit"
   },
   {
+    "objectID": "talk-asc2025/index.html#carbanememase-producing-enterobacterales-incidence",
+    "href": "talk-asc2025/index.html#carbanememase-producing-enterobacterales-incidence",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "Carbanememase-producing Enterobacterales incidence",
+    "text": "Carbanememase-producing Enterobacterales incidence"
+  },
+  {
+    "objectID": "talk-asc2025/index.html#the-current-surveillance-system",
+    "href": "talk-asc2025/index.html#the-current-surveillance-system",
+    "title": "Modelling patient movements for hospital outbreaks",
+    "section": "The current surveillance system",
+    "text": "The current surveillance system"
+  },
+  {
     "objectID": "talk-asc2025/index.html#surveillance-and-outbreak-control",
     "href": "talk-asc2025/index.html#surveillance-and-outbreak-control",
     "title": "Modelling patient movements for hospital outbreaks",
@@ -1068,7 +1082,7 @@
     "href": "index.html",
     "title": "Michael Lydeamore - Slides",
     "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhen procrastination leads to innovation\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nDec 3, 2025\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nDec 3, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhen procrastination leads to innovation\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
