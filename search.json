@@ -1089,7 +1089,91 @@
     "href": "index.html",
     "title": "Michael Lydeamore - Slides",
     "section": "",
-    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhen procrastination leads to innovation\n\n\n\n\n\n\nMichael Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nDec 4, 2025\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nDec 4, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Data, Health & Biology\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nMichael Lydeamore, Nick Tierney, Nick Golding\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nFeb 6, 2026\n\n\n\n\n\n\n\n\n\n\n\nData-driven insights into healthcare acquired infections: two case studies\n\n\n\n\n\n\nMichael Lydeamore\n\n\nFeb 6, 2026\n\n\n\n\n\n\n\n\n\n\n\nHospitalisations in Victoria: A network problem\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 6, 2026\n\n\n\n\n\n\n\n\n\n\n\nIntro to R Packages with {usethis}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModelling chytridiomycosis transmission in frogs\n\n\n\n\n\n\nMichael Lydeamore, Claire Miller, Anthony Waddle, Lee Berger, Lee Skerratt, Jennifer Flegg, Patricia Campbell\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nFeb 6, 2026\n\n\n\n\n\n\n\n\n\n\n\nModelling patient movements for hospital outbreaks\n\n\n\n\n\n\nDavid Wu; Michael Lydeamore\n\n\nFeb 6, 2026\n\n\n\n\n\n\n\n\n\n\n\nSection: Model of Stochastic Processes and Network Models\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTalking by listening: networking at conferences\n\n\n\n\n\n\nMichael Lydeamore\n\n\n\n\n\n\n\n\n\n\n\nWhen procrastination leads to innovation\n\n\n\n\n\n\nMichael Lydeamore\n\n\nFeb 6, 2026\n\n\n\n\n\n\n\n\n\n\n\nairpurifyr: Open Air Quality in R\n\n\n\n\n\n\nM. J. Lydeamore, D. Wu, J. P. Lakshika\n\n\nFeb 6, 2026\n\n\n\n\n\n\n\n\n\n\n\nconmat: Programmatic generation of synthetic contact matrices\n\n\n\n\n\n\nM. J. Lydeamore\n\n\nFeb 6, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#about-me",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#about-me",
+    "title": "Talking by listening: networking at conferences",
+    "section": "About me",
+    "text": "About me\n\nSenior Lecturer, Department of Econometrics and Business Statistics, Monash University\nResearch in infectious diseases modelling, statistics, and statistical software\nSelf-appointed Chief Vibes Officer of my department\nWas born deaf, had hearing restored at 7 months old\nHaven’t stopped talking since"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#faqs",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#faqs",
+    "title": "Talking by listening: networking at conferences",
+    "section": "FAQs",
+    "text": "FAQs\n\nWhy are you in a business school?\n\n\nWe are the largest group of applied statisticians at Monash! And also the Business School has lots of money so they look after me well"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#faqs-1",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#faqs-1",
+    "title": "Talking by listening: networking at conferences",
+    "section": "FAQs",
+    "text": "FAQs\n\nWow disease modelling - must’ve been a busy 2020 and 2021\n\n\nYes, although it benefitted me in the long term. But I think I’m still recovering"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#faqs-2",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#faqs-2",
+    "title": "Talking by listening: networking at conferences",
+    "section": "FAQs",
+    "text": "FAQs\n\nWhat is a Chief Vibes Officer?"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#anziam-and-austms",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#anziam-and-austms",
+    "title": "Talking by listening: networking at conferences",
+    "section": "ANZIAM and AustMS",
+    "text": "ANZIAM and AustMS\n\nAustralia is a big country, but has a fairly small research population\nMany people here have been coming for a long time\nA lot of us know each other reasonably well\n\n\nYou may feel like everyone knows someone or everyone.\n99.9% are open to knowing more people!"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#networking-at-a-conference",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#networking-at-a-conference",
+    "title": "Talking by listening: networking at conferences",
+    "section": "Networking at a conference",
+    "text": "Networking at a conference"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#the-elevator-pitch",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#the-elevator-pitch",
+    "title": "Talking by listening: networking at conferences",
+    "section": "The elevator pitch",
+    "text": "The elevator pitch\nPersonally, I find a plan of how to start a conversation means one less stress point\n\nWe will develop an “Elevator Pitch” of you and your research!"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#the-elevator-pitch-1",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#the-elevator-pitch-1",
+    "title": "Talking by listening: networking at conferences",
+    "section": "The elevator pitch",
+    "text": "The elevator pitch\n\nActivity\n\n\n\nCreate your elevator pitch.\n\nYour name & institution\nCurrent position\nVery brief research topic\nSomething about the topic\n\n\n \n\n\n\nSecond 5 minutes:\nPractice it with the person next to you"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#networking-at-a-conference-1",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#networking-at-a-conference-1",
+    "title": "Talking by listening: networking at conferences",
+    "section": "Networking at a conference",
+    "text": "Networking at a conference\nSome tips to help make a conference less intimidating:\n\nMake a buddy I can be your buddy\nMaximise the meal breaks\nUse your elevator pitch\nAsk questions"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#asking-questions",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#asking-questions",
+    "title": "Talking by listening: networking at conferences",
+    "section": "Asking questions",
+    "text": "Asking questions\nMost people love talking about themselves.\nWe can practice asking questions!"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#finding-a-buddy",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#finding-a-buddy",
+    "title": "Talking by listening: networking at conferences",
+    "section": "Finding a buddy",
+    "text": "Finding a buddy\nPeople bond through shared experiences1\n\nActivity\n\nIn pairs, you will talk to each other for 2 minutes\nTry to learn:\n\nName\nResearch topic\nA common thing, i.e. hobby, food, hatred of University admin\n\n\n \n\n\nMarsh et. al, Social Connection Through Joint Action and Interpersonal Coordination Topics in Cognitive Science (2009)"
+  },
+  {
+    "objectID": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#wrap-up",
+    "href": "anziam-ecr-workshop/talk-anziam-ecr-workshop.html#wrap-up",
+    "title": "Talking by listening: networking at conferences",
+    "section": "Wrap-up",
+    "text": "Wrap-up\nTakeaways:\n\nWe don’t all know everyone, but it is good to know someone\nHave your elevator pitch ready\nTag along with a buddy\nAsk open-ended questions, let them do the talking\n\n\nChallenge\n\nAt dinner tonight, sit next to someone new.\nYou can put your buddy(ies) one seat away, or diagonally across."
   },
   {
     "objectID": "acefa-launch/talk-acefa-launch.html#hospital-outbreaks",
