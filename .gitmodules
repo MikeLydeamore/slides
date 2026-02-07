@@ -34,3 +34,6 @@
 [submodule "talk-asc2025"]
 	path = talk-asc2025
 	url = git@github.com:MikeLydeamore/talk-asc2025.git
+[submodule "anziam-ecr-workshop"]
+	path = anziam-ecr-workshop
+	url = git@github.com:MikeLydeamore/talk-anziam-ecr-workshop.git
