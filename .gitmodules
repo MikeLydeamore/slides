@@ -37,3 +37,6 @@
 [submodule "anziam-ecr-workshop"]
 	path = anziam-ecr-workshop
 	url = git@github.com:MikeLydeamore/talk-anziam-ecr-workshop.git
+[submodule "talk-ggplotbattles"]
+	path = talk-ggplotbattles
+	url = git@github.com:MikeLydeamore/talk-ggplotbattles.git
