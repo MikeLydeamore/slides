@@ -2,70 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://slides.michaellydeamore.com/conmat-spectrum-2024/index.html</loc>
-    <lastmod>2026-02-09T22:23:58.425Z</lastmod>
+    <lastmod>2026-02-09T23:04:30.003Z</lastmod>
   </url>
   <url>
     <loc>https://slides.michaellydeamore.com/workshop-r-pkg/index.html</loc>
-    <lastmod>2026-02-09T22:23:59.726Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/talk-ggplotbattles/talk-anziam-ecr-workshop.html</loc>
-    <lastmod>2026-02-09T22:23:58.801Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/talk-midsea-hospital-infections/index.html</loc>
-    <lastmod>2026-02-09T22:23:58.924Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/talk-procrastination/index.html</loc>
-    <lastmod>2026-02-09T22:23:58.992Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/talk-asc2025/index.html</loc>
-    <lastmod>2026-02-09T22:23:58.727Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/acefa-launch/model.html</loc>
-    <lastmod>2026-02-09T22:23:57.450Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/healthcare-infections/index.html</loc>
-    <lastmod>2026-02-09T22:23:58.536Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/index.html</loc>
-    <lastmod>2026-02-09T22:23:46.277Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/anziam-ecr-workshop/talk-anziam-ecr-workshop.html</loc>
-    <lastmod>2026-02-09T22:23:57.937Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/acefa-launch/talk-acefa-launch.html</loc>
-    <lastmod>2026-02-09T22:23:57.474Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/anziam2024/index.html</loc>
-    <lastmod>2026-02-09T22:23:58.165Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/2024-adsc-lunchbox/index.html</loc>
-    <lastmod>2026-02-09T22:23:57.372Z</lastmod>
-  </url>
-  <url>
-    <loc>https://slides.michaellydeamore.com/wombat-airpurifyr-2024/index.html</loc>
-    <lastmod>2026-02-09T22:23:59.663Z</lastmod>
+    <lastmod>2026-02-09T23:04:31.637Z</lastmod>
   </url>
   <url>
     <loc>https://slides.michaellydeamore.com/chytrid-anziam/talk-chytrid-anziam.html</loc>
-    <lastmod>2026-02-09T22:23:58.331Z</lastmod>
+    <lastmod>2026-02-09T23:04:29.903Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/wombat-airpurifyr-2024/index.html</loc>
+    <lastmod>2026-02-09T23:04:31.575Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/2024-adsc-lunchbox/index.html</loc>
+    <lastmod>2026-02-09T23:04:28.397Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/anziam2024/index.html</loc>
+    <lastmod>2026-02-09T23:04:29.737Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/acefa-launch/talk-acefa-launch.html</loc>
+    <lastmod>2026-02-09T23:04:28.498Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/anziam-ecr-workshop/talk-anziam-ecr-workshop.html</loc>
+    <lastmod>2026-02-09T23:04:29.510Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/index.html</loc>
+    <lastmod>2026-02-09T23:04:08.589Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/healthcare-infections/index.html</loc>
+    <lastmod>2026-02-09T23:04:30.114Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/acefa-launch/model.html</loc>
+    <lastmod>2026-02-09T23:04:28.474Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/talk-asc2025/index.html</loc>
+    <lastmod>2026-02-09T23:04:30.304Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/talk-procrastination/index.html</loc>
+    <lastmod>2026-02-09T23:04:30.559Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slides.michaellydeamore.com/talk-midsea-hospital-infections/index.html</loc>
+    <lastmod>2026-02-09T23:04:30.492Z</lastmod>
   </url>
   <url>
     <loc>https://slides.michaellydeamore.com/talk-ggplotbattles/talk-anziam-ggplotbattles.html</loc>
-    <lastmod>2026-02-09T22:23:58.808Z</lastmod>
+    <lastmod>2026-02-09T23:04:30.380Z</lastmod>
   </url>
   <url>
     <loc>https://slides.michaellydeamore.com/hospital-network/index.html</loc>
-    <lastmod>2026-02-09T22:23:58.647Z</lastmod>
+    <lastmod>2026-02-09T23:04:30.224Z</lastmod>
   </url>
 </urlset>
