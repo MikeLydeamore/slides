@@ -1,0 +1,46 @@
+.guide-header {
+  max-width: 58rem;
+  padding: 1.1rem 1.25rem;
+  margin: 0 0 1.5rem 0;
+  border-left: 6px solid #2b7a78;
+  background: #eef8f6;
+  color: #17252a;
+  font-size: 1.08rem;
+}
+
+table {
+  font-size: 0.95rem;
+}
+
+blockquote {
+  border-left: 5px solid #e6862f;
+  background: #fff7ed;
+  padding: 0.75rem 1rem;
+  color: #2f2418;
+}
+
+pre {
+  border-radius: 6px;
+}
+
+.callout {
+  border-radius: 6px;
+}
+
+h2 {
+  margin-top: 2.2rem;
+}
+
+h3 {
+  margin-top: 1.6rem;
+}
+
+.workflow-strip {
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border: 1px solid #cbd8d6;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #eef8f6, #f7faf9);
+  color: #173b3f;
+  font-weight: 600;
+}

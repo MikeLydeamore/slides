@@ -1,0 +1,800 @@
+---
+title: "Getting Started in Positron from RStudio"
+subtitle: "A practical guide for RStudio users trying Positron"
+author: "Michael Lydeamore"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    code-copy: true
+    theme: cosmo
+    css: styles.css
+execute:
+  eval: false
+---
+
+::: {.guide-header}
+This guide is for people who already know RStudio and want to get productive in Positron without relearning their whole R workflow from scratch.
+:::
+
+## What This Guide Is For
+
+Positron is a data science IDE for R and Python. If you are coming from RStudio, the important thing to know is that the underlying workflow is still familiar: write code, run code, inspect objects, view data, make plots, render reports, and commit your work.
+
+What changes is the shape of the interface. Positron borrows a lot from the VS Code / Code OSS world, especially for navigation, settings, extensions, keyboard shortcuts, and Git.
+
+By the end of this session, you should be able to:
+
+- open an existing RStudio project in Positron
+- find the editor, console, variables, plots, viewer, help, and files
+- run everyday R code
+- inspect data with the Data Explorer
+- use the Command Palette when you cannot find a button
+- add a custom keybinding for an R command
+- create a snippet for repeated code or text
+- bind a snippet to a keyboard shortcut
+- use the Source Control pane for Git
+- decide when Positron is worth using and when RStudio may still be better
+
+::: {.callout-note}
+You do not need to stop using RStudio to try Positron. A good migration is boring: pick one low-risk project, open it in Positron, and see which parts of the workflow feel better.
+:::
+
+## The One-Sentence Version
+
+> You already know the workflow. Positron changes where some things live, and it gives you a few new powers.
+
+::: {.workflow-strip}
+Open a folder -> Run R code -> Inspect objects and data -> Make plots -> Render reports -> Customize shortcuts -> Use Source Control
+:::
+
+## RStudio To Positron Map
+
+| In RStudio | In Positron | Notes |
+|---|---|---|
+| Source pane | Editor | Scripts, Quarto documents, package files, notebooks, markdown, YAML, and more. |
+| Console pane | Console | R and Python sessions are managed explicitly. |
+| Environment pane | Variables pane | Shows objects from the active interpreter session. |
+| Files pane | Explorer | Folder-based file navigation. |
+| Plots pane | Plots pane | Plot history and export tools. |
+| Viewer pane | Viewer | HTML output, apps, previews, and local web content. |
+| Help pane | Help pane | `?mean`, `help(mean)`, and documentation still work. |
+| Git pane | Source Control | A richer Git workflow with clearer diffs and staging. |
+| RStudio Project | Workspace / folder | Open the project folder. `.Rproj` files can stay. |
+| Menus and buttons | Command Palette | Search for actions by name. |
+
+## Before You Start
+
+You will have the smoothest first session if you have:
+
+- Positron installed
+- R installed
+- a small existing R project to open
+- Git installed, if you want to try Source Control
+- a few familiar packages available
+
+Useful packages for the examples:
+
+```r
+install.packages(c(
+  "dplyr",
+  "ggplot2",
+  "palmerpenguins",
+  "reprex",
+  "usethis",
+  "devtools",
+  "testthat"
+))
+```
+
+If your project uses `renv`, keep using it. Positron does not replace your R package library or project environment; it gives you another way to work with them.
+
+## Customize The Editor Early
+
+Before you spend too much time comparing Positron with RStudio, make the editor comfortable enough to use for an hour.
+
+### Choose A Theme
+
+Open the Command Palette and run:
+
+```text
+Preferences: Color Theme
+```
+
+Use the arrow keys to preview themes, then press `Enter` to select one.
+
+If you want something closer to RStudio, open the Extensions view and search for themes such as:
+
+```text
+Tomorrow Night Bright (R Classic)
+```
+
+You can also open settings and search for:
+
+```text
+theme
+```
+
+### Change Editor Font Size With The Mouse Wheel
+
+If you often adjust code size while presenting, enable editor mouse wheel zoom.
+
+Open settings and search for:
+
+```text
+mouse wheel zoom
+```
+
+Or add this to `settings.json`:
+
+```json
+{
+  "editor.mouseWheelZoom": true
+}
+```
+
+After this is enabled, hold `Ctrl`/`Cmd` and scroll the mouse wheel to change the editor font size without zooming the whole Positron interface.
+
+### Try A Layout Preset
+
+Positron's panes are more flexible than RStudio's. You can drag panes around, hide panes you do not need, and use layout presets.
+
+Open the Command Palette and run:
+
+```text
+View: Customize Layout...
+```
+
+Layout presets worth trying:
+
+| Preset | Good For |
+|---|---|
+| Stacked | The default data science layout: editor above, console below, variables and plots to the side. |
+| Side-by-side | Wide screens where you want editor and console next to each other. |
+| Notebook | More space for a notebook or Quarto document. |
+| Assistant | A layout with easier access to Positron Assistant. |
+
+Useful layout commands:
+
+| Command | What It Does |
+|---|---|
+| `View: Toggle Primary Side Bar Visibility` | Hide or show the left side bar. |
+| `View: Toggle Secondary Side Bar Visibility` | Hide or show the right side bar. |
+| `View: Toggle Panel Visibility` | Hide or show the bottom panel with Console and Terminal. |
+| `View: Customize Layout...` | Open layout presets and layout controls. |
+
+::: {.callout-tip}
+If Positron feels visually busy at first, hide one side bar and bring it back only when you need it.
+:::
+
+## Open An Existing RStudio Project
+
+In Positron, the main unit is usually a folder or workspace rather than the `.Rproj` file itself.
+
+To open an existing RStudio project:
+
+1. Open Positron.
+2. Choose `File > Open Folder`.
+3. Select the folder that contains your `.Rproj`, `.git`, `renv.lock`, `_quarto.yml`, or `DESCRIPTION` file.
+4. If prompted, choose the R version you want to use.
+5. Open an `.R` or `.qmd` file and run a line of code.
+
+You can usually leave the `.Rproj` file exactly where it is. It may still be useful for RStudio, and some R tools use project-root markers to work out where they are.
+
+::: {.callout-tip}
+For a first try, use a project that is small, familiar, and easy to recover. A report, teaching example, small package, or analysis repo is ideal.
+:::
+
+## Find Your Bearings
+
+Positron has more places to look than RStudio, but the core pieces are familiar.
+
+Start with these:
+
+- **Editor:** write and edit files.
+- **Console:** run R code interactively.
+- **Variables:** inspect objects in the active session.
+- **Explorer:** browse files in the open folder.
+- **Plots:** review and export plots.
+- **Viewer:** preview HTML, Quarto output, and apps.
+- **Help:** read R documentation.
+- **Source Control:** review, stage, and commit Git changes.
+
+The Activity Bar on the side is important. It switches between major tools such as Explorer, Search, Source Control, Extensions, and other panes.
+
+## Run Everyday R Code
+
+Try this in a fresh R script.
+
+```r
+library(dplyr)
+library(ggplot2)
+library(palmerpenguins)
+
+penguins_clean <- penguins |>
+  filter(!is.na(body_mass_g), !is.na(flipper_length_mm))
+
+penguins_clean |>
+  count(species, island)
+
+ggplot(
+  penguins_clean,
+  aes(flipper_length_mm, body_mass_g, colour = species)
+) +
+  geom_point(alpha = 0.8) +
+  facet_wrap(vars(island)) +
+  theme_minimal()
+```
+
+As you run the code, look for:
+
+- the object in the Variables pane
+- the table output in the Console
+- the plot in the Plots pane
+- function help with `?filter` or `?ggplot`
+
+## View Data
+
+Use `View()` just as you would in RStudio:
+
+```r
+View(penguins_clean, "Clean penguins")
+```
+
+This opens the Data Explorer.
+
+
+## Use The Command Palette
+
+The Command Palette is one of the biggest changes for RStudio users. In RStudio, many actions are visible as buttons. In Positron, many actions are commands that you search for.
+
+Open the Command Palette and search for words like:
+
+- `R`
+- `Quarto`
+- `Git`
+- `Source Control`
+- `Settings`
+- `Keyboard Shortcuts`
+- `Snippets`
+- `Interpreter`
+- `Restart`
+- `Package`
+
+Useful commands to know:
+
+| Command | Why It Is Useful |
+|---|---|
+| `Preferences: Open Settings (UI)` | Change settings without editing JSON directly. |
+| `Preferences: Open Keyboard Shortcuts` | Search and edit keyboard shortcuts. |
+| `Preferences: Open Keyboard Shortcuts (JSON)` | Add precise custom keybindings. |
+| `Snippets: Configure Snippets` | Create reusable code/text snippets. |
+| `Preferences: Color Theme` | Change the editor theme. |
+| `View: Customize Layout...` | Try a different layout preset. |
+| `R: Restart R` | Restart the active R session. |
+| `Quarto: Preview` | Preview a Quarto document. |
+| `Quarto: Render Document` | Render one or more declared output formats. |
+| `View: Source Control` | Open the Source Control pane. |
+
+Rule of thumb:
+
+> If you cannot find a button, search the Command Palette before assuming the feature is missing.
+
+## Make Positron Feel Like Yours
+
+This is where Positron starts to feel less like "RStudio, but different" and more like an editor you can shape around your own workflow.
+
+### Use RStudio Keybindings
+
+If you want familiar RStudio shortcuts, enable RStudio-style keybindings in settings and restart Positron.
+
+Open `Preferences: Open Settings (JSON)` and add:
+
+```json
+{
+  "workbench.keybindings.rstudioKeybindings": true
+}
+```
+
+You can also keep common editor preferences in the same file:
+
+```json
+{
+  "workbench.keybindings.rstudioKeybindings": true,
+  "editor.mouseWheelZoom": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "[r]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false
+  }
+}
+```
+
+After turning this setting on, try these familiar RStudio-style shortcuts:
+
+| Action | Mac | Windows/Linux |
+|---|---|---|
+| Focus Source | `Ctrl+1` | `Ctrl+1` |
+| Focus Console | `Ctrl+2` | `Ctrl+2` |
+| Go to Function/Symbol | `Cmd+.` | `Ctrl+.` |
+| Comment or uncomment a line | `Cmd+Shift+C` | `Ctrl+Shift+C` |
+| Create a new R file | `Cmd+Shift+N` | `Ctrl+Shift+N` |
+| Go to definition | `F2` | `F2` |
+| Reindent selection | `Cmd+I` | `Ctrl+I` |
+| Reformat selection | `Cmd+Shift+A` | `Ctrl+Shift+A` |
+| Source the current R script | `Cmd+Shift+S` | `Ctrl+Shift+S` |
+| Insert a Quarto code cell | `Cmd+Option+I` | `Ctrl+Alt+I` |
+| Run current Quarto statement | `Cmd+Enter` | `Ctrl+Enter` |
+| Run current Quarto cell | `Cmd+Shift+Enter` | `Ctrl+Shift+Enter` |
+| Open version control pane | `Cmd+Option+M` | `Ctrl+Alt+M` |
+| Set working directory | `Cmd+Shift+H` | `Ctrl+Shift+H` |
+| Insert section | `Cmd+Shift+R` | `Ctrl+Shift+R` |
+
+### Try Positron-Specific Shortcuts
+
+Positron also has shortcuts that are not just RStudio compatibility shortcuts. These are worth testing before you start changing everything.
+
+General Positron shortcuts:
+
+| Action | Mac | Windows/Linux |
+|---|---|---|
+| Run selected code, or current statement if nothing is selected | `Cmd+Enter` | `Ctrl+Enter` |
+| Run from the start of the document to the current line | `Cmd+Option+Home` | `Ctrl+Alt+Home` |
+| Run from the current line to the end of the document | `Cmd+Option+End` | `Ctrl+Alt+End` |
+| Restart the active interpreter | `Cmd+Shift+0` | `Ctrl+Shift+0` |
+| Run the current file in the Console | `Cmd+Shift+Enter` | `Ctrl+Shift+P` |
+| Show contextual help for the symbol under the cursor | `F1` | `F1` |
+| Focus the Console | `Cmd+K`, then `F` | `Ctrl+K`, then `F` |
+| Focus the Variables pane | `Cmd+K`, then `V` | `Ctrl+K`, then `V` |
+| Clear the Console | `Ctrl+L` | `Ctrl+L` |
+
+R-specific Positron shortcuts:
+
+| Action | Mac | Windows/Linux |
+|---|---|---|
+| Insert pipe operator | `Cmd+Shift+M` | `Ctrl+Shift+M` |
+| Insert assignment operator | `Option+-` | `Alt+-` |
+| Insert section | `Cmd+K`, then `H` | `Ctrl+K`, then `H` |
+| Load current R package | `Cmd+Shift+L` | `Ctrl+Shift+L` |
+| Build and install current R package | `Cmd+Shift+B` | `Ctrl+Shift+B` |
+| Test current R package | `Cmd+Shift+T` | `Ctrl+Shift+T` |
+| Check current R package | `Cmd+Shift+E` | `Ctrl+Shift+E` |
+| Document current R package | `Cmd+Shift+D` | `Ctrl+Shift+D` |
+
+::: {.callout-note}
+If you enable RStudio keybindings, some Positron defaults are overwritten. When a shortcut behaves unexpectedly, open `Preferences: Open Keyboard Shortcuts` and search for the action or key combination.
+:::
+
+### Add A Keybinding For An R Command
+
+Some R commands are worth turning into keyboard shortcuts. Examples:
+
+- `devtools::load_all()`
+- `devtools::document()`
+- `devtools::test()`
+- `targets::tar_make()`
+- `quarto::quarto_render()`
+- `renv::snapshot()`
+- `reprex::reprex_selection()`
+- a project-specific setup command
+
+Open `Preferences: Open Keyboard Shortcuts (JSON)`.
+
+This shortcut runs `reprex::reprex_selection()` in the R console:
+
+```json
+{
+  "key": "cmd+shift+r",
+  "command": "workbench.action.executeCode.console",
+  "when": "editorTextFocus && editorLangId == 'r'",
+  "args": {
+    "langId": "r",
+    "code": "reprex::reprex_selection()",
+    "focus": true
+  }
+}
+```
+
+This shortcut runs a `targets` pipeline:
+
+```json
+{
+  "key": "cmd+alt+t",
+  "command": "workbench.action.executeCode.console",
+  "when": "editorTextFocus && editorLangId == 'r'",
+  "args": {
+    "langId": "r",
+    "code": "targets::tar_make()",
+    "focus": true
+  }
+}
+```
+
+This shortcut documents an R package:
+
+```json
+{
+  "key": "cmd+alt+d",
+  "command": "workbench.action.executeCode.console",
+  "when": "editorTextFocus && editorLangId == 'r'",
+  "args": {
+    "langId": "r",
+    "code": "devtools::document()",
+    "focus": true
+  }
+}
+```
+
+::: {.callout-note}
+On Windows and Linux, use `ctrl` rather than `cmd`. If a shortcut does not behave as expected, check whether another command already uses the same key combination.
+:::
+
+### Create Snippets For Repeated Code
+
+Snippets insert reusable templates. They are good for code you type often but do not want to memorize or copy from old files.
+
+Open:
+
+```text
+Snippets: Configure Snippets
+```
+
+Choose one of:
+
+- a global snippets file
+- a workspace snippets file
+- a language-specific snippets file, such as R
+
+Here are two R snippets:
+
+```json
+{
+  "Testthat test block": {
+    "prefix": "tt",
+    "body": [
+      "test_that(\"${1:description}\", {",
+      "  ${2:expect_equal(object, value)}",
+      "})"
+    ],
+    "description": "Insert a testthat test block"
+  },
+  "Roxygen function skeleton": {
+    "prefix": "rox",
+    "body": [
+      "#' ${1:Title}",
+      "#'",
+      "#' ${2:Description}",
+      "#'",
+      "#' @param ${3:x} ${4:Description}",
+      "#'",
+      "#' @return ${5:Description}",
+      "#' @export",
+      "${6:function_name} <- function(${3:x}) {",
+      "  ${0}",
+      "}"
+    ],
+    "description": "Insert a roxygen function skeleton"
+  }
+}
+```
+
+To use a snippet:
+
+1. Type the prefix, such as `tt` or `rox`.
+2. Accept the completion.
+3. Use `Tab` to move through the placeholders.
+4. Fill in the parts that are specific to your code.
+
+Good snippet candidates:
+
+- `ggplot2` skeletons
+- `testthat` blocks
+- roxygen documentation
+- `dplyr` pipeline patterns
+- Quarto callouts
+- report headings
+- project setup comments
+- standard code review checklists
+
+### Bind A Snippet To A Key
+
+You can also bind a snippet to a shortcut. This is useful when the snippet is something you reach for constantly.
+
+This keybinding inserts the named roxygen snippet:
+
+```json
+{
+  "key": "cmd+alt+r",
+  "command": "editor.action.insertSnippet",
+  "when": "editorTextFocus && editorLangId == 'r'",
+  "args": {
+    "langId": "r",
+    "name": "Roxygen function skeleton"
+  }
+}
+```
+
+This keybinding defines the snippet directly inside the shortcut:
+
+```json
+{
+  "key": "cmd+alt+p",
+  "command": "editor.action.insertSnippet",
+  "when": "editorTextFocus && editorLangId == 'r'",
+  "args": {
+    "snippet": " |>\n  ${1:dplyr::mutate()}$0"
+  }
+}
+```
+
+Small customizations like this are one of the best reasons to try Positron. They let you turn repeated habits into editor actions.
+
+## A Few Useful Extensions
+
+An extension is an add-on that gives Positron extra features. Extensions can add commands, panes, language support, Git tools, browser helpers, image helpers, and remote-development workflows.
+
+Positron uses the Open VSX extension gallery rather than the Visual Studio Code Marketplace. To look for extensions:
+
+1. Open the Extensions view from the Activity Bar.
+2. Search by extension name.
+3. Install the extension.
+4. Reload Positron if prompted.
+
+Extensions and features worth trying:
+
+| Extension or Feature | Search For | Why It Is Useful |
+|---|---|---|
+| Git Tree | `Git Tree` | Adds a clearer tree-style view of Git history and branches. |
+| Remote SSH | `Remote SSH: Show Remote Menu` | Connect to a remote Linux machine over SSH while keeping the Positron interface local. |
+| Open in Browser | `Open in Browser` | Opens the current file, Git remote file, or web output in your browser, depending on the extension you choose. |
+| Paste Image | `Paste Image` | Paste screenshots or clipboard images into markdown-style workflows without manually saving and linking files. |
+
+::: {.callout-note}
+Remote SSH is a Positron feature rather than a normal extension to install. Open the Command Palette and run `Remote SSH: Show Remote Menu` to start a connection.
+:::
+
+## Use Source Control
+
+If you use Git, the Source Control pane is one of the strongest reasons to spend time in Positron.
+
+Compared with RStudio's Git pane, Positron's Source Control workflow is better for:
+
+- reading diffs
+- staging selected files
+- writing commits
+- switching branches
+- reviewing changes before committing
+- dealing with merge conflicts
+- using GitHub, GitLab, or Git-related extensions
+
+Try this with a small change:
+
+1. Open the Source Control pane.
+2. Edit a file.
+3. Return to Source Control.
+4. Open the diff.
+5. Stage the file.
+6. Write a commit message.
+7. Commit.
+8. Push or sync if you are connected to a remote repository.
+
+Useful habits:
+
+- review the diff before staging
+- stage only the files that belong in the commit
+- write a commit message that explains the change
+- use branches for experimental work
+
+::: {.callout-tip}
+If you only try one feature after this session, try making a real commit from the Source Control pane.
+:::
+
+## Work With Quarto
+
+For Quarto documents, the basic loop is familiar, but it helps to know which buttons and shortcuts to reach for.
+
+1. Open a `.qmd` file.
+2. Edit text and code.
+3. Run individual lines or cells while developing.
+4. Preview or render the document.
+5. Review the result in the Viewer or browser.
+
+### Run Quarto Code While Editing
+
+In source mode, code cells have controls above the cell. The most important one is:
+
+- **Run Cell:** click the run button above a code cell to execute that cell in the Console.
+
+Useful Quarto execution shortcuts:
+
+| Action | Mac | Windows/Linux |
+|---|---|---|
+| Run selected line(s) or current code | `Cmd+Enter` | `Ctrl+Enter` |
+| Run current cell | `Cmd+Shift+Enter` | `Ctrl+Shift+Enter` |
+| Run next cell | `Cmd+Option+N` | `Ctrl+Alt+N` |
+| Run previous cell | `Cmd+Option+P` | `Ctrl+Alt+P` |
+| Run all cells | `Cmd+Option+R` | `Ctrl+Alt+R` |
+| Insert code cell | `Cmd+Shift+I` | `Ctrl+Shift+I` |
+
+If you have enabled RStudio keybindings, also test:
+
+| Action | Mac | Windows/Linux |
+|---|---|---|
+| Insert code cell | `Cmd+Option+I` | `Ctrl+Alt+I` |
+| Run current statement | `Cmd+Enter` | `Ctrl+Enter` |
+| Run current cell | `Cmd+Shift+Enter` | `Ctrl+Shift+Enter` |
+
+You can also use the Command Palette:
+
+```text
+Quarto: Run Cell
+Quarto: Run All Cells
+Quarto: Insert Code Cell
+```
+
+### Preview Or Render A Document
+
+While authoring, you will usually want **Preview**:
+
+1. Open a `.qmd` file.
+2. Click the **Preview** button in the editor toolbar.
+3. Or press `Cmd+Shift+K` on Mac, or `Ctrl+Shift+K` on Windows/Linux.
+4. Or run `Quarto: Preview` from the Command Palette.
+
+Preview renders the active document and opens a preview in the Viewer pane. If the document has multiple output formats, Preview uses one format at a time.
+
+When you want to create the output files deliberately, use **Render Document**:
+
+1. Open the Command Palette.
+2. Run `Quarto: Render Document`.
+3. Choose the format if Positron asks.
+
+If your document declares multiple formats, `Quarto: Render Document` is the command to use when you want those output files produced rather than just previewed.
+
+Other Quarto controls worth trying:
+
+| Control | Where To Find It |
+|---|---|
+| Preview button | Editor toolbar for the active `.qmd` file. |
+| Preview Format | Command Palette: `Quarto: Preview Format`. |
+| Render Document | Command Palette: `Quarto: Render Document`. |
+| Render on Save | Editor toolbar checkbox, or settings search for `quarto.render`. |
+| Source/Visual mode | Editor toolbar or Command Palette commands for source/visual mode. |
+
+::: {.callout-note}
+Visual mode is useful for rich text editing, but source mode is the safer place to demonstrate code execution and language features.
+:::
+
+A minimal Quarto document:
+
+````markdown
+---
+title: "Penguins"
+format: html
+---
+
+```{r}
+library(ggplot2)
+library(palmerpenguins)
+
+ggplot(
+  penguins,
+  aes(flipper_length_mm, body_mass_g, colour = species)
+) +
+  geom_point()
+```
+````
+
+## What Is Still Different
+
+Some RStudio users may miss:
+
+- specialized RStudio panes and buttons for particular workflows
+- the data import widget
+- workspace save/restore behavior
+- some advanced R Markdown conveniences
+- years of R-specific polish in small details
+
+That is fine. Positron does not need to replace RStudio for every project.
+
+Use Positron where it helps:
+
+- Git-heavy work
+- projects that mix R, Python, SQL, shell, YAML, and markdown
+- R packages
+- Quarto projects
+- workflows where snippets and custom shortcuts save time
+- remote development or extension-heavy work
+
+Use RStudio where it still feels better:
+
+- highly RStudio-specific teaching material
+- old `.Rmd` workflows that depend on RStudio behavior
+- workflows built around RStudio addins or panes
+- anything you need to deliver today and do not have time to test
+
+## Try This After The Session
+
+Pick one project and do four things:
+
+1. Open the project folder in Positron.
+2. Run the main analysis or report.
+3. Add one custom keybinding for a command you use constantly.
+4. Make one Git commit from the Source Control pane.
+
+That is enough to know whether Positron is worth adding to your own workflow.
+
+## Copy-Paste Appendix
+
+### Minimal RStudio-Friendly Settings
+
+```json
+{
+  "workbench.keybindings.rstudioKeybindings": true,
+  "editor.mouseWheelZoom": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "[r]": {
+    "editor.tabSize": 2
+  }
+}
+```
+
+### Run An R Command From A Keybinding
+
+```json
+{
+  "key": "cmd+alt+m",
+  "command": "workbench.action.executeCode.console",
+  "when": "editorTextFocus && editorLangId == 'r'",
+  "args": {
+    "langId": "r",
+    "code": "targets::tar_make()",
+    "focus": true
+  }
+}
+```
+
+### Insert A Named R Snippet From A Keybinding
+
+```json
+{
+  "key": "cmd+alt+r",
+  "command": "editor.action.insertSnippet",
+  "when": "editorTextFocus && editorLangId == 'r'",
+  "args": {
+    "langId": "r",
+    "name": "Roxygen function skeleton"
+  }
+}
+```
+
+### Tiny Demo Dataset
+
+```r
+library(dplyr)
+library(ggplot2)
+library(palmerpenguins)
+
+penguins_clean <- penguins |>
+  filter(!is.na(body_mass_g), !is.na(flipper_length_mm))
+
+View(penguins_clean, "Clean penguins")
+```
+
+## References
+
+- [Migrating from RStudio to Positron](https://positron.posit.co/migrate-rstudio.html)
+- [Comparing RStudio and Positron Features](https://positron.posit.co/migrate-rstudio-compare.html)
+- [RStudio Keybindings](https://positron.posit.co/migrate-rstudio-keybindings.html)
+- [R in Positron](https://positron.posit.co/guide-r.html)
+- [Keyboard Shortcuts](https://positron.posit.co/keyboard-shortcuts.html)
+- [Creating R snippets](https://positron.posit.co/migrate-rstudio-snippets.html)
+- [Git Version Control](https://positron.posit.co/git.html)
+- [Data Explorer](https://positron.posit.co/data-explorer.html)
+- [Quarto in Positron](https://positron.posit.co/quarto.html)
